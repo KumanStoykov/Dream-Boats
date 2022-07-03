@@ -5,11 +5,10 @@ const validator = require('validator').default;
 const { TOKEN_NAME, ROUND_SALT } = require('../config');
 const userService = require('../services/userService');
 const jwt = require('../utils/jwtUtils');
-const { isUser, isAuth } = require('../middlewares/authMiddleware');
 const { userPayload } = require('../utils/userPayload');
 
 
-router.post('/register', isUser, async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const firstName = req.body.firstName.trim();
         const lastName = req.body.lastName.trim();
@@ -55,7 +54,7 @@ router.post('/register', isUser, async (req, res) => {
     }
 });
 
-router.post('/login', isUser, async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const email = req.body.email.trim();
         const password = req.body.password.trim();
@@ -92,7 +91,7 @@ router.post('/login', isUser, async (req, res) => {
     }
 });
 
-router.get('/logout', isAuth, (req, res) => {
+router.get('/logout', (req, res) => {
     res.clearCookie(TOKEN_NAME);
     res.status(200).send({ message: 'Secssful logged out' });
 });
