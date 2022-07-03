@@ -29,6 +29,18 @@ const boatSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    image: [
+        {
+            type: {
+                url: {
+                    type: String
+                },
+                public_id: {
+                    type: String
+                }                
+            }
+        }
+    ],
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
