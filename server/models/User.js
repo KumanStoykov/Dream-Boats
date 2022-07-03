@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    contactOwner: [
+    message: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Comment'
+            ref: 'Message'
         }
     ],
     watchedBoat: [
