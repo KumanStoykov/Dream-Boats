@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './Navigation.module.css';
+import styles from './Header.module.css';
 
 
 
-const Navigation = () => {
+const Header = () => {
     const [navbarOpen, setNavBarOpen] = useState(false);
 
     const handleToggle = () => {
@@ -52,4 +52,4 @@ const Navigation = () => {
     );
 }
 
-export default Navigation;
+export default Header;
