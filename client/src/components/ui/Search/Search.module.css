@@ -1,0 +1,78 @@
+.booking {
+    background-image: var(--gradient-color);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-label {
+    display: block;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.input,
+.options {
+    outline: none;
+    border: none;
+    width: 100%;
+    min-height: 4rem;
+    padding: 1rem;
+    font-weight: bold;
+    color: var(--blue-transparent);
+    letter-spacing: 3px;
+    font-size: 1.5rem;    
+    font-family: 'OpenSans', sans-serif;
+    border-radius: 10rem;
+}
+
+
+.options option{
+    font-family: 'OpenSans', sans-serif;    
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+    color: var(--blue-transparent);
+}
+
+@media screen and (min-width: 768px) {
+    .input-group-wrap {
+        display: flex;
+    }
+    .input-group-wrap .input-group {
+        width: 50%;
+        margin-right: 2rem;
+    }
+    .input-group-wrap .input-group:last-child {
+        margin-right: 0;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .book-form {
+        display: flex;
+        justify-content: space-around;
+    }
+    .book-form .input-group {
+        margin-bottom: 0;
+    }
+
+    .book-form .input-group {
+        flex: 0 0 25%;
+        margin: 3px;
+    }
+
+    .input .options {
+        min-width: 10rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .book-form .input-group {
+        flex: 0 0 25%;
+        margin: 3px;
+    }
+}
