@@ -1,0 +1,69 @@
+.section-head {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.heading {
+    display: block;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.sub-heading {
+    font-size: 1.7rem;
+    font-family: 'Courgette', cursive;
+    font-weight: 300;
+    color: #a5a5a5;
+}
+
+.featured-boats {
+    height: 35rem;
+    color: #fff;
+    padding: 1rem;
+    position: relative;
+    z-index: 0;
+}
+
+.featured-boats::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blue-transparent-alt);
+    z-index: -1;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.boat-image {
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+}
+
+.boat-name {
+    font-size: 2.6rem;
+    position: absolute;
+    top: 10%;
+}
+
+.boat-price {
+    font-size: 2.8rem;
+    font-weight: 500;
+    position: absolute;
+    bottom: 20%;
+}
+
+.btn-down{
+    position: absolute;
+    bottom: 4%;
+    
+}
