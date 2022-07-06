@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    firstLast: {
+    lastName: {
         type: String,
         require: true
     },
@@ -22,19 +22,7 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Types.ObjectId,
             ref: 'Message'
         }
-    ],
-    watchedBoat: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Boat'
-        }
-    ],
-    watchedItem: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Item'
-        }
-    ],
+    ],  
 });
 
 const User = mongoose.model('User', userSchema);
