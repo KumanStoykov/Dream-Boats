@@ -38,11 +38,13 @@
 
 .register-form .input {
     display: block;
-    background-color: transparent;
-    color: #fff;
+    background-color: transparent;    
     font-weight: normal;
     border-bottom: 2px solid #fff;
     padding-left: 0;
+    /* background-color: #fff; */
+    border-radius: 2px;
+
 }
 
 ::-webkit-input-placeholder {
@@ -56,13 +58,15 @@
     outline: none;
     border: none;
     width: 100%;
-    min-height: 9rem;
-    padding-top: 4rem;
     font-weight: bold;
+    padding-top: .5rem;
     font-size: 2rem;
-    color: #a5a5a5;
+    color: #fff;
     letter-spacing: 2px;
     font-family: 'OpenSans', sans-serif;
+}
+.input-group{
+    margin-top: 4rem;  
 }
 
 .bar {
@@ -129,10 +133,5 @@
     }
     .input-group-wrap .input-group:last-child {
         margin-right: 0;
-    }
-}
-@media screen and (min-width: 1000px) {
-    section:not(.booking) {
-        padding: 10rem 0;
     }
 }
