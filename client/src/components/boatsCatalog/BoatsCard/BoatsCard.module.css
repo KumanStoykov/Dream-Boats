@@ -1,0 +1,33 @@
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.featured-boats {
+    height: 35rem;
+    color: #fff;
+    padding: 1rem;
+    position: relative;
+    z-index: 0;
+}
+
+.boat-image {
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    border-radius: 15px 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+}
+
+.boat-name {
+    font-size: 2.6rem;
+}
+
+.boat-price {
+    font-size: 1.8rem;
+}
