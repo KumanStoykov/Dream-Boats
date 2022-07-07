@@ -6,7 +6,6 @@
 .login-content {
     display: flex;
     justify-content: center;
-    /* margin-bottom: 10rem; */
 }
 
 .section-head {
@@ -58,8 +57,6 @@
     outline: none;
     border: none;
     width: 100%;
-    min-height: 9rem;
-    padding-top: 4rem;
     font-weight: bold;
     font-size: 2rem;
     color: #a5a5a5;
@@ -67,6 +64,9 @@
     font-family: 'OpenSans', sans-serif;
 }
 
+.input-group{
+    margin-top: 4rem;  
+}
 
 .bar {
     display: block;
