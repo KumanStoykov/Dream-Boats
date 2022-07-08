@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className={styles['footer-content']}>
                     <div className={styles['footer-content-about']}>
                         <a href="index.html" className={styles.logo}>
-                            <img className={styles['logo-image']} src="./images/logo.png" alt="logo.png" />
+                            <img className={styles['logo-image']} src="/images/logo.png" alt="logo.png" />
                         </a>
                         <ul className={styles['about-section']} >
                             <li><a className={styles['about-section-item']} href="#">About us</a></li>
