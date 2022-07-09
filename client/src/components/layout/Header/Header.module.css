@@ -81,16 +81,23 @@
     padding: 1rem;
 }
 
+.icon-span {
+    padding-right: .5rem;
+}
+.logout-icon {
+    font-size: 2.5rem;
+}
+
 @media screen and (min-width: 768px) {
     .header.active {
         height: 6rem;
     }
+    
 }
 
 @media screen and (min-width: 1000px) {
-    /* ???? */
-    section:not(.booking) {
-        padding: 10rem 0;
+    .logout-icon {
+        font-size: 1.3rem;
     }
 
     .hamburger-menu {
