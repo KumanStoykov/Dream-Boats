@@ -1,0 +1,8 @@
+.thumbnail{
+    display: flex;    
+}
+
+.active {
+    transform: scale(1.2);
+    transform: all 300ms;
+}
