@@ -1,15 +1,15 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+
 import { authStoreActions } from '../../../store/authStore';
 import useFetch from '../../../hooks/useFetch';
 import userRequestOptions from '../../../services/userService';
-
+import Spinner from '../../ui/Spinner/Spinner';
 
 import styles from './Register.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import Spinner from '../../ui/Spinner/Spinner';
 
 
 const Register = () => {
@@ -27,7 +27,7 @@ const Register = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const { firstName, lastName, email, password, repeatPassword } = Object.fromEntries(formData);
-
+        
         requester(userRequestOptions.register(firstName, lastName, email, password, repeatPassword), responseData);
         navigate('/');
     };
@@ -109,8 +109,11 @@ const Register = () => {
                             className={'btn-blue'}
                             disabled={isLoading}
                         >Register
+                        {isLoading
+                        ? <Spinner size={'small'} />
+                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                        }
                             
-                            <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                         </button>
                     </form>
                 </div>
