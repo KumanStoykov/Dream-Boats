@@ -41,7 +41,7 @@ const Register = () => {
                 </h5>
                 <div className={styles['register-content']}>
                     <div className={styles['boat-wrap']}>
-                        <img src="./images/boat_register.png" alt="image.png" />
+                        <img src="/images/boat_register.png" alt="image.png" />
                     </div>
                     <form className={styles['register-form']} onSubmit={submitHandler}>
                         <div className={styles['input-group-wrap']}>
