@@ -4,6 +4,7 @@ const cors = require('cors');
 // const path = require('path');
 
 const config = require('./index');
+const router = require('./router');
 
 module.exports = (app) => {
 
@@ -14,4 +15,6 @@ module.exports = (app) => {
     app.use(cookieParser());
 
     app.use(cors(config.CORS));
+    
+    app.use(router);
 }
