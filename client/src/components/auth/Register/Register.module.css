@@ -1,5 +1,5 @@
 .register {
-    min-height: calc(100vh - 125px);    
+    min-height: calc(100vh - 125px);
 }
 
 .register-content {
@@ -38,13 +38,12 @@
 
 .register-form .input {
     display: block;
-    background-color: transparent;    
+    background-color: transparent;
     font-weight: normal;
     border-bottom: 2px solid #fff;
     padding-left: 0;
     /* background-color: #fff; */
     border-radius: 2px;
-
 }
 
 ::-webkit-input-placeholder {
@@ -59,14 +58,14 @@
     border: none;
     width: 100%;
     font-weight: bold;
-    padding-top: .5rem;
+    padding-top: 0.8rem;
     font-size: 2rem;
     color: #fff;
     letter-spacing: 2px;
     font-family: 'OpenSans', sans-serif;
 }
-.input-group{
-    margin-top: 4rem;  
+.input-group {
+    margin-top: 4rem;
 }
 
 .bar {
@@ -109,7 +108,7 @@
 }
 
 @media screen and (min-width: 768px) {
-       .register-content {
+    .register-content {
         justify-content: space-between;
     }
     .boat-wrap {
