@@ -1,0 +1,41 @@
+.slideshow {
+    position: relative;
+}
+
+.mainImg {
+    object-fit: cover;
+    object-position: center center;
+    height: 500px;    
+    width: 100%;
+    transition: all 500ms;
+}
+
+.actions {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions button {
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    padding-top: 5px;
+    color: #fff;
+    font-size: 4rem;
+}
+
+.actions button:active {
+    background-color: initial;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px;
+    padding-top: 5px;
+}
