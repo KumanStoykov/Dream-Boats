@@ -1,0 +1,43 @@
+.comment {
+    background: linear-gradient(
+            to right,
+            rgba(0, 187, 156, 0.6),
+            rgba(0, 145, 166, 0.6)
+        ),
+        url('../../../../public/images/luxury_12.jpg') center
+            no-repeat;
+    background-size: cover;
+}
+
+.comment-content {
+    background-color: #fff;
+    text-align: center;
+    padding: 5rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.discount {
+    background-color: var(--aqua-solid);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: 2px solid var(--aqua-solid);
+    outline-offset: 0.5rem;
+}
+
+.paragraph {
+    color: #a5a5a5;
+    margin-bottom: 2.5rem;
+}
+
+.hotel-rating {
+    margin: 1rem 0 2.5rem;
+}
+
+.rating {
+    color: var(--rating-color);
+}
