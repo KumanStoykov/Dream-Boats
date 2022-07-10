@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faArrowRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faArrowRightFromBracket, faUserLock } from '@fortawesome/free-solid-svg-icons';
 
 import useFetch from '../../../hooks/useFetch';
 import userRequestOptions from '../../../services/userService';
@@ -13,6 +13,7 @@ import styles from './Header.module.css';
 
 
 const Header = () => {
+    const navigate = useNavigate();
     const [navbarOpen, setNavBarOpen] = useState(false);
     const user = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -26,7 +27,8 @@ const Header = () => {
     const logoutHandler = (e) =>{
         e.preventDefault();
         dispatch(authStoreActions.logout());
-        requester(userRequestOptions.logout())
+        requester(userRequestOptions.logout());
+        navigate('/');
     } 
 
     const userNavigate = () => {
@@ -45,7 +47,7 @@ const Header = () => {
                     <Link to="/details" className={styles['nav-link']}>Details</Link>
                 </li>
                 <li className={styles['nav-item']}>
-                    <Link to="/news" className={styles['nav-link']}>News</Link>
+                    <Link to="/profile" className={styles['nav-link']}>Profile</Link>
                 </li>
                 <li className={styles['nav-item']}>
                     <Link onClick={logoutHandler} to="/auth/logout" className={styles['nav-link']}><FontAwesomeIcon className={styles['logout-icon']} icon={faArrowRightFromBracket} /></Link>
@@ -70,7 +72,7 @@ const Header = () => {
                     <Link to="/news" className={styles['nav-link']}>News</Link>
                 </li>
                 <li className={styles['nav-item']}>
-                    <Link to="/auth/login" className={styles['nav-link']}><span className={styles['icon-span']}>Log on</span><FontAwesomeIcon className={styles['logout-icon']} icon={faUser} /></Link>
+                    <Link to="/auth/login" className={styles['nav-link']}><span className={styles['icon-span']}>Log on</span><FontAwesomeIcon className={styles['logout-icon']} icon={faUserLock} /></Link>
                 </li>
 
             </>
