@@ -8,7 +8,7 @@ import Login from './components/auth/Login/Login';
 import Register from './components/auth/Register/Register';
 import BoatsCatalog from './pages/BoatsCatalog/BoatsCatalog';
 import DetailsBoat from './pages/DetailsBoat/DetailsBoat';
-
+import Profile from './pages/Profile/Profile';
 
 function App() {
 	return (
@@ -19,6 +19,7 @@ function App() {
 				<Route path='/auth/register' element={<Register />} />
 				<Route path='/boats-catalog' element={<BoatsCatalog />} />
 				<Route path='/details' element={<DetailsBoat />} />
+				<Route path='/profile' element={<Profile />} />
 				<Route path='*' element={<Navigate to={'/'} />} />
 			</Routes>
 		</Layout>
