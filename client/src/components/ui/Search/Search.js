@@ -9,7 +9,7 @@ const Search = () => {
     const navigate = useNavigate();
 
     return (
-        <section className={styles.booking}>
+        <section className={styles.search}>
             <div className={'container'}>
                 <form className={styles['book-form']}>
                     <div className={styles['input-group']}>
@@ -20,15 +20,7 @@ const Search = () => {
                             <option value={'motorboat'}>Motorboat</option>
                             <option value={'sailboat'}>Sailboat</option>
                         </select>
-                    </div>
-                    <div className={styles['input-group']}>
-                        <label htmlFor="gasoline" className={styles['input-label']}>Fuel</label>
-                        <select name="gasoline" id="gasoline" className={styles.options}>
-                            <option value={'any'}>Any</option>
-                            <option value={'benzin'}>Benzin</option>
-                            <option value={'diesel'}>Diesel</option>
-                        </select>
-                    </div>
+                    </div>                   
                     <div className={styles['input-group']}>
                         <label htmlFor="priceFrom" className={styles['input-label']}>Price from</label>
                         <select name="priceFrom" id="priceFrom" className={styles.options}>
