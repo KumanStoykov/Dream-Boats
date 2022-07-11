@@ -2,6 +2,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 
+import useScrollToTop from './hooks/useScrollToTop';
+
 import Layout from './components/layout/Layout/Layout';
 import Home from './pages/Home/Home';
 import Login from './components/auth/Login/Login';
@@ -10,9 +12,14 @@ import BoatsCatalog from './pages/BoatsCatalog/BoatsCatalog';
 import DetailsBoat from './pages/DetailsBoat/DetailsBoat';
 import Profile from './pages/Profile/Profile';
 
+
 function App() {
+
+	useScrollToTop();
+
 	return (
 		<Layout>
+
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/auth/login' element={<Login />}/>
