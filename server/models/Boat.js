@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const boatSchema = new mongoose.Schema({
-    category: {
+    make: {
         type: String,
         require: true
     },
@@ -9,12 +9,17 @@ const boatSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    price: {
+    type: {
         type: String,
         require: true
     },
-    about: {
+    condition: {
         type: String,
+        require: true
+        //Old or new 
+    },
+    length: {
+        type: Number,
         require: true
     },
     year: {
@@ -25,7 +30,23 @@ const boatSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    engineMake: {
+        type: String,
+        require: true
+    },
+    hullMaterial: {
+        type: String,
+        require: true
+    },
     location: {
+        type: String,
+        require: true
+    },
+    price: {
+        type: Number,
+        require: true
+    },
+    description: {
         type: String,
         require: true
     },
@@ -37,7 +58,7 @@ const boatSchema = new mongoose.Schema({
                 },
                 public_id: {
                     type: String
-                }                
+                }
             }
         }
     ],
