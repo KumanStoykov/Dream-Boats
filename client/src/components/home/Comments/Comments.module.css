@@ -4,7 +4,7 @@
             rgba(0, 187, 156, 0.6),
             rgba(0, 145, 166, 0.6)
         ),
-        url('../../../../public/images/luxury_12.jpg') center
+        url('../../../../public/images/hero_background.jpg') center
             no-repeat;
     background-size: cover;
 }
