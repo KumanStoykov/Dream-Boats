@@ -6,7 +6,10 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 import { authStoreActions } from '../../../store/authStore';
 import useFetch from '../../../hooks/useFetch';
-import userRequestOptions from '../../../services/userService';
+import userService from '../../../services/userService';
+import useInput from '../../../hooks/useInput';
+import userValidation from '../../../validation/userValidation';
+
 import Spinner from '../../ui/Spinner/Spinner';
 
 import styles from './Register.module.css';
@@ -19,103 +22,154 @@ const Register = () => {
     const { isLoading, requester } = useFetch();
 
 
-    const responseData = (dataResponse) => {
-        dispatch(authStoreActions.login(dataResponse));
+    const {
+        value: firstNameValue,
+        hasError: firstNameHasErrorValue,
+        fieldIsValid: firstNameFieldIsValid,
+        onChange: firstNameOnChange,
+        onBlur: firstNameOnBlur,
+        reset: firstNameReset
+    } = useInput(userValidation.nameIsLength);
+    const {
+        value: lastNameValue,
+        hasError: lastNameHasErrorValue,
+        fieldIsValid: lastNameFieldIsValid,
+        onChange: lastNameOnChange,
+        onBlur: lastNameOnBlur,
+        reset: lastNameReset
+    } = useInput(userValidation.nameIsLength);
+    const {
+        value: emailValue,
+        hasError: emailHasErrorValue,
+        fieldIsValid: emailFieldIsValid,
+        onChange: emailOnChange,
+        onBlur: emailOnBlur,
+        reset: emailReset
+    } = useInput(userValidation.emailIsValid);
+
+    const {
+        value: passwordValue,
+        hasError: passwordHasErrorValue,
+        fieldIsValid: passwordFieldIsValid,
+        onChange: passwordOnChange,
+        onBlur: passwordOnBlur,
+        reset: passwordReset
+    } = useInput(userValidation.passwordIsLength);
+    const {
+        value: repeatPasswordValue,
+        hasError: repeatPasswordHasErrorValue,
+        fieldIsValid: repeatPasswordFieldIsValid,
+        onChange: repeatPasswordOnChange,
+        onBlur: repeatPasswordOnBlur,
+        reset: repeatPasswordReset
+    } = useInput(userValidation.isEqual.bind(null, passwordValue));
+
+    const inputFieldsIsValid =  firstNameFieldIsValid
+                                && lastNameFieldIsValid 
+                                && emailFieldIsValid 
+                                && passwordFieldIsValid 
+                                && repeatPasswordFieldIsValid; 
+
+    const responseData = (data) => {
+
+        dispatch(authStoreActions.login(data));
+        firstNameReset();
+        lastNameReset();
+        emailReset();
+        passwordReset();
+        repeatPasswordReset();
     };
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const { firstName, lastName, email, password, repeatPassword } = Object.fromEntries(formData);
-        
-        requester(userRequestOptions.register(firstName, lastName, email, password, repeatPassword), responseData);
+
+        requester(userService.register(firstNameValue, lastNameValue, emailValue, passwordValue, repeatPasswordValue), responseData);
         navigate('/');
     };
-    
+
     return (
         <section className={styles.register}>
             <div className={'container'}>
                 <h5 className={styles['section-head']}>
                     <span className={styles.heading}>Register</span>
-                    <span className={styles['sub-heading']}>SING UP</span>
                 </h5>
                 <div className={styles['register-content']}>
                     <div className={styles['boat-wrap']}>
-                        <img src="/images/boat_register.png" alt="image.png" />
+                        <img src='/images/boat_register.png' alt='image.png' />
                     </div>
-                    <form className={styles['register-form']} onSubmit={submitHandler}>
-                        <div className={styles['input-group-wrap']}>
-                            <div className={styles['input-group']}>
+                    <div className={styles['container-form']}>
+                        <h2 className={styles['title-form']}>Sign in</h2>
+
+                        <form className={styles['register-form']} onSubmit={submitHandler}>
+                            <div className={styles.field}>
+                                <label htmlFor='firstName'>First Name</label>
                                 <input
-                                    type="text"
-                                    className={styles.input}
-                                    placeholder="First name"
-                                    name='firstName'
-                                    disabled={isLoading}
+                                    type='text'
+                                    id='firstName'
+                                    value={firstNameValue}
+                                    onChange={firstNameOnChange}
+                                    onBlur={firstNameOnBlur}
                                 />
-                                <span className={styles.bar}></span>
+                                {firstNameHasErrorValue && <p className={styles.error}>The last name should be at least 4 characters long</p>}
                             </div>
-                            <div className={styles['input-group']}>
+                            <div className={styles.field}>
+                                <label htmlFor='lastName'>Last Name</label>
                                 <input
-                                    type="text"
-                                    className={styles.input}
-                                    placeholder="Last name"
-                                    name='lastName'
-                                    disabled={isLoading}
+                                    type='text'
+                                    id='lastName'
+                                    value={lastNameValue}
+                                    onChange={lastNameOnChange}
+                                    onBlur={lastNameOnBlur}
                                 />
-                                <span className={styles.bar}></span>
+                                {lastNameHasErrorValue && <p className={styles.error}>The last name should be at least 4 characters long</p>}
                             </div>
-                        </div>
-
-                        <div className={styles['input-group']}>
-                            <input
-                                type="email"
-                                className={styles.input}
-                                placeholder="Email"
-                                name='email'
-                                disabled={isLoading}
-                            />
-                            <span className={styles.bar}></span>
-                        </div>
-
-                        <div className={styles['input-group']}>
-                            <input
-                                type="password"
-                                className={styles.input}
-                                placeholder="Password"
-                                name='password'
-                                disabled={isLoading}
-                            />
-                            <span className={styles.bar}></span>
-                        </div>
-
-                        <div className={styles['input-group']}>
-                            <input
-                                type="password"
-                                className={styles.input}
-                                placeholder="Re-password"
-                                name='repeatPassword'
-                                disabled={isLoading}
-                            />
-                            <span className={styles.bar}></span>
-                        </div>
-
-                        <div className={styles['input-group']}>
-                            <p className={styles['register-now']}>Already have account? <Link to="/auth/login" >Login Now!</Link></p>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className={'btn-blue'}
-                            disabled={isLoading}
-                        >Register
-                        {isLoading
-                        ? <Spinner size={'small'} />
-                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
-                        }
-                            
-                        </button>
-                    </form>
+                            <div className={styles.field}>
+                                <label htmlFor='email'>Email</label>
+                                <input
+                                    type='email'
+                                    id='email'
+                                    value={emailValue}
+                                    onChange={emailOnChange}
+                                    onBlur={emailOnBlur}
+                                />
+                                {emailHasErrorValue && <p className={styles.error}>Email address is invalid</p>}
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor='password'>Password</label>
+                                <input
+                                    type='password'
+                                    id='password'
+                                    value={passwordValue}
+                                    onChange={passwordOnChange}
+                                    onBlur={passwordOnBlur}
+                                />
+                                {passwordHasErrorValue && <p className={styles.error}>The password should be at least 5 characters long</p>}
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor='repeatPassword'>Re-password</label>
+                                <input
+                                    type='password'
+                                    id='repeatPassword'
+                                    value={repeatPasswordValue}
+                                    onChange={repeatPasswordOnChange}
+                                    onBlur={repeatPasswordOnBlur}
+                                />
+                                {repeatPasswordHasErrorValue && <p className={styles.error}>The repeat password should be equal to the password</p>}
+                            </div>
+                            <button 
+                                disabled={!inputFieldsIsValid} 
+                                className={'btn-blue'}
+                                type='submit'>Sign up
+                                {isLoading
+                                ? <Spinner size={'small'} />
+                                : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                }
+                            </button>
+                            <div className={styles.more}>
+                                <p >Don't have an account? <Link to='/auth/login'>Sign in</Link></p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
