@@ -1,13 +1,15 @@
-import Footer from '../Footer/Footer'
-import Header from '../Header/Header'
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import ScrollToTopButton from '../../ui/ScrollToTopBUtton/ScrollToTopButton';
 
 
 const Layout = (props) => {
     return (
-        <>        
-        <Header />
-        <main>{props.children}</main>
-        <Footer />
+        <>
+            <ScrollToTopButton />
+            <Header />
+            <main>{props.children}</main>
+            <Footer />
         </>
     )
 }
