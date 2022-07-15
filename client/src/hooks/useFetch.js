@@ -1,15 +1,15 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 const useFetch = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState(null);
+    const [serverError, setServerError] = useState(null);
     const dispatch = useDispatch();
 
-    const requester = useCallback(async (options, dataSend) => {      
+    const requester = useCallback(async (options, dataSend) => {
 
         setIsLoading(true);
-        setErrors(null);
+        setServerError(null);
 
         try {
             const res = await fetch(options.url, {
@@ -26,23 +26,27 @@ const useFetch = () => {
 
 
             setIsLoading(false);
-            dataSend(result)
+
+            if (dataSend) {
+                dataSend(result);
+            }
+            return result;
 
         } catch (error) {
             let errorMsg = error.message;
             console.log(errorMsg);
 
-            setErrors(errorMsg);
+            setServerError(errorMsg);
             setIsLoading(false);
         }
 
 
-    }, [dispatch]);//TODO...
+    }, [dispatch]);
 
 
     return {
         isLoading,
-        errors,
+        serverError,
         requester
     }
 };
