@@ -2,10 +2,10 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const validator = require('validator').default;
 
-const { TOKEN_NAME, ROUND_SALT } = require('../config');
+const { COOKIE_TOKEN_NAME, ROUND_SALT } = require('../config');
 const userService = require('../services/userService');
 const jwt = require('../utils/jwtUtils');
-const { userPayload } = require('../utils/userPayload');
+const { userPayload } = require('../utils/userPayload'); 
 
 
 router.post('/register', async (req, res) => {
@@ -19,6 +19,9 @@ router.post('/register', async (req, res) => {
 
         if (!validator.isLength(firstName, { min: 4 })) {
             throw new Error('The first name should be at least 4 characters long');
+        }
+        if (!validator.isLength(lastName, { min: 4 })) {
+            throw new Error('The last name should be at least 4 characters long');
         }
         if (!validator.isEmail(email)) {
             throw new Error('The email should be in correct format');
@@ -38,12 +41,12 @@ router.post('/register', async (req, res) => {
 
         const hashPass = await bcrypt.hash(password, ROUND_SALT);
 
-        const user = await authService.register(firstName, lastName, email, hashPass);
+        const user = await userService.createUser(firstName, lastName, email, hashPass);
 
 
         const token = await jwt.createToken(user);
 
-        res.cookie(TOKEN_NAME, token, { httpOnly: true });
+        res.cookie(COOKIE_TOKEN_NAME, token, { httpOnly: true });
 
         const sendData = userPayload(user);
 
@@ -80,7 +83,7 @@ router.post('/login', async (req, res) => {
 
         const token = await jwt.createToken(user);
 
-        res.cookie(TOKEN_NAME, token, { httpOnly: true });
+        res.cookie(COOKIE_TOKEN_NAME, token, { httpOnly: true });
 
         const sendData = userPayload(user);
 
@@ -92,7 +95,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    res.clearCookie(TOKEN_NAME);
+    res.clearCookie(COOKIE_TOKEN_NAME);
     res.status(200).send({ message: 'Secssful logged out' });
 });
 
