@@ -1,5 +1,5 @@
 import ProfileNavbar from '../../components/profile/ProfileNavbar/ProfileNavbar';
-import ProfileForm from '../../components/profile/ProfileForm/ProfileForm';
+import BoatForm from '../../components/boat/BoatForm/BoatForm';
 
 
 const Profile = () => {
@@ -8,7 +8,7 @@ const Profile = () => {
     return(
         <>
             <ProfileNavbar />
-            <ProfileForm />
+            <BoatForm />
         </>
     );
 };
