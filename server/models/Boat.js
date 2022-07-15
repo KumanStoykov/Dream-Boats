@@ -16,7 +16,6 @@ const boatSchema = new mongoose.Schema({
     condition: {
         type: String,
         require: true
-        //Old or new 
     },
     length: {
         type: Number,
