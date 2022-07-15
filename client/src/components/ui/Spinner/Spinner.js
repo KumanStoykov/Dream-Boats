@@ -1,13 +1,15 @@
 import styles from './Spinner.module.css';
 
-const Spinner = () => {
-
+const Spinner = ({
+    size
+}) => {
+    
     return (
-        <section className={styles.preloader}>
-            <div className={styles.spinner}>
-                <span className={styles['sk-inner-circle']} />
-            </div>
-        </section>
+        <div className={`${styles.loader} ${styles[size]}`}>
+            <div className={`${styles.circle} ${styles[`circle-${size}`]}`}></div>
+            <div className={`${styles.circle} ${styles[`circle-${size}`]}`}></div>
+            <div className={`${styles.circle} ${styles[`circle-${size}`]}`}></div>
+        </div>
     );
 };
 
