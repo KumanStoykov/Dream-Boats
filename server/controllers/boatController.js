@@ -38,34 +38,54 @@ router.post('/', async (req, res) => {
         }
 
         const boatData = {
-            category: formData.body.category,
+            make: formData.body.make,
             model: formData.body.model,
-            price: formData.body.price,
-            description: formData.body.description,
+            type: formData.body.type,
+            condition: formData.body.condition,
+            length: formData.body.length,
             year: formData.body.year,
             fuel: formData.body.fuel,
+            engineMake: formData.body.engineMake,
+            hullMaterial: formData.body.hullMaterial,
+            price: formData.body.price,
+            description: formData.body.description,
             location: formData.body.location,
             image: formData.body.image,
             owner: formData.user._id
         };
 
-        if (!validator.matches(boatData.category, /Yacht|Motorboat|Sailboat/i)) {
-            throw new Error('The category should be one from Yacht, Motorboat, Sailboat');
+        if (!validator.isLength(boatData.make, { min: 3 })) {
+            throw new Error('The make should be at least 3 characters long');
         }
         if (!validator.isLength(boatData.model, { min: 3 })) {
-            throw new Error('The last name should be at least 3 characters long');
+            throw new Error('The model should be at least 3 characters long');
         }
-        if (!validator.isInt(boatData.price, { min: 1, })) {
-            throw new Error('The price should be positive number');
+        if (!validator.matches(boatData.type, /Yacht|Motorboat|Sailboat/i)) {
+            throw new Error('The type should be one from Yacht, Motorboat, Sailboat');
         }
-        if (!validator.isLength(boatData.description, { min: 20 })) {
-            throw new Error('The description should be at least 20 characters long');
+        if (!validator.matches(boatData.condition, /Old|New/i)) {
+            throw new Error('The condition should be one from Old or New');
+        }        
+        if (!validator.isLength(boatData.length, { min: 1 })) {
+            throw new Error('A value is required, this field can\'t be empty');
         }
         if (!validator.isInt(boatData.year, { min: 1960, max: 2022 })) {
             throw new Error('The year should be between 1960 and 2022');
         }
         if (!validator.matches(boatData.fuel, /Benzin|Diesel/i)) {
-            throw new Error('The category should be one from Yacht, Motorboat, Sailboat');
+            throw new Error('The make should be one from Yacht, Motorboat, Sailboat');
+        }
+        if (!validator.isLength(boatData.engineMake, { min: 3 })) {
+            throw new Error('The engineMake should be at least 3 characters long');
+        }
+        if (!validator.isLength(boatData.hullMaterial, { min: 2 })) {
+            throw new Error('The hullMaterial should be at least 2 characters long');
+        }
+        if (!validator.isInt(boatData.price)) {
+            throw new Error('A value is required, this field can\'t be empty');
+        }
+        if (!validator.isLength(boatData.description, { min: 20 })) {
+            throw new Error('The description should be at least 20 characters long');
         }
         if (!validator.isLength(boatData.location, { min: 3 })) {
             throw new Error('he location should be at least 20 characters long');
