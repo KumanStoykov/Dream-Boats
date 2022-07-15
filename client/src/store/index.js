@@ -13,6 +13,7 @@ import {
 
 import authStore from './authStore';
 import boatStore from './boatStore';
+import modalStore from './modalStore';
 
 
 const persistConfig = {
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     auth: authStore,
     boat: boatStore,
+    modal: modalStore,
 });
 
 
