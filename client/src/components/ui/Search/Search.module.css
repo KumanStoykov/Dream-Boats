@@ -38,7 +38,7 @@
     color: var(--blue-transparent);
 }
 
-@media screen and (min-width: 768px) {
+@media all and (min-width: 768px) {
     .input-group-wrap {
         display: flex;
     }
@@ -51,7 +51,7 @@
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media all and (min-width: 1000px) {
     .book-form {
         display: flex;
         justify-content: space-around;
@@ -70,7 +70,7 @@
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media all and (min-width: 1200px) {
     .book-form .input-group {
         flex: 0 0 25%;
         margin: 3px;
