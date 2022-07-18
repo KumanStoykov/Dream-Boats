@@ -4,21 +4,21 @@ import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDharmachakra } from '@fortawesome/free-solid-svg-icons';
 
-import useFetch from '../../../../hooks/useFetch';
-import boatService from '../../../../services/boatService';
+import useFetch from '../../../hooks/useFetch';
+import boatService from '../../../services/boatService';
 
 import BoatCard from '../BoatCard/BoatCard';
-import Spinner from '../../../ui/Spinner/Spinner';
+import Spinner from '../../ui/Spinner/Spinner';
 
 
-import styles from './BoatsList.module.css';
+import styles from './BoatList.module.css';
 
 
 
 
 const BoatsList = () => {
     const dispatch = useDispatch();
-    const { isLoading, requester } = useFetch();
+    const { isLoading, serverError, requester } = useFetch();
     const [boats, setBoats] = useState([]);
 
     const responseData = useCallback((data) => {
@@ -26,8 +26,9 @@ const BoatsList = () => {
     }, []);
 
     useEffect(() => {
-        requester(boatService.getAll(), responseData)
-    }, []);
+        requester(boatService.getAll(), responseData);
+        console.log('logooooooo')
+    }, [requester, responseData]);
  
 
     return (

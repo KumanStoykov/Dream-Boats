@@ -1,0 +1,19 @@
+.boats{
+    min-height: 100vh;
+}
+.section-head {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.heading {
+    display: block;
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: var(--blue-solid);
+}
+
+.anchor-heading {
+    font-size: 5rem; 
+    color: var(--blue-solid);
+}
