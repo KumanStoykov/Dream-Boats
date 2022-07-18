@@ -114,7 +114,6 @@
 
 .error {
     display: flex;
-    justify-content: end;  
     color: #ff525b;
     font-size: 1.5rem;
     border-radius: 1rem;
@@ -144,7 +143,7 @@
     .input-group-wrap {
         display: flex;
     }
-    .input-group-wrap .input-group {
+    .input-group-wrap .input-group { 
         width: 50%;
         margin-right: 2rem;
     }

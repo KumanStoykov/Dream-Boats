@@ -64,11 +64,11 @@ const Register = () => {
         reset: repeatPasswordReset
     } = useInput(userValidation.isEqual.bind(null, passwordValue));
 
-    const inputFieldsIsValid =  firstNameFieldIsValid
-                                && lastNameFieldIsValid 
-                                && emailFieldIsValid 
-                                && passwordFieldIsValid 
-                                && repeatPasswordFieldIsValid; 
+    const inputFieldsIsValid = firstNameFieldIsValid
+        && lastNameFieldIsValid
+        && emailFieldIsValid
+        && passwordFieldIsValid
+        && repeatPasswordFieldIsValid;
 
     const responseData = (data) => {
 
@@ -84,7 +84,16 @@ const Register = () => {
         e.preventDefault();
 
         requester(userService.register(firstNameValue, lastNameValue, emailValue, passwordValue, repeatPasswordValue), responseData);
-        navigate('/');
+
+        if (typeof res === 'object') {
+            navigate('/');
+        } else {
+            firstNameReset();
+            lastNameReset();
+            emailReset();
+            passwordReset();
+            repeatPasswordReset();
+        }
     };
 
     return (
@@ -106,6 +115,7 @@ const Register = () => {
                                 <input
                                     type='text'
                                     id='firstName'
+                                    name='firstName'
                                     value={firstNameValue}
                                     onChange={firstNameOnChange}
                                     onBlur={firstNameOnBlur}
@@ -117,6 +127,7 @@ const Register = () => {
                                 <input
                                     type='text'
                                     id='lastName'
+                                    name='lastName'
                                     value={lastNameValue}
                                     onChange={lastNameOnChange}
                                     onBlur={lastNameOnBlur}
@@ -128,6 +139,7 @@ const Register = () => {
                                 <input
                                     type='email'
                                     id='email'
+                                    name='email'
                                     value={emailValue}
                                     onChange={emailOnChange}
                                     onBlur={emailOnBlur}
@@ -139,6 +151,7 @@ const Register = () => {
                                 <input
                                     type='password'
                                     id='password'
+                                    name='password'
                                     value={passwordValue}
                                     onChange={passwordOnChange}
                                     onBlur={passwordOnBlur}
@@ -150,19 +163,20 @@ const Register = () => {
                                 <input
                                     type='password'
                                     id='repeatPassword'
+                                    name='repeatPassword'
                                     value={repeatPasswordValue}
                                     onChange={repeatPasswordOnChange}
                                     onBlur={repeatPasswordOnBlur}
                                 />
                                 {repeatPasswordHasErrorValue && <p className={styles.error}>The repeat password should be equal to the password</p>}
                             </div>
-                            <button 
-                                disabled={!inputFieldsIsValid} 
+                            <button
+                                disabled={!inputFieldsIsValid}
                                 className={'btn-blue'}
                                 type='submit'>Sign up
                                 {isLoading
-                                ? <Spinner size={'small'} />
-                                : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                    ? <Spinner size={'small'} />
+                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                                 }
                             </button>
                             <div className={styles.more}>
