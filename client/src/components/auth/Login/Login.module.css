@@ -114,7 +114,6 @@
 
 .error {
     display: flex;
-    justify-content: end;
     color: #ff525b;
     font-size: 1.5rem;
     border-radius: 1rem;

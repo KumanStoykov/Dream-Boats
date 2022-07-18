@@ -11,7 +11,6 @@ import useInput from '../../../hooks/useInput';
 import userValidation from '../../../validation/userValidation';
 
 import Spinner from '../../ui/Spinner/Spinner';
-
 import styles from './Login.module.css';
 
 
@@ -19,7 +18,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
-  
+
 
     const {
         value: emailValue,
@@ -39,7 +38,7 @@ const Login = () => {
         reset: passwordReset
     } = useInput(userValidation.passwordIsLength);
 
-    const inputFieldsIsValid = emailFieldIsValid && passwordFieldIsValid; 
+    const inputFieldsIsValid = emailFieldIsValid && passwordFieldIsValid;
 
     const responseData = (data) => {
         dispatch(authStoreActions.login(data));
@@ -51,9 +50,18 @@ const Login = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        if (!inputFieldsIsValid) {
+            return;
+        }
 
-        requester(userService.login(emailValue, passwordValue), responseData);
-        navigate('/');
+        const res = await requester(userService.login(emailValue, passwordValue), responseData);
+        
+        if(typeof res === 'object') {
+            navigate('/');
+        } else {
+            emailReset()
+            passwordReset()
+        }
     }
 
 
@@ -75,6 +83,7 @@ const Login = () => {
                                 <input
                                     type="email"
                                     id='email'
+                                    name='email'
                                     value={emailValue}
                                     onChange={emailOnChange}
                                     onBlur={emailOnBlur}
@@ -86,20 +95,21 @@ const Login = () => {
                                 <input
                                     type="password"
                                     id='password'
+                                    name='password'
                                     value={passwordValue}
                                     onChange={passwordOnChange}
                                     onBlur={passwordOnBlur}
                                 />
                             </div>
                             {passwordHasErrorValue && <p className={styles.error}>Please entry your password</p>}
-                            <button 
-                                disabled={!inputFieldsIsValid} 
-                                className={'btn-blue'} 
-                                type="submit">Sign in 
-                                {isLoading 
-                                ? <Spinner size={'small'}/>
-                                : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span> 
-                                }                               
+                            <button
+                                disabled={!inputFieldsIsValid}
+                                className={'btn-blue'}
+                                type="submit">Sign in
+                                {isLoading
+                                    ? <Spinner size={'small'} />
+                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                }
                             </button>
                             <div className={styles.more}>
                                 <p >Don't have an account? <Link to="/auth/register">Sign up</Link></p>
