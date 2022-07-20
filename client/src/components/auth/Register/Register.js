@@ -173,11 +173,13 @@ const Register = () => {
                             <button
                                 disabled={!inputFieldsIsValid}
                                 className={'btn-blue'}
-                                type='submit'>Sign up
-                                {isLoading
-                                    ? <Spinner size={'small'} />
-                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
-                                }
+                                type='submit'
+                                >
+                                Sign up
+                                    {!inputFieldsIsValid && isLoading
+                                        ? <Spinner size={'small'} />
+                                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                    }
                             </button>
                             <div className={styles.more}>
                                 <p >Don't have an account? <Link to='/auth/login'>Sign in</Link></p>

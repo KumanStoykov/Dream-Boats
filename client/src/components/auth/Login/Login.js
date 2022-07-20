@@ -41,6 +41,7 @@ const Login = () => {
     const inputFieldsIsValid = emailFieldIsValid && passwordFieldIsValid;
 
     const responseData = (data) => {
+        console.log(data)
         dispatch(authStoreActions.login(data));
         emailReset();
         passwordReset();
@@ -105,11 +106,13 @@ const Login = () => {
                             <button
                                 disabled={!inputFieldsIsValid}
                                 className={'btn-blue'}
-                                type="submit">Sign in
-                                {isLoading
-                                    ? <Spinner size={'small'} />
-                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
-                                }
+                                type="submit"
+                                >
+                                Sign in
+                                    {!inputFieldsIsValid && isLoading
+                                        ? <Spinner size={'small'} />
+                                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                    }
                             </button>
                             <div className={styles.more}>
                                 <p >Don't have an account? <Link to="/auth/register">Sign up</Link></p>
