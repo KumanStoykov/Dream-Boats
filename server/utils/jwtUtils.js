@@ -10,8 +10,8 @@ exports.createToken = (user) => {
         email: user.email,
     };
 
-    return new Promise((resolve, reject) => {
-        jwt.sign(payload, SECRET, {expiresIn: '1d'}, (err, token) => {
+    return new Promise((resolve, reject) => { 
+        jwt.sign(payload, SECRET, {expiresIn: '7d'}, (err, token) => {
             if(err) {
                 reject(err);
             } else {
