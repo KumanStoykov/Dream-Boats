@@ -14,21 +14,21 @@ import Profile from './pages/Profile/Profile';
 
 
 function App() {
+	
 
 	useScrollToTop();
 
-	return (
-		<Layout>
-
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/auth/login' element={<Login />}/>
-				<Route path='/auth/register' element={<Register />} />
-				<Route path='/boats-catalog' element={<BoatsCatalog />} />
-				<Route path='/details' element={<DetailsBoat />} />
-				<Route path='/profile' element={<Profile />} />
-				<Route path='*' element={<Navigate to={'/'} />} />
-			</Routes>
+	return (		
+		<Layout>			
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/auth/login' element={<Login />}/>
+					<Route path='/auth/register' element={<Register />} />
+					<Route path='/boats-catalog' element={<BoatsCatalog />} />
+					<Route path='/boat/details/:boatId' element={<DetailsBoat />} />
+					<Route path='/profile' element={<Profile />} />
+					<Route path='*' element={<Navigate to={'/'} />} />
+				</Routes>
 		</Layout>
 	);
 }
