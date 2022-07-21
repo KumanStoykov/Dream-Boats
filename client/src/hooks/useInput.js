@@ -21,6 +21,7 @@ const useInput = (validation) => {
 
     return{
         value,
+        setValue,
         fieldIsValid,
         hasError,
         onChange,
