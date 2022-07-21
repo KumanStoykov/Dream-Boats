@@ -43,13 +43,13 @@
 
 
 
-@media screen and (min-width: 768px) {
+@media all and (min-width: 768px) {
     .title {
         font-size: 8rem;
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media all and (min-width: 1000px) {
     
     .title {
         font-size: 12rem;
