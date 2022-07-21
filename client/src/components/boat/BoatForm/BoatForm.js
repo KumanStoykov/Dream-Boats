@@ -18,11 +18,12 @@ import styles from './BoatForm.module.css';
 
 const BoatForm = () => {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
-    const boat = useSelector(state => state.boat);
-    const { isLoading, requester } = useFetch();
+    const [imageImageFieldIsValid, setImageFieldIsValid] = useState(false);
     const [imageFile, setImageFile] = useState([]);
+    const { isLoading, requester } = useFetch();
+    const boat = useSelector(state => state.allBoats.boat);
+
 
     const {
         value: makeValue,
@@ -76,7 +77,7 @@ const BoatForm = () => {
         onChange: yearOnChange,
         onBlur: yearOnBlur,
         reset: yearReset
-    } = useInput(boatValidation.isLengthTwoCh);
+    } = useInput(boatValidation.checkYear);
 
     const {
         value: fuelValue,
@@ -145,6 +146,7 @@ const BoatForm = () => {
         && priceFieldIsValid
         && descriptionFieldIsValid;
 
+
     const responseData = (data) => {
         dispatch(boatStoreActions.addBoat(data));
         makeReset();
@@ -152,20 +154,23 @@ const BoatForm = () => {
         typeReset();
         conditionReset();
         boatLengthReset();
+        yearReset();
         fuelReset();
         locationReset();
         engineMakeReset();
         hullMaterialReset();
+        priceReset();
         descriptionReset();
     };
 
     const fileHandler = (e) => {
         const element = e.target;
-        for(const file of element.files) {
+        for (const file of element.files) {
             setImageFile(state => [...state, file]);
         }
+
+        setImageFieldIsValid(true);        
     }
-    console.log(imageFile)
 
 
 
@@ -175,12 +180,15 @@ const BoatForm = () => {
         const formData = new FormData();
 
         if (imageFile) {
-            for(let i = 0; i < imageFile.length; i++) {
+            for (let i = 0; i < imageFile.length; i++) {
                 formData.append('image', imageFile[i]);
             }
-        } 
+        }
 
-        
+        if (!imageImageFieldIsValid) {
+           setImageFieldIsValid(false);
+           return;
+        }
 
         formData.append('make', makeValue);
         formData.append('model', modelValue);
@@ -197,6 +205,9 @@ const BoatForm = () => {
 
         requester(boatService.create(formData), responseData);
 
+        if(!isLoading) {
+            navigate(`/boats/details/${boat._id}`);
+        }
     };
 
     return (
@@ -221,7 +232,7 @@ const BoatForm = () => {
                                         onChange={makeOnChange}
                                         onBlur={makeOnBlur}
                                     />
-                                    <p className={styles.error}></p>
+                                    {makeHasError && <p className={styles.error}>The make should be at least 3 characters long</p>}
 
                                 </div>
                                 <div className={styles.field}>
@@ -235,7 +246,7 @@ const BoatForm = () => {
                                         onChange={modelOnChange}
                                         onBlur={modelOnBlur}
                                     />
-                                    <p className={styles.error}></p>
+                                    {modelHasError && <p className={styles.error}>The make should be at least 3 characters long</p>}
 
                                 </div>
                                 <div className={styles.field}>
@@ -253,6 +264,7 @@ const BoatForm = () => {
                                         <option value='Sailboat'>Sailboat</option>
                                         <option value='motorboat'>Motorboat</option>
                                     </select>
+                                    {typeHasError && <p className={styles.error}>The type should be one from Yacht, Motorboat, Sailboat</p>}
                                 </div>
                             </div>
 
@@ -271,6 +283,8 @@ const BoatForm = () => {
                                         <option value='old'>Old</option>
                                         <option value='new'>New</option>
                                     </select>
+                                    {conditionHasError && <p className={styles.error}>The condition should be one from Old or New</p>}
+
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='boatLength'>Length</label>
@@ -284,8 +298,7 @@ const BoatForm = () => {
                                         onBlur={boatLengthOnBlur}
 
                                     />
-                                    <p className={styles.error}></p>
-
+                                    {boatLengthHasError && <p className={styles.error}>A value is required, this field can't be empty</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='year'>Year</label>
@@ -298,6 +311,7 @@ const BoatForm = () => {
                                         onChange={yearOnChange}
                                         onBlur={yearOnBlur}
                                     />
+                                    {yearHasError && <p className={styles.error}>The year should be between 1960 and 2022</p>}
                                 </div>
                             </div>
                             <div className={styles['input-group-wrap']}>
@@ -315,6 +329,7 @@ const BoatForm = () => {
                                         <option value='benzin'>Benzin</option>
                                         <option value='diesel'>Diesel</option>
                                     </select>
+                                    {fuelHasError && <p className={styles.error}>The make should be one from Benzin, Diesel</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='location'>Location</label>
@@ -327,6 +342,7 @@ const BoatForm = () => {
                                         onChange={locationOnChange}
                                         onBlur={locationOnBlur}
                                     />
+                                    {locationHasError && <p className={styles.error}>The location should be at least 2 characters long</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='engineMake'>Engine Make</label>
@@ -339,7 +355,7 @@ const BoatForm = () => {
                                         onChange={engineMakeOnChange}
                                         onBlur={engineMakeOnBlur}
                                     />
-                                    <p className={styles.error}></p>
+                                    {engineMakeHasError && <p className={styles.error}>The engineMake should be at least 3 characters long</p>}
                                 </div>
                             </div>
                             <div className={styles['input-group-wrap']}>
@@ -354,6 +370,7 @@ const BoatForm = () => {
                                         onChange={hullMaterialOnChange}
                                         onBlur={hullMaterialOnBlur}
                                     />
+                                    {hullMaterialHasError && <p className={styles.error}>The hullMaterial should be at least 2 characters long</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='price'>Price</label>
@@ -367,6 +384,7 @@ const BoatForm = () => {
                                         onChange={priceOnChange}
                                         onBlur={priceOnBlur}
                                     />
+                                    {priceHasError && <p className={styles.error}>A value is required, this field can't be empty</p>}
                                 </div>
 
                                 <div className={`${styles.field} ${styles.image}`}>
@@ -376,9 +394,16 @@ const BoatForm = () => {
                                         type='file'
                                         name='image'
                                         id='image'
-                                        multiple                                      
+                                        multiple
                                         onChange={fileHandler}
                                     />
+                                    {inputFieldIsValid 
+                                    && 
+                                    !imageImageFieldIsValid
+                                    && 
+                                    <p className={styles.error}>
+                                        A value is required, this field can't be empty
+                                    </p>}
                                 </div>
                             </div>
 
@@ -395,10 +420,19 @@ const BoatForm = () => {
                                     onChange={descriptionOnChange}
                                     onBlur={descriptionOnBlur}
                                 />
+                                {descriptionHasError && <p className={styles.error}>The description should be at least 20 characters long</p>}
                             </div>
 
-                            <button className={'btn-blue'} type='submit'>Create
-                                <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                            <button
+                                className={'btn-blue'}
+                                disabled={!inputFieldIsValid}
+                                type='submit'
+                            >
+                                Create
+                                {inputFieldIsValid && isLoading
+                                    ? <Spinner size={'small'} />
+                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                }
                             </button>
 
                         </form>
