@@ -2,8 +2,8 @@ import ProfileNavbar from '../../components/profile/ProfileNavbar/ProfileNavbar'
 import BoatForm from '../../components/boat/BoatForm/BoatForm';
 
 
-const Profile = () => {
 
+const Profile = () => {
 
     return(
         <>
