@@ -41,7 +41,6 @@ const Login = () => {
     const inputFieldsIsValid = emailFieldIsValid && passwordFieldIsValid;
 
     const responseData = (data) => {
-        console.log(data)
         dispatch(authStoreActions.login(data));
         emailReset();
         passwordReset();

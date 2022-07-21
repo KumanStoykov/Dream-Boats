@@ -17,10 +17,8 @@ import styles from './Register.module.css';
 
 const Register = () => {
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
-
 
     const {
         value: firstNameValue,
