@@ -7,32 +7,24 @@ const getAll = () => {
     return options;
 }
 
-const create = (
-    category,
-    model,
-    price, 
-    description, 
-    year,
-    fuel,
-    location,
-    image    
-    ) => {
+const getLastThree = () => {
+    const options = {
+        url: `${BASE_URL}/boat/getLastThree`
+    };
+    return options;
+}
+const getOneById = (id) => {
+    const options = {
+        url: `${BASE_URL}/boat/${id}`
+    };
+    return options;
+}
+
+const create = (data) => {
     const options = {
         url: `${BASE_URL}/boat`,
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            category,
-            model,
-            price, 
-            description, 
-            year,
-            fuel,
-            location,
-            image 
-        })
+        method: 'POST',       
+        body: data
     };
 
     return options;
@@ -40,6 +32,8 @@ const create = (
 
 const boatService = {
     getAll,
+    getOneById,
+    getLastThree,
     create
 };
 
