@@ -1,12 +1,16 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+
+import { modalStoreActions } from '../store/modalStore';
+import { authStoreActions } from '../store/authStore';
+
 
 const useFetch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
     const dispatch = useDispatch();
-
-    const requester = useCallback(async (options, dataSend) => {
+    
+    const requester = useCallback(async (options, dataStored) => {
 
         setIsLoading(true);
         setServerError(null);
@@ -23,12 +27,9 @@ const useFetch = () => {
             if (!res.ok) {
                 throw new Error(result.message);
             }
-
-
             setIsLoading(false);
-
-            if (dataSend) {
-                dataSend(result);
+            if (dataStored) {
+                dataStored(result);
             }
             return result;
 
@@ -36,12 +37,22 @@ const useFetch = () => {
             let errorMsg = error.message;
             console.log(errorMsg);
 
+            if(errorMsg == 'Please log in') {
+                dispatch(authStoreActions.logout());
+            }
+            
             setServerError(errorMsg);
             setIsLoading(false);
         }
 
 
     }, [dispatch]);
+
+    useEffect(() => {
+        if (serverError) {
+            dispatch(modalStoreActions.open({errMessage: serverError}))
+        }
+    }, [dispatch, serverError]);
 
 
     return {
