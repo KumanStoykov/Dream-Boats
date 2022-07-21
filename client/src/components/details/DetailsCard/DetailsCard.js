@@ -3,39 +3,44 @@ import { faEllipsisH, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-ic
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 
 import Slideshow from '../../ui/Slider/Slider';
+
 import styles from './DetailsCard.module.css';
 
 
-const DetailsCard = () => {
+const DetailsCard = ({ boat }) => {
+
 
     return (
         <section className={styles.details}>
-            <div className={`container`}>
+            <div className={styles['container-details']}>
                 <div className={styles.card}>
-                    {/* card left */}
                     <div className={styles['product-imgs']}>
-                        <div className={styles['img-display']}>                          
-                            <Slideshow imgs={['/images/luxury_1.jpg', '/images/luxury_2.jpg', '/images/luxury_3.jpg', '/images/luxury_14.jpg', ]} />
+                        <div className={styles['img-display']}>
+                            <Slideshow imgs={boat.image.map(x => x.url)} />
                         </div>
                     </div>
-                    {/* card right */}
+
                     <div className={styles['product-content']}>
-                        <h2 className={styles['product-title']}>Luxury yacht</h2>
-                        <a href="/" className={styles['product-link']}><FontAwesomeIcon icon={faEye}/></a>
-                     
-                        <div className={styles['product-price']}>                           
-                            <p className={styles['new-price']}>Price: <span>$249.000</span></p>
+                        <h2 className={styles['product-title']}>{boat.make}</h2>
+                        <a href="/" className={styles['product-link']}><FontAwesomeIcon icon={faEye} /></a>
+
+                        <div className={styles['product-price']}>
+                            <p className={styles['new-price']}>Price: <span>${boat.price}</span></p>
                         </div>
                         <div className={styles['product-detail']}>
                             <h2>About This Boat: </h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi ipsa!</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius. Dignissimos, labore suscipit. Unde.</p>
+                            <p>{boat.description}</p>
                             <ul>
-                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> length: <span>14.15 m.</span></li>
-                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> year: <span>2012</span></li>
-                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> fuel type: <span>Diesel</span></li>
-                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> location: <span>Bari-Italy</span></li>
-                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Category: <span>Yacht</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Model: <span>{boat.model}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Year: <span>{boat.year}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Condition: <span>{boat.condition}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Type: <span>{boat.type}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Length: <span>{boat.length} m.</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Category: <span>{boat.category}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Engine Make: <span>{boat.engineMake}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Fuel type: <span>{boat.fuel}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Hull Material: <span>{boat.hullMaterial}</span></li>
+                                <li><FontAwesomeIcon className={styles.check} icon={faCheck} /> Location: <span>{boat.location}</span></li>
                             </ul>
                         </div>
                         <div className={styles['purchase-info']}>
@@ -45,7 +50,7 @@ const DetailsCard = () => {
                             <button type="submit" className={'btn-gradient'}>
                                 Contact <FontAwesomeIcon className={styles.message} icon={faEnvelope} />
                             </button>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
             </div>
