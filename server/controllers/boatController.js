@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const formidable = require('formidable');
 const validator = require('validator').default;
+const cloudinary = require('cloudinary').v2;
 
 const boatService = require('../services/boatService');
 const formidableFormData = require('../utils/formidableFormData');
-const { uploadFile, deleteFile } = require('../utils/cloudinaryUtils');
 const checkCredential = require('../middleware/checkCredentialMiddleware');
 const loggedInMiddleware = require('../middleware/loggedInMiddleware');
 
@@ -13,45 +13,69 @@ router.get('/', async (req, res) => {
     try {
         const page = Number(req.query.page) - 1 || 0;
 
-        const allBoats = await boatService.getAllBoats(page);
+        const boats = await boatService.getAllBoats(page);
 
-        res.status(200).send({ allBoats })
+        res.status(200).send({ boats });
     } catch (error) {
         res.status(400).send({ message: error.message });
     }
 });
 
-router.post('/', async (req, res) => {
+router.get('/getLastThree', async (req, res) => {
+    try {
+
+        const boats = await boatService.getLastThree();
+        res.status(200).send({ boats });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
+router.get('/:boatId', async (req, res) => {
+    const boatId = req.params.boatId;
+    try {
+
+        const boat = await boatService.getOne(boatId);
+
+        res.status(200).send({ boat });
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
+router.post('/', loggedInMiddleware(), async (req, res) => {
     const form = formidable({ multiples: true });
     const imagesUrl = [];
 
     try {
         const [formData, incFiles] = await formidableFormData(req, form);
 
-        if(incFiles.length > 0){
-            Object.values(incFiles).forEach(element => {
-                uploadFile(element.path)
-                    .then(imageRes => {
-                        imagesUrl.push({ url: imageRes.url, public_id: imageRes.public_id });
-                    });
-            });
+        const valueIncFile = Object.values(incFiles);
+
+        const enterableValue = valueIncFile.length > 1 ? valueIncFile : valueIncFile[0];
+
+        for (const image of enterableValue) {
+            const res = await cloudinary.uploader.upload(image._writeStream.path);
+
+            imagesUrl.push({ url: res.url, public_id: res.public_id });
         }
 
+
         const boatData = {
-            make: formData.body.make,
-            model: formData.body.model,
-            type: formData.body.type,
-            condition: formData.body.condition,
-            length: formData.body.length,
-            year: formData.body.year,
-            fuel: formData.body.fuel,
-            engineMake: formData.body.engineMake,
-            hullMaterial: formData.body.hullMaterial,
-            price: formData.body.price,
-            description: formData.body.description,
-            location: formData.body.location,
-            image: formData.body.image,
-            owner: formData.user._id
+            make: formData.make,
+            model: formData.model,
+            type: formData.type,
+            condition: formData.condition,
+            boatLength: formData.boatLength,
+            year: formData.year,
+            fuel: formData.fuel,
+            engineMake: formData.engineMake,
+            hullMaterial: formData.hullMaterial,
+            price: formData.price,
+            description: formData.description,
+            location: formData.location,
+            image: imagesUrl,
+            owner: req.user._id
         };
 
         if (!validator.isLength(boatData.make, { min: 3 })) {
@@ -65,15 +89,18 @@ router.post('/', async (req, res) => {
         }
         if (!validator.matches(boatData.condition, /Old|New/i)) {
             throw new Error('The condition should be one from Old or New');
-        }        
-        if (!validator.isLength(boatData.length, { min: 1 })) {
+        }
+        if (!validator.isLength(boatData.boatLength, { min: 1 })) {
             throw new Error('A value is required, this field can\'t be empty');
         }
         if (!validator.isInt(boatData.year, { min: 1960, max: 2022 })) {
             throw new Error('The year should be between 1960 and 2022');
         }
         if (!validator.matches(boatData.fuel, /Benzin|Diesel/i)) {
-            throw new Error('The make should be one from Yacht, Motorboat, Sailboat');
+            throw new Error('The make should be one from Benzin, Diesel');
+        }
+        if (!validator.isLength(boatData.location, { min: 3 })) {
+            throw new Error('The location should be at least 2 characters long');
         }
         if (!validator.isLength(boatData.engineMake, { min: 3 })) {
             throw new Error('The engineMake should be at least 3 characters long');
@@ -87,12 +114,9 @@ router.post('/', async (req, res) => {
         if (!validator.isLength(boatData.description, { min: 20 })) {
             throw new Error('The description should be at least 20 characters long');
         }
-        if (!validator.isLength(boatData.location, { min: 3 })) {
-            throw new Error('he location should be at least 20 characters long');
-        }
 
         const boat = await boatService.create(boatData);
-        res.status(200).send(boat);
+        res.status(200).send({ boat });
 
     } catch (error) {
         res.status(400).send({ message: error.message });

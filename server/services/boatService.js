@@ -1,9 +1,12 @@
 const Boat = require('../models/Boat');
 
 
+exports.getAllBoats = (page) => Boat.find().skip(page * 12).limit(12);
+
+exports.getLastThree = () => Boat.find({}).sort({createdAt : 'descending'}).limit(3);
+
 exports.getOne = (id) => Boat.findById(id);
 
-exports.getAllBoats = (page) => Boat.find().skip(page * 12).limit(12);
 
 exports.getBoatBySearch = (category, fuel, priceFrom, priceTo, page) => {
 

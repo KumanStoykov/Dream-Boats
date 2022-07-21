@@ -17,7 +17,7 @@ const boatSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    length: {
+    boatLength: {
         type: Number,
         require: true
     },
@@ -50,22 +50,26 @@ const boatSchema = new mongoose.Schema({
         require: true
     },
     image: [
+
         {
-            type: {
-                url: {
-                    type: String
-                },
-                public_id: {
-                    type: String
-                }
+            url: {
+                type: String
+            },
+            public_id: {
+                type: String
             }
         }
+
     ],
     owner: {
         type: mongoose.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    
 });
+
+boatSchema.set('timestamps', true);
+
 
 const Boat = mongoose.model('Boat', boatSchema);
 
