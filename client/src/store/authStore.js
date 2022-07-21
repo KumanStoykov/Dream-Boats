@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const userInitialState = {
-    _id: null,
-    firstName: '',
-    lastName: '',
-    email: '',
+    userData: null,
     message: [],
     watchedBoats: [],
     watchedItems: []
@@ -17,10 +14,7 @@ const authSlice = createSlice({
 
         login: (state, action) => ({
             ...state,
-            _id: action.payload._id,
-            firstName: action.payload.firstName,
-            lastName: action.payload.lastName,
-            email: action.payload.email,
+            userData: action.payload.userData
         }),
 
         logout: () => userInitialState,

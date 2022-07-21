@@ -1,19 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const boatInitialState = {
-    _id: null,
-    category: '',
-    model: '',
-    price: null,
-    description: '',
-    year: null,
-    fuel: '',
-    location: '',
-    image: {
-        url: '',
-        object_id: ''
-    },
-    owner: null
+    boat: null,
+    boats: null
 };
 
 const boatSlice = createSlice({
@@ -22,18 +11,20 @@ const boatSlice = createSlice({
     reducers: {
         addBoat: (state, action) => ({
             ...state,
-            _id: action.payload._id,
-            category: action.payload.category,
-            model: action.payload.model,
-            price: action.payload.price,
-            description: action.payload.description,
-            year: action.payload.year,
-            fuel: action.payload.fuel,
-            location: action.payload.location,
-            image: action.payload.image,
-            owner: action.payload.owner
+            boat: action.payload.boat
         }),
-        removeBoat: () => boatInitialState,
+        addBoats: (state, action) => ({
+            ...state,
+           boats: action.payload.boats
+        }),
+        removeBoat: (state) => ({
+            ...state,
+            boat: null
+        }),
+        removeBoats: (state) => ({
+            ...state,
+            boats: null
+        }),
     }
 });
 

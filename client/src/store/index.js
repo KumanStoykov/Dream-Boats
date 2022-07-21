@@ -19,12 +19,12 @@ import modalStore from './modalStore';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth', 'boat'],
+    whitelist: ['auth', 'allBoats'],
 };
 
 const rootReducer = combineReducers({
     auth: authStore,
-    boat: boatStore,
+    allBoats: boatStore,
     modal: modalStore,
 });
 
