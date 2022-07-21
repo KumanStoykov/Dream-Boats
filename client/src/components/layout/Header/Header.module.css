@@ -8,7 +8,6 @@
     left: 0;
     background-color: var(--blue-transparent);
     z-index: 999;
-    transition: background-color 300ms, height 300ms;
 }
 .nav {
     display: flex;
@@ -74,7 +73,7 @@
 .nav-link {
     display: block;
     color: #fff;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -88,14 +87,7 @@
     font-size: 2.5rem;
 }
 
-/* @media screen and (min-width: 768px) {
-    .header.active {
-        height: 6rem;
-    }
-    
-} */
-
-@media screen and (min-width: 768px) {
+@media all and (min-width: 768px) {
     .logout-icon {
         font-size: 1.3rem;
     }
@@ -120,7 +112,7 @@
     }
 
     .nav-link {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: normal;
         transition: color 300ms;
     }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,40 +14,42 @@ import styles from './Header.module.css';
 
 const Header = () => {
     const navigate = useNavigate();
-    const [navbarOpen, setNavBarOpen] = useState(false);
-    const user = useSelector(state => state.auth);
     const dispatch = useDispatch();
+    const [navbarOpen, setNavBarOpen] = useState(false);
+    const auth = useSelector(state => state.auth);
     const { requester } = useFetch();
 
 
-    const handleToggle = () => {
+    const menuToggleHandler = () => {
         setNavBarOpen(oldState => !oldState);
     };
 
-    const logoutHandler = (e) =>{
+    useEffect(() => {
+        setNavBarOpen(false);
+    }, [navigate]);
+
+    const logoutHandler = (e) => {
         e.preventDefault();
         dispatch(authStoreActions.logout());
         requester(userRequestOptions.logout());
         navigate('/');
-    } 
+    };
+
 
     const userNavigate = () => {
         return (
             <>
                 <li className={styles['nav-item']}>
-                    <Link to="/" className={styles['nav-link']}>Home</Link>
+                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats for Sale</Link>
                 </li>
                 <li className={styles['nav-item']}>
-                    <Link to="/about" className={styles['nav-link']}>About</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/details" className={styles['nav-link']}>Details</Link>
+                    <Link to="/profile" className={styles['nav-link']}>Sell my Boat</Link>
                 </li>
                 <li className={styles['nav-item']}>
                     <Link to="/profile" className={styles['nav-link']}>Profile</Link>
+                </li>
+                <li className={styles['nav-item']}>
+                    <Link to="/news" className={styles['nav-link']}>News</Link>
                 </li>
                 <li className={styles['nav-item']}>
                     <Link onClick={logoutHandler} to="/auth/logout" className={styles['nav-link']}><FontAwesomeIcon className={styles['logout-icon']} icon={faArrowRightFromBracket} /></Link>
@@ -60,13 +62,10 @@ const Header = () => {
         return (
             <>
                 <li className={styles['nav-item']}>
-                    <Link to="/" className={styles['nav-link']}>Home</Link>
+                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats for Sale</Link>
                 </li>
                 <li className={styles['nav-item']}>
-                    <Link to="/about" className={styles['nav-link']}>About</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats</Link>
+                    <Link to="/auth/login" className={styles['nav-link']}>Sell my Boat</Link>
                 </li>
                 <li className={styles['nav-item']}>
                     <Link to="/news" className={styles['nav-link']}>News</Link>
@@ -80,18 +79,18 @@ const Header = () => {
     }
 
     return (
-        <header onClick={handleToggle} className={`${styles['header']} ${navbarOpen === true && styles['menu-open']}`}>
+        <header className={`${styles['header']} ${navbarOpen && styles['menu-open']}`}>
             <div className={'container'}>
                 <nav className={styles.nav}>
                     <Link to="/" className={styles.logo}>
                         <img src="/images/logo.png" alt="image.png" className={styles['logo-image']} />
                     </Link>
-                    <div className={styles[`hamburger-menu`]} >
+                    <div onClick={menuToggleHandler} className={styles[`hamburger-menu`]} >
                         <FontAwesomeIcon icon={faBars} className={styles.faBars} />
                         <FontAwesomeIcon icon={faTimes} className={styles.faTimes} />
                     </div>
                     <ul className={styles['nav-list']}>
-                        {user?.email
+                        {auth.userData
                             ? userNavigate()
                             : guestNavigate()
                         }
