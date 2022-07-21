@@ -1,7 +1,7 @@
 const boatService = require('../services/boatService');
 
 
-exports.isOwner = async (req, res, next) => {
+exports.isOwner = () => async (req, res, next) => {
     try {
         const userId = req.user._id;
 
