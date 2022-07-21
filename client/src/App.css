@@ -106,7 +106,7 @@ section {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
     gap: 2.5rem;
 }
 
@@ -121,10 +121,5 @@ section {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     }
-    .grid-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+  
 }
