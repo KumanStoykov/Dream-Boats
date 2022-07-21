@@ -5,7 +5,7 @@ const validator = require('validator').default;
 const { COOKIE_TOKEN_NAME, ROUND_SALT } = require('../config');
 const userService = require('../services/userService');
 const jwt = require('../utils/jwtUtils');
-const { userPayload } = require('../utils/userPayload'); 
+const { userPayload } = require('../utils/userPayload');
 
 
 router.post('/register', async (req, res) => {
@@ -48,9 +48,9 @@ router.post('/register', async (req, res) => {
 
         res.cookie(COOKIE_TOKEN_NAME, token, { httpOnly: true });
 
-        const sendData = userPayload(user);
+        const userData = userPayload(user);
 
-        res.status(200).send(sendData);
+        res.status(200).send({ userData });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
@@ -85,9 +85,9 @@ router.post('/login', async (req, res) => {
 
         res.cookie(COOKIE_TOKEN_NAME, token, { httpOnly: true });
 
-        const sendData = userPayload(user);
+        const userData = userPayload(user);
 
-        res.status(200).send(sendData);
+        res.status(200).send({ userData });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
