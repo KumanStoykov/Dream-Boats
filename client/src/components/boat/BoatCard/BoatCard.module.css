@@ -4,6 +4,7 @@
     padding: 1rem;
     position: relative;
     z-index: 0;
+    margin-bottom: 3rem;
 }
 
 .boat-image {
@@ -17,6 +18,9 @@
     border-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     filter: brightness(95%);
+}
+.fancy-boarder {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
 }
 
 .boat-name {
