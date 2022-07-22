@@ -26,18 +26,19 @@ const useFetch = () => {
 
             if (!res.ok) {
                 throw new Error(result.message);
-            }
-            setIsLoading(false);
+            }            
+            
             if (dataStored) {
                 dataStored(result);
             }
-            return result;
+            setIsLoading(false);
+            
 
         } catch (error) {
             let errorMsg = error.message;
             console.log(errorMsg);
 
-            if(errorMsg == 'Please log in') {
+            if(errorMsg === 'Please log in') {
                 dispatch(authStoreActions.logout());
             }
             
