@@ -11,24 +11,32 @@ import Register from './components/auth/Register/Register';
 import BoatsCatalog from './pages/BoatsCatalog/BoatsCatalog';
 import DetailsBoat from './pages/DetailsBoat/DetailsBoat';
 import Profile from './pages/Profile/Profile';
+import BoatForm from './components/boat/BoatForm/BoatForm';
+import CommentModal from './components/ui/CommentModal/CommentModal';
+import ProfileNavbar from './components/profile/ProfileNavbar/ProfileNavbar';
 
 
 function App() {
-	
+
 
 	useScrollToTop();
 
-	return (		
-		<Layout>			
-				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/auth/login' element={<Login />}/>
-					<Route path='/auth/register' element={<Register />} />
-					<Route path='/boats-catalog' element={<BoatsCatalog />} />
-					<Route path='/boat/details/:boatId' element={<DetailsBoat />} />
-					<Route path='/profile' element={<Profile />} />
-					<Route path='*' element={<Navigate to={'/'} />} />
-				</Routes>
+	return (
+		<Layout>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='auth'>
+					<Route path='login' index element={<Login />} />
+					<Route path='register' element={<Register />} />
+				</ Route>
+				<Route path='/boats-for-sale' element={<BoatsCatalog />} />
+				<Route path='/boat/details/:boatId' element={<DetailsBoat />} />
+				<Route path='profile' element={<Profile />} >
+					<Route path='sell-boat' element={<BoatForm />} />
+					<Route path='message' element={<CommentModal />} />
+				</Route>
+				<Route path='*' element={<Navigate to={'/'} />} />
+			</Routes>
 		</Layout>
 	);
 }
