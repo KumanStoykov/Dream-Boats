@@ -6,7 +6,7 @@
     margin: 12rem auto 0 auto;
 }
 
-.nav-horizontals-link {
+.user-nav-link {
     display: block;
     color: #fff;
     font-size: 2rem;
@@ -46,6 +46,9 @@
     transform: translateY(-10px);
     background: linear-gradient(to right, var(--blue-light), var(--aqua-solid));
 }
+.hor {
+    color: red;
+}
 
 .user-profile-icon {
     transition: transform 0.4s;
@@ -53,6 +56,16 @@
 
 .box:hover .user-profile-icon {
     transform: scale(1.5);
+}
+
+.number-message {
+    position: absolute;
+    top: 0;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    padding: 0px 3px;
+    font-weight: 200;
 }
 
 @media all and (min-width: 768px) {
