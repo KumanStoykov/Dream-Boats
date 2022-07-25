@@ -40,16 +40,7 @@ const Header = () => {
         return (
             <>
                 <li className={styles['nav-item']}>
-                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats for Sale</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/profile" className={styles['nav-link']}>Sell my Boat</Link>
-                </li>
-                <li className={styles['nav-item']}>
                     <Link to="/profile" className={styles['nav-link']}>Profile</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/news" className={styles['nav-link']}>News</Link>
                 </li>
                 <li className={styles['nav-item']}>
                     <Link onClick={logoutHandler} to="/auth/logout" className={styles['nav-link']}><FontAwesomeIcon className={styles['logout-icon']} icon={faArrowRightFromBracket} /></Link>
@@ -61,15 +52,6 @@ const Header = () => {
     const guestNavigate = () => {
         return (
             <>
-                <li className={styles['nav-item']}>
-                    <Link to="/boats-catalog" className={styles['nav-link']}>Boats for Sale</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/auth/login" className={styles['nav-link']}>Sell my Boat</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link to="/news" className={styles['nav-link']}>News</Link>
-                </li>
                 <li className={styles['nav-item']}>
                     <Link to="/auth/login" className={styles['nav-link']}><span className={styles['icon-span']}>Log on</span><FontAwesomeIcon className={styles['logout-icon']} icon={faUserLock} /></Link>
                 </li>
@@ -90,6 +72,15 @@ const Header = () => {
                         <FontAwesomeIcon icon={faTimes} className={styles.faTimes} />
                     </div>
                     <ul className={styles['nav-list']}>
+                        <li className={styles['nav-item']}>
+                            <Link to="/boats-for-sale" className={styles['nav-link']}>Boats for Sale</Link>
+                        </li>
+                        <li className={styles['nav-item']}>
+                            <Link to="/profile/sell-boat" className={styles['nav-link']}>Sell my Boat</Link>
+                        </li>
+                        <li className={styles['nav-item']}>
+                            <Link to="/news" className={styles['nav-link']}>News</Link>
+                        </li>
                         {auth.userData
                             ? userNavigate()
                             : guestNavigate()
