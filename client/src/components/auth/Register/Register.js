@@ -81,9 +81,9 @@ const Register = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        requester(userService.register(firstNameValue, lastNameValue, emailValue, passwordValue, repeatPasswordValue), responseData);
+       const res = requester(userService.register(firstNameValue, lastNameValue, emailValue, passwordValue, repeatPasswordValue), responseData);
 
-        if (typeof res === 'object') {
+        if (res?.userData) {
             navigate('/');
         } else {
             firstNameReset();

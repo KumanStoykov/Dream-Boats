@@ -56,7 +56,7 @@ const Login = () => {
 
         const res = await requester(userService.login(emailValue, passwordValue), responseData);
         
-        if(typeof res === 'object') {
+        if(res?.userData) {
             navigate('/');
         } else {
             emailReset()
