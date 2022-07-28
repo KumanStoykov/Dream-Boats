@@ -1,0 +1,20 @@
+.heading-container{
+    max-width: 32rem;
+    height: 60vh;
+    margin: 5rem auto;
+    text-align: center;
+
+}
+
+.no-boats-heading {
+    font-size: 3rem;
+    font-family: 'Courgette', cursive;
+    color: var(--blue-solid);
+}
+
+@media all and (min-width: 768px) {
+    .no-boats-heading {
+        font-size: 5rem;
+        
+    }
+}
