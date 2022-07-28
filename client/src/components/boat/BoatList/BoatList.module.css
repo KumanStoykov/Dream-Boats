@@ -16,4 +16,7 @@
 .anchor-heading {
     font-size: 5rem; 
     color: var(--blue-solid);
+    font-family: 'Courgette', cursive;
+    font-weight: 300;
 }
+
