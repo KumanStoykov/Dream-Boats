@@ -71,7 +71,7 @@ section {
     display: inline-flex;
     align-items: center;
     background-image: var(--gradient-color);
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .btn-gradient:hover {
@@ -117,9 +117,21 @@ section {
     justify-content: center;
 }
 
+::-webkit-scrollbar {
+    width: 1.3rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(36, 59, 103, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: #0079a5;
+}
+
 @media all and (min-width: 768px) {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     }
-  
 }
