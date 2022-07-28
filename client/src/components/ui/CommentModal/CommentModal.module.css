@@ -1,0 +1,32 @@
+.post-container {
+    padding: 1.5em;
+    background: var(--gradient-color);
+    width: 50rem;
+    margin: 5rem auto;
+    border-radius: 1rem;
+}
+
+.post-title {
+    color: var(--blue-solid);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+.post-messages {
+    overflow-y: scroll;
+    height: 30rem;
+}
+
+.post-messages::-webkit-scrollbar {
+    width: 1rem;
+    
+}
+
+.post-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 1rem;
+}
+
+.post-messages::-webkit-scrollbar-thumb {
+    background: var(--blue-solid);
+    border-radius: 1rem;
+}

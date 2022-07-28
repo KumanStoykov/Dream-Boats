@@ -1,0 +1,56 @@
+.form-container {
+    border-radius: 12px;
+    padding: 1.5em;
+    background: rgb(203, 237, 238, 0.7);
+    width: 25rem;
+    margin: 0 auto;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.post-input,
+.post-input:focus-visible {
+    background-color: #fff;
+    min-height: 120px;
+    border: 2px solid #fff;
+    padding: 5px;
+    resize: none;
+    outline: none;
+}
+.btn-post {
+    width: 68%;
+    opacity: 0.8;
+}
+
+.item-container {
+    margin-bottom: 8px;
+    border-bottom: 2px solid rgb(252, 242, 228);
+}
+.post-main {
+    font-size: 11pt;
+    color: rgb(173, 131, 72);
+}
+.post-time {
+    margin-left: 5px;
+    font-size: 8pt;
+    color: rgb(143, 143, 143);
+}
+.post-secondary {
+    margin: 8px 8px;
+}
+.errorText {
+    color: red;
+    letter-spacing: 2px;
+}
+
+@media all and (min-width: 768px) {
+    .form-container {
+        
+        width: 40rem;
+       
+    }
+    .btn-post {
+        width: 40%;
+    }
+}
