@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 12rem auto 0 auto;
+    margin: 12rem auto 5rem auto;
 }
 
 .user-nav-link {
@@ -17,7 +17,7 @@
 }
 
 .container-profile-nav {
-    width: 25rem;
+    width: 18rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -58,14 +58,10 @@
     transform: scale(1.5);
 }
 
-.number-message {
-    position: absolute;
-    top: 0;
-    background-color: red;
-    border-radius: 50%;
-    font-size: 1.3rem;
-    padding: 0px 3px;
-    font-weight: 200;
+@media all and (min-width: 368px) {
+    .container-profile-nav {
+        width: 25rem;
+    }
 }
 
 @media all and (min-width: 768px) {
