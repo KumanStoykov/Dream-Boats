@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,15 +18,19 @@ import styles from './BoatForm.module.css';
 
 const BoatForm = () => {
     const navigate = useNavigate();
+    const { pathname } = useLocation();
     const dispatch = useDispatch();
+
     const [imageImageFieldIsValid, setImageFieldIsValid] = useState(false);
     const [imageFile, setImageFile] = useState([]);
     const { isLoading, requester } = useFetch();
     const boat = useSelector(state => state.allBoats.boat);
 
+    const isEdit = pathname.endsWith('edit');
 
     const {
         value: makeValue,
+        setValue: makeSetValue,
         hasError: makeHasError,
         fieldIsValid: makeFieldIsValid,
         onChange: makeOnChange,
@@ -36,6 +40,7 @@ const BoatForm = () => {
 
     const {
         value: modelValue,
+        setValue: modelSetValue,
         hasError: modelHasError,
         fieldIsValid: modelFieldIsValid,
         onChange: modelOnChange,
@@ -45,6 +50,7 @@ const BoatForm = () => {
 
     const {
         value: typeValue,
+        setValue: typeSetValue,
         hasError: typeHasError,
         fieldIsValid: typeFieldIsValid,
         onChange: typeOnChange,
@@ -54,6 +60,7 @@ const BoatForm = () => {
 
     const {
         value: conditionValue,
+        setValue: conditionSetValue,
         hasError: conditionHasError,
         fieldIsValid: conditionFieldIsValid,
         onChange: conditionOnChange,
@@ -63,6 +70,7 @@ const BoatForm = () => {
 
     const {
         value: boatLengthValue,
+        setValue: boatLengthSetValue,
         hasError: boatLengthHasError,
         fieldIsValid: boatLengthFieldIsValid,
         onChange: boatLengthOnChange,
@@ -72,6 +80,7 @@ const BoatForm = () => {
 
     const {
         value: yearValue,
+        setValue: yearSetValue,
         hasError: yearHasError,
         fieldIsValid: yearFieldIsValid,
         onChange: yearOnChange,
@@ -81,6 +90,7 @@ const BoatForm = () => {
 
     const {
         value: fuelValue,
+        setValue: fuelSetValue,
         hasError: fuelHasError,
         fieldIsValid: fuelFieldIsValid,
         onChange: fuelOnChange,
@@ -90,6 +100,7 @@ const BoatForm = () => {
 
     const {
         value: locationValue,
+        setValue: locationSetValue,
         hasError: locationHasError,
         fieldIsValid: locationFieldIsValid,
         onChange: locationOnChange,
@@ -99,6 +110,7 @@ const BoatForm = () => {
 
     const {
         value: engineMakeValue,
+        setValue: engineMakeSetValue,
         hasError: engineMakeHasError,
         fieldIsValid: engineMakeFieldIsValid,
         onChange: engineMakeOnChange,
@@ -108,6 +120,7 @@ const BoatForm = () => {
 
     const {
         value: hullMaterialValue,
+        setValue: hullMaterialSetValue,
         hasError: hullMaterialHasError,
         fieldIsValid: hullMaterialFieldIsValid,
         onChange: hullMaterialOnChange,
@@ -117,6 +130,7 @@ const BoatForm = () => {
 
     const {
         value: priceValue,
+        setValue: priceSetValue,
         hasError: priceHasError,
         fieldIsValid: priceFieldIsValid,
         onChange: priceOnChange,
@@ -126,6 +140,7 @@ const BoatForm = () => {
 
     const {
         value: descriptionValue,
+        setValue: descriptionSetValue,
         hasError: descriptionHasError,
         fieldIsValid: descriptionFieldIsValid,
         onChange: descriptionOnChange,
@@ -161,7 +176,26 @@ const BoatForm = () => {
         hullMaterialReset();
         priceReset();
         descriptionReset();
+
+        navigate(`/boat/details/${boat._id}`);
     };
+
+    useEffect(() => {
+        if (isEdit) {
+            makeSetValue(boat?.make);
+            modelSetValue(boat?.model);
+            typeSetValue(boat?.type);
+            conditionSetValue(boat?.condition);
+            boatLengthSetValue(boat?.boatLength.toString());
+            yearSetValue(boat?.year.toString());
+            fuelSetValue(boat?.fuel);
+            locationSetValue(boat?.location);
+            engineMakeSetValue(boat?.engineMake);
+            hullMaterialSetValue(boat?.hullMaterial);
+            priceSetValue(boat?.price.toString());
+            descriptionSetValue(boat?.description);
+        }
+    }, [boat, isEdit, pathname]);
 
     const fileHandler = (e) => {
         const element = e.target;
@@ -169,7 +203,7 @@ const BoatForm = () => {
             setImageFile(state => [...state, file]);
         }
 
-        setImageFieldIsValid(true);        
+        setImageFieldIsValid(true);
     }
 
 
@@ -185,9 +219,11 @@ const BoatForm = () => {
             }
         }
 
-        if (!imageImageFieldIsValid) {
-           setImageFieldIsValid(false);
-           return;
+        if (!isEdit && !imageImageFieldIsValid) {
+            setImageFieldIsValid(false);
+            return;
+        } else if (isEdit) {
+            setImageFieldIsValid(true);
         }
 
         formData.append('make', makeValue);
@@ -203,18 +239,23 @@ const BoatForm = () => {
         formData.append('price', priceValue);
         formData.append('description', descriptionValue);
 
-        requester(boatService.create(formData), responseData);
-
-        if(!isLoading) {
-            navigate(`/boats/details/${boat._id}`);
+        if(isEdit) {
+            requester(boatService.edit(boat._id, formData), responseData);
+        } else {
+            requester(boatService.create(formData), responseData);
         }
+
     };
 
     return (
         <section className={styles.create}>
             <div className={'container'}>
                 <h5 className={styles['section-head']}>
-                    <span className={styles.heading}>Create your offer</span>
+                    {isEdit
+                        ? <span className={styles.heading}>Edit your offer</span>
+                        : <span className={styles.heading}>Create your offer</span>
+                    }
+
                     <span className={styles['sub-heading']}>Discover</span>
                 </h5>
                 <div className={styles['create-content']}>
@@ -289,7 +330,7 @@ const BoatForm = () => {
                                 <div className={styles.field}>
                                     <label htmlFor='boatLength'>Length</label>
                                     <input
-                                        type='text'
+                                        type='Number'
                                         name='boatLength'
                                         id='boatLength'
                                         placeholder='boatLength'
@@ -397,13 +438,11 @@ const BoatForm = () => {
                                         multiple
                                         onChange={fileHandler}
                                     />
-                                    {inputFieldIsValid 
-                                    && 
-                                    !imageImageFieldIsValid
-                                    && 
-                                    <p className={styles.error}>
-                                        A value is required, this field can't be empty
-                                    </p>}
+                                    {!isEdit
+                                        && inputFieldIsValid
+                                        && !imageImageFieldIsValid
+                                        && <p className={styles.error}>A value is required, this field can't be empty</p>
+                                    }
                                 </div>
                             </div>
 

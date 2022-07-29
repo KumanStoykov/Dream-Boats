@@ -14,7 +14,7 @@ const useFetch = () => {
 
         setIsLoading(true);
         setServerError(null);
-
+        
         try {
             const res = await fetch(options.url, {
                 method: options.method || 'GET',
@@ -32,7 +32,7 @@ const useFetch = () => {
                 dataStored(result);
             }
             setIsLoading(false);
-            
+            return result;
 
         } catch (error) {
             let errorMsg = error.message;

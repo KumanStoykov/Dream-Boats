@@ -17,9 +17,11 @@ const Profile = () => {
             <ProfileNavbar />
             <Routes>
                 <Route index element={<MyBoats />} />
-                <Route path='edit-profile' element={<Register />} />
-                <Route path='sell-boat' element={<BoatForm />} />
-                <Route path='message' element={<CommentModal />} />
+                <Route path='/owner-boats' index element={<MyBoats />} />
+                <Route path='/edit-profile' element={<Register />} />
+                <Route path='/sell-boat' element={<BoatForm />} />
+                <Route path='/:boatId/edit' element={<BoatForm />} />
+                <Route path='/message' element={<CommentModal />} />
             </Routes>
         </>
     );

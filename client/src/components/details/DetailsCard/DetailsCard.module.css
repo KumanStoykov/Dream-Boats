@@ -84,10 +84,7 @@
 .product-price span {
     font-weight: 400;
 }
-/* .last-price span {
-    color: #f64749;
-    text-decoration: line-through;
-} */
+
 .new-price span {
     color: #efecec;
 }
@@ -124,14 +121,14 @@
     font-weight: 400;
     text-transform: capitalize;
 }
-.purchase-info {
+.btn-group {
     margin: 1.5rem 0;
     display: flex;
     justify-content: space-around;
 }
 
-.message {
-    font-size: 2rem;
+.icons {
+    font-size: 2.2rem;
     margin-left: 0.5rem;
     opacity: 0.75;
 }

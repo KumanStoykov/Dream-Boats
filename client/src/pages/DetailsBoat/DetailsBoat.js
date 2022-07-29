@@ -10,11 +10,14 @@ import DetailsCard from '../../components/details/DetailsCard/DetailsCard';
 
 import Spinner from '../../components/ui/Spinner/Spinner';
 
+import styles from '../../components/details/DetailsCard/DetailsCard.module.css';
+
 
 const DetailsBoat = () => {
     const { boatId } = useParams();
     const dispatch = useDispatch();
     const boat = useSelector(state => state.allBoats.boat);
+
     const { isLoading, requester } = useFetch();
 
     const responseData = useCallback((data) => {
@@ -24,13 +27,16 @@ const DetailsBoat = () => {
 
     useEffect(() => {
         requester(boatService.getOneById(boatId), responseData);
+    }, [boatId, requester, dispatch, responseData]);
 
-    }, [requester, dispatch, boat]);
 
     return (
-        <>
-            <DetailsCard boat={boat} />
-        </>
+        <section className={styles.details}>
+            <div className={styles['container-details']}>
+                {isLoading && <Spinner size={'large'} />}
+                {!isLoading && boat !== null && <DetailsCard boat={boat} />}
+            </div>
+        </section>
     );
 };
 

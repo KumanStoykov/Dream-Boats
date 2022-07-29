@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const boatInitialState = {
     boat: null,
-    boats: null
+    boats: []
 };
 
 const boatSlice = createSlice({
