@@ -19,78 +19,52 @@ const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
+ 
 
-    const {
-        value: firstNameValue,
-        hasError: firstNameHasErrorValue,
-        fieldIsValid: firstNameFieldIsValid,
-        onChange: firstNameOnChange,
-        onBlur: firstNameOnBlur,
-        reset: firstNameReset
-    } = useInput(userValidation.nameIsLength);
-    const {
-        value: lastNameValue,
-        hasError: lastNameHasErrorValue,
-        fieldIsValid: lastNameFieldIsValid,
-        onChange: lastNameOnChange,
-        onBlur: lastNameOnBlur,
-        reset: lastNameReset
-    } = useInput(userValidation.nameIsLength);
-    const {
-        value: emailValue,
-        hasError: emailHasErrorValue,
-        fieldIsValid: emailFieldIsValid,
-        onChange: emailOnChange,
-        onBlur: emailOnBlur,
-        reset: emailReset
-    } = useInput(userValidation.emailIsValid);
+    const firstNameInput = useInput(userValidation.nameIsLength);
+    const lastNameInput = useInput(userValidation.nameIsLength);
+    const emailInput = useInput(userValidation.emailIsValid);
+    const passwordInput = useInput(userValidation.passwordIsLength);
+    const repeatPasswordInput = useInput(userValidation.isEqual.bind(null, passwordInput.value));
 
-    const {
-        value: passwordValue,
-        hasError: passwordHasErrorValue,
-        fieldIsValid: passwordFieldIsValid,
-        onChange: passwordOnChange,
-        onBlur: passwordOnBlur,
-        reset: passwordReset
-    } = useInput(userValidation.passwordIsLength);
-    const {
-        value: repeatPasswordValue,
-        hasError: repeatPasswordHasErrorValue,
-        fieldIsValid: repeatPasswordFieldIsValid,
-        onChange: repeatPasswordOnChange,
-        onBlur: repeatPasswordOnBlur,
-        reset: repeatPasswordReset
-    } = useInput(userValidation.isEqual.bind(null, passwordValue));
-
-    const inputFieldsIsValid = firstNameFieldIsValid
-        && lastNameFieldIsValid
-        && emailFieldIsValid
-        && passwordFieldIsValid
-        && repeatPasswordFieldIsValid;
+    const inputFieldsIsValid = firstNameInput.fieldIsValid
+        && lastNameInput.fieldIsValid
+        && emailInput.fieldIsValid
+        && passwordInput.fieldIsValid
+        && repeatPasswordInput.fieldIsValid;
 
     const responseData = (data) => {
 
         dispatch(authStoreActions.login(data));
-        firstNameReset();
-        lastNameReset();
-        emailReset();
-        passwordReset();
-        repeatPasswordReset();
+
+        firstNameInput.fieldReset();
+        lastNameInput.fieldReset();
+        emailInput.fieldReset();
+        passwordInput.fieldReset();
+        repeatPasswordInput.fieldReset();
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
-       const res = requester(userService.register(firstNameValue, lastNameValue, emailValue, passwordValue, repeatPasswordValue), responseData);
+        const formValue = [
+            firstNameInput.value,
+            lastNameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            repeatPasswordInput.value
+        ];
+
+       const res = await requester(userService.register(...formValue), responseData);
 
         if (res?.userData) {
             navigate('/');
         } else {
-            firstNameReset();
-            lastNameReset();
-            emailReset();
-            passwordReset();
-            repeatPasswordReset();
+            firstNameInput.fieldReset();
+            lastNameInput.fieldReset();
+            emailInput.fieldReset();
+            passwordInput.fieldReset();
+            repeatPasswordInput.fieldReset();
         }
     };
 
@@ -114,11 +88,11 @@ const Register = () => {
                                     type='text'
                                     id='firstName'
                                     name='firstName'
-                                    value={firstNameValue}
-                                    onChange={firstNameOnChange}
-                                    onBlur={firstNameOnBlur}
+                                    value={firstNameInput.value}
+                                    onChange={firstNameInput.onChange}
+                                    onBlur={firstNameInput.onBlur}
                                 />
-                                {firstNameHasErrorValue && <p className={styles.error}>The last name should be at least 4 characters long</p>}
+                                {firstNameInput.hasError && <p className={styles.error}>The last name should be at least 4 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='lastName'>Last Name</label>
@@ -126,11 +100,11 @@ const Register = () => {
                                     type='text'
                                     id='lastName'
                                     name='lastName'
-                                    value={lastNameValue}
-                                    onChange={lastNameOnChange}
-                                    onBlur={lastNameOnBlur}
+                                    value={lastNameInput.value}
+                                    onChange={lastNameInput.onChange}
+                                    onBlur={lastNameInput.onBlur}
                                 />
-                                {lastNameHasErrorValue && <p className={styles.error}>The last name should be at least 4 characters long</p>}
+                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 4 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='email'>Email</label>
@@ -138,11 +112,11 @@ const Register = () => {
                                     type='email'
                                     id='email'
                                     name='email'
-                                    value={emailValue}
-                                    onChange={emailOnChange}
-                                    onBlur={emailOnBlur}
+                                    value={emailInput.value}
+                                    onChange={emailInput.onChange}
+                                    onBlur={emailInput.onBlur}
                                 />
-                                {emailHasErrorValue && <p className={styles.error}>Email address is invalid</p>}
+                                {emailInput.hasError && <p className={styles.error}>Email address is invalid</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
@@ -150,11 +124,11 @@ const Register = () => {
                                     type='password'
                                     id='password'
                                     name='password'
-                                    value={passwordValue}
-                                    onChange={passwordOnChange}
-                                    onBlur={passwordOnBlur}
+                                    value={passwordInput.value}
+                                    onChange={passwordInput.onChange}
+                                    onBlur={passwordInput.onBlur}
                                 />
-                                {passwordHasErrorValue && <p className={styles.error}>The password should be at least 5 characters long</p>}
+                                {passwordInput.hasError && <p className={styles.error}>The password should be at least 5 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='repeatPassword'>Re-password</label>
@@ -162,11 +136,11 @@ const Register = () => {
                                     type='password'
                                     id='repeatPassword'
                                     name='repeatPassword'
-                                    value={repeatPasswordValue}
-                                    onChange={repeatPasswordOnChange}
-                                    onBlur={repeatPasswordOnBlur}
+                                    value={repeatPasswordInput.value}
+                                    onChange={repeatPasswordInput.onChange}
+                                    onBlur={repeatPasswordInput.onBlur}
                                 />
-                                {repeatPasswordHasErrorValue && <p className={styles.error}>The repeat password should be equal to the password</p>}
+                                {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password</p>}
                             </div>
                             <button
                                 disabled={!inputFieldsIsValid}

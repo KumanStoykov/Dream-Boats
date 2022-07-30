@@ -20,32 +20,17 @@ const Login = () => {
     const { isLoading, requester } = useFetch();
 
 
-    const {
-        value: emailValue,
-        hasError: emailHasErrorValue,
-        fieldIsValid: emailFieldIsValid,
-        onChange: emailOnChange,
-        onBlur: emailOnBlur,
-        reset: emailReset
-    } = useInput(userValidation.emailIsValid);
+    const emailInput = useInput(userValidation.emailIsValid);
+    const passwordInput = useInput(userValidation.passwordIsLength);
 
-    const {
-        value: passwordValue,
-        hasError: passwordHasErrorValue,
-        fieldIsValid: passwordFieldIsValid,
-        onChange: passwordOnChange,
-        onBlur: passwordOnBlur,
-        reset: passwordReset
-    } = useInput(userValidation.passwordIsLength);
-
-    const inputFieldsIsValid = emailFieldIsValid && passwordFieldIsValid;
+    const inputFieldsIsValid = emailInput.fieldIsValid && passwordInput.fieldIsValid;
 
     const responseData = (data) => {
         dispatch(authStoreActions.login(data));
-        emailReset();
-        passwordReset();
-    };
 
+        emailInput.fieldReset();
+        passwordInput.fieldReset();
+    };
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -54,16 +39,20 @@ const Login = () => {
             return;
         }
 
-        const res = await requester(userService.login(emailValue, passwordValue), responseData);
-        
-        if(res?.userData) {
+        const formValue = [
+            emailInput.value,
+            passwordInput.value,
+        ];
+
+        const res = await requester(userService.login(...formValue), responseData);
+
+        if (res?.userData) {
             navigate('/');
         } else {
-            emailReset()
-            passwordReset()
+            emailInput.fieldReset()
+            passwordInput.fieldReset()
         }
     }
-
 
     return (
         <section className={styles.login}>
@@ -84,45 +73,43 @@ const Login = () => {
                                     type="email"
                                     id='email'
                                     name='email'
-                                    value={emailValue}
-                                    onChange={emailOnChange}
-                                    onBlur={emailOnBlur}
+                                    value={emailInput.value}
+                                    onChange={emailInput.onChange}
+                                    onBlur={emailInput.onBlur}
                                 />
                             </div>
-                            {emailHasErrorValue && <p className={styles.error}>Please entry your email address</p>}
+                            {emailInput.hasError && <p className={styles.error}>Please entry your email address</p>}
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
                                 <input
                                     type="password"
                                     id='password'
                                     name='password'
-                                    value={passwordValue}
-                                    onChange={passwordOnChange}
-                                    onBlur={passwordOnBlur}
+                                    value={passwordInput.value}
+                                    onChange={passwordInput.onChange}
+                                    onBlur={passwordInput.onBlur}
                                 />
                             </div>
-                            {passwordHasErrorValue && <p className={styles.error}>Please entry your password</p>}
+                            {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
                             <button
                                 disabled={!inputFieldsIsValid}
                                 className={'btn-blue'}
                                 type="submit"
-                                >
+                            >
                                 Sign in
-                                    {!inputFieldsIsValid && isLoading
-                                        ? <Spinner size={'small'} />
-                                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
-                                    }
+                                {!inputFieldsIsValid && isLoading
+                                    ? <Spinner size={'small'} />
+                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                }
                             </button>
                             <div className={styles.more}>
                                 <p >Don't have an account? <Link to="/auth/register">Sign up</Link></p>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </section>
-
     );
 }
 
