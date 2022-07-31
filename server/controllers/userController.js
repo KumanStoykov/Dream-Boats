@@ -13,6 +13,7 @@ router.post('/register', async (req, res) => {
         const firstName = req.body.firstName.trim();
         const lastName = req.body.lastName.trim();
         const email = req.body.email.trim();
+        const phone = req.body.phone.trim();
         const password = req.body.password.trim();
         const repeatPassword = req.body.repeatPassword.trim();
 
@@ -24,6 +25,9 @@ router.post('/register', async (req, res) => {
             throw new Error('The last name should be at least 4 characters long');
         }
         if (!validator.isEmail(email)) {
+            throw new Error('The email should be in correct format');
+        }
+        if (!validator.isMobilePhone(phone)) {
             throw new Error('The email should be in correct format');
         }
         if (!validator.isLength(password, { min: 5 })) {
@@ -41,7 +45,7 @@ router.post('/register', async (req, res) => {
 
         const hashPass = await bcrypt.hash(password, ROUND_SALT);
 
-        const user = await userService.createUser(firstName, lastName, email, hashPass);
+        const user = await userService.createUser(firstName, lastName, email, phone, hashPass);
 
 
         const token = await jwt.createToken(user);
@@ -87,6 +91,53 @@ router.post('/login', async (req, res) => {
 
         const userData = userPayload(user);
 
+        res.status(200).send({ userData });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
+router.get('/:userId', async (req, res) => {
+    try {       
+
+        const user = await userService.getById(req.params.userId);    
+
+        const userData = userPayload(user);
+
+        res.status(200).send({ userData });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
+router.put('/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+
+        const firstName = req.body.firstName.trim();
+        const lastName = req.body.lastName.trim();
+        const email = req.body.email.trim();
+        const phone = req.body.phone.trim();
+
+        if (!validator.isLength(firstName, { min: 4 })) {
+            throw new Error('The first name should be at least 4 characters long');
+        }
+        if (!validator.isLength(lastName, { min: 4 })) {
+            throw new Error('The last name should be at least 4 characters long');
+        }
+        if (!validator.isEmail(email)) {
+            throw new Error('The email should be in correct format');
+        }
+        if (!validator.isMobilePhone(phone)) {
+            throw new Error('The email should be in correct format');
+        }
+
+        const user = await userService.editUser(firstName, lastName, email, phone, userId);
+        
+        const userData = userPayload(user);
+        
         res.status(200).send({ userData });
 
     } catch (error) {

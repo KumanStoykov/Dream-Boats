@@ -7,6 +7,7 @@ const boatService = require('../services/boatService');
 const formidableFormData = require('../utils/formidableFormData');
 const checkCredential = require('../middleware/checkCredentialMiddleware');
 const loggedInMiddleware = require('../middleware/loggedInMiddleware');
+const isOwnerMiddleware = require('../middleware/isOwnerMiddleware');
 
 
 router.get('/', async (req, res) => {
@@ -73,7 +74,6 @@ router.post('/', loggedInMiddleware(), async (req, res) => {
             imagesUrl.push({ url: res.url, public_id: res.public_id });
         }
 
-
         const boatData = {
             make: formData.make,
             model: formData.model,
@@ -136,7 +136,7 @@ router.post('/', loggedInMiddleware(), async (req, res) => {
     }
 });
 
-router.put('/:boatId', loggedInMiddleware(), async (req, res) => {
+router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
     const form = formidable({ multiples: true });
     const imagesUrl = [];
     const boatId = req.params.boatId;

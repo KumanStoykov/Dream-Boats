@@ -13,17 +13,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    password: {
+    phone: {
         type: String,
         require: true
     },
-    message: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Message'
-        }
-    ],  
+    password: {
+        type: String,
+        require: true
+    },   
 });
+
+userSchema.set('timestamps', true);
 
 const User = mongoose.model('User', userSchema);
 
