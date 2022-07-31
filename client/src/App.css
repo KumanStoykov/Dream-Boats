@@ -1,6 +1,4 @@
-/*Import the fonts used*/
 @import url('https://fonts.googleapis.com/css?family=Courgette|Open+Sans:400,800&display=swap');
-/*Basic reset*/
 *,
 *::before,
 *::after {
@@ -8,7 +6,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-/*Custom properties*/
 :root {
     --dark-color: #2d2c2c;
     --blue-solid: #243b67;
@@ -37,6 +34,11 @@ body {
     font-family: 'Open sans', sans-serif;
     font-size: 1.6rem;
     color: var(--dark-color);
+}
+
+main {
+    display: block;
+    min-height: 100%;
 }
 
 a {
@@ -71,6 +73,7 @@ section {
     display: inline-flex;
     align-items: center;
     background-image: var(--gradient-color);
+    transition: all 500ms;
     overflow: hidden;
 }
 
@@ -91,11 +94,17 @@ section {
     margin-top: 2.5rem;
     cursor: pointer;
     background-color: var(--blue-solid);
-    transition: background-color 300ms;
+    transition: all 500ms;
 }
 
 .btn-blue:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     background-color: #006693;
+}
+
+.stop-btn {    
+    cursor:no-drop;
 }
 
 .dots {
@@ -106,7 +115,7 @@ section {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 2.5rem;
 }
 
@@ -130,6 +139,11 @@ section {
     background: #0079a5;
 }
 
+@media all and (min-width: 368px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    }
+}
 @media all and (min-width: 768px) {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));

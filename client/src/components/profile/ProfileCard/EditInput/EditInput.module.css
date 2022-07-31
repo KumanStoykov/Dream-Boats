@@ -1,0 +1,17 @@
+.user-edit-input{
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #9d9dc4;
+    outline: none;
+    padding: 0.5rem;
+    transition: all 400ms ease-in;
+}
+.user-edit-input:focus {
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+}
+
+.error-user {
+    display: flex;
+    color: #ff525b; 
+    font-size: 12px;
+}
