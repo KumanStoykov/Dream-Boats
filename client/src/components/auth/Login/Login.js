@@ -49,7 +49,6 @@ const Login = () => {
         if (res?.userData) {
             navigate('/');
         } else {
-            emailInput.fieldReset()
             passwordInput.fieldReset()
         }
     }
@@ -93,7 +92,7 @@ const Login = () => {
                             {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
                             <button
                                 disabled={!inputFieldsIsValid}
-                                className={'btn-blue'}
+                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
                                 type="submit"
                             >
                                 Sign in

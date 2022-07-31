@@ -42,7 +42,7 @@ const BoatForm = () => {
     const priceInput = useInput(boatValidation.isEmpty);
     const descriptionInput = useInput(boatValidation.descriptionLength);
 
-    const inputFieldIsValid = makeInput.fieldIsValid
+    const inputFieldsIsValid = makeInput.fieldIsValid
         && modelInput.fieldIsValid
         && typeInput.fieldIsValid
         && conditionInput.fieldIsValid
@@ -73,6 +73,7 @@ const BoatForm = () => {
         descriptionInput.fieldReset();
 
         navigate(`/boat/details/${boat._id}`);
+
     };
 
     useEffect(() => {
@@ -334,7 +335,7 @@ const BoatForm = () => {
                                         onChange={fileHandler}
                                     />
                                     {!isEdit
-                                        && inputFieldIsValid
+                                        && inputFieldsIsValid
                                         && !imageImageFieldIsValid
                                         && <p className={styles.error}>A value is required, this field can't be empty</p>
                                     }
@@ -358,12 +359,13 @@ const BoatForm = () => {
                             </div>
 
                             <button
-                                className={'btn-blue'}
-                                disabled={!inputFieldIsValid}
+                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
+                                disabled={!inputFieldsIsValid}
                                 type='submit'
                             >
-                                Create
-                                {inputFieldIsValid && isLoading
+                                {isEdit ? 'Edit' : 'Create'}
+
+                                {inputFieldsIsValid && isLoading
                                     ? <Spinner size={'small'} />
                                     : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                                 }

@@ -77,7 +77,6 @@
 
 .login-form label,
 .login-form input {
-    /* display: block; */
     width: 100%;
 }
 
@@ -91,7 +90,7 @@
     border: 1px solid #9d9dc4;
     border-radius: 5px;
     outline: none;
-    transition: all 0.3s ease-in;
+    transition: all 400ms ease-in;
 }
 .login-form input:focus {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
@@ -118,6 +117,7 @@
     font-size: 1.5rem;
     border-radius: 1rem;
 }
+
 @media all and (min-width: 420px) {
     .container-form {
         max-width: 40rem;
