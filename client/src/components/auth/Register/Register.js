@@ -24,12 +24,14 @@ const Register = () => {
     const firstNameInput = useInput(userValidation.nameIsLength);
     const lastNameInput = useInput(userValidation.nameIsLength);
     const emailInput = useInput(userValidation.emailIsValid);
+    const phoneInput = useInput(userValidation.isPhone);
     const passwordInput = useInput(userValidation.passwordIsLength);
     const repeatPasswordInput = useInput(userValidation.isEqual.bind(null, passwordInput.value));
 
     const inputFieldsIsValid = firstNameInput.fieldIsValid
         && lastNameInput.fieldIsValid
         && emailInput.fieldIsValid
+        && phoneInput.fieldIsValid
         && passwordInput.fieldIsValid
         && repeatPasswordInput.fieldIsValid;
 
@@ -40,6 +42,7 @@ const Register = () => {
         firstNameInput.fieldReset();
         lastNameInput.fieldReset();
         emailInput.fieldReset();
+        phoneInput.fieldReset();
         passwordInput.fieldReset();
         repeatPasswordInput.fieldReset();
     };
@@ -51,6 +54,7 @@ const Register = () => {
             firstNameInput.value,
             lastNameInput.value,
             emailInput.value,
+            phoneInput.value,
             passwordInput.value,
             repeatPasswordInput.value
         ];
@@ -60,9 +64,6 @@ const Register = () => {
         if (res?.userData) {
             navigate('/');
         } else {
-            firstNameInput.fieldReset();
-            lastNameInput.fieldReset();
-            emailInput.fieldReset();
             passwordInput.fieldReset();
             repeatPasswordInput.fieldReset();
         }
@@ -92,7 +93,7 @@ const Register = () => {
                                     onChange={firstNameInput.onChange}
                                     onBlur={firstNameInput.onBlur}
                                 />
-                                {firstNameInput.hasError && <p className={styles.error}>The last name should be at least 4 characters long</p>}
+                                {firstNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='lastName'>Last Name</label>
@@ -104,7 +105,7 @@ const Register = () => {
                                     onChange={lastNameInput.onChange}
                                     onBlur={lastNameInput.onBlur}
                                 />
-                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 4 characters long</p>}
+                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='email'>Email</label>
@@ -117,6 +118,18 @@ const Register = () => {
                                     onBlur={emailInput.onBlur}
                                 />
                                 {emailInput.hasError && <p className={styles.error}>Email address is invalid</p>}
+                            </div>
+                            <div className={styles.field}>
+                                <label htmlFor='phone'>Phone</label>
+                                <input
+                                    type='phone'
+                                    id='phone'
+                                    name='phone'
+                                    value={phoneInput.value}
+                                    onChange={phoneInput.onChange}
+                                    onBlur={phoneInput.onBlur}
+                                />
+                                {phoneInput.hasError && <p className={styles.error}>Phone number is invalid</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
@@ -144,7 +157,7 @@ const Register = () => {
                             </div>
                             <button
                                 disabled={!inputFieldsIsValid}
-                                className={'btn-blue'}
+                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
                                 type='submit'
                                 >
                                 Sign up
