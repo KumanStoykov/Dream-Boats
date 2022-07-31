@@ -30,7 +30,7 @@
 }
 
 .title {
-    font-size: 4.8rem;
+    font-size: 4rem;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
@@ -43,6 +43,11 @@
 
 
 
+@media all and (min-width: 368px) {
+    .title {
+        font-size: 6rem;
+    }
+}
 @media all and (min-width: 768px) {
     .title {
         font-size: 8rem;

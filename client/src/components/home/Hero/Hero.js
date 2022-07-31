@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import styles from './Hero.module.css';
@@ -12,9 +14,9 @@ const Hero = () => {
                     <h1 className={styles.title}>Discover</h1>
                     <h2 className={styles.subtitle}>Your dream boat</h2>
                 </div>
-                <a href="/boats-catalog" className={'btn-gradient'}>Explore now                
+                <Link to="/boats-for-sale" className={'btn-gradient'}>Explore now                
                 <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH}/></span>                                   
-                </a>
+                </Link>
             </div>
         </div>
 
