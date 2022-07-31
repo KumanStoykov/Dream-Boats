@@ -45,13 +45,13 @@ const DetailsCard = ({ boat }) => {
                     </ul>
                 </div>
                 <div className={styles['btn-group']}>
-                    <Link to={`/profile/${boat._id}/edit`} className={'btn-gradient'}>
+                    <Link to={`/profile/boat/${boat._id}/edit`} className={`btn-gradient ${styles['btn-details-card']}`}>
                         Edit <FontAwesomeIcon className={styles.icons} icon={faPenSquare} />
                     </Link>
-                    <button type="submit" className={'btn-gradient'}>
+                    <button type="submit" className={`btn-gradient ${styles['btn-details-card']}`}>
                         Delete <FontAwesomeIcon className={styles.icons} icon={faXmarkSquare} />
                     </button>
-                    <button type="submit" className={'btn-gradient'}>
+                    <button type="submit" className={`btn-gradient ${styles['btn-details-card']}`}>
                         Contact <FontAwesomeIcon className={styles.icons} icon={faEnvelope} />
                     </button>
                 </div>

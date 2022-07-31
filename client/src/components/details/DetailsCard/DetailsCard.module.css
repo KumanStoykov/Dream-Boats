@@ -127,11 +127,26 @@
     justify-content: space-around;
 }
 
+.btn-details-card {
+    display: flex;
+    justify-content: center;
+    padding: 0.8rem;
+    margin: 1rem;
+    width: 15rem;
+    font-size: 1.5rem;
+}
+
 .icons {
     font-size: 2.2rem;
     margin-left: 0.5rem;
     opacity: 0.75;
 }
+@media all and (max-width: 368px) {
+    .btn-details-card {
+        font-size: 1.2rem;
+    }
+}
+
 @media all and (max-width: 668px) {
     .purchase-info .btn-details {
         margin: 1.5rem 1rem;
@@ -143,13 +158,12 @@
 }
 
 @media all and (min-width: 1000px) {
-
     .card {
         display: grid;
         grid-template-columns: 65% 35%;
         grid-gap: 1.5rem;
     }
-   
+
     .product-imgs {
         display: flex;
         flex-direction: column;
