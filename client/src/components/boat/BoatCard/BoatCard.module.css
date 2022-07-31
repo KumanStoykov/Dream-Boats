@@ -17,16 +17,22 @@
     z-index: -2;
     border-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    filter: brightness(95%);
+    filter: brightness(85%);
 }
 .fancy-boarder {
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
 }
 
-.boat-name {
+.boat-make {
     font-size: 2.6rem;
+    letter-spacing: 0.2rem;
     position: absolute;
     top: 10%;
+}
+.boat-model {
+    font-size: 2.6rem;
+    position: absolute;
+    top: 20%;
 }
 
 .boat-price {
