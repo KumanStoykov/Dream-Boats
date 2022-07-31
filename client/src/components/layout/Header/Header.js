@@ -1,71 +1,38 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faArrowRightFromBracket, faUserLock } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import useFetch from '../../../hooks/useFetch';
-import userRequestOptions from '../../../services/userService';
-import { authStoreActions } from '../../../store/authStore';
+import { uiStoreActions } from '../../../store/uiStore';
+
+import UserNavigate from './UserNavigate/UserNavigate';
+import GuestNavigation from './GuestNavigate/GuestNavigate';
 
 import styles from './Header.module.css';
 
 
 const Header = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [navbarOpen, setNavBarOpen] = useState(false);
-    const auth = useSelector(state => state.auth);
-    const { requester } = useFetch();
-
+    const navBarState = useSelector(state => state.ui.navBar);
+    const user = useSelector(state => state.auth.userData);
 
     const menuToggleHandler = () => {
-        setNavBarOpen(oldState => !oldState);
+        dispatch(uiStoreActions.navBarToggle());
     };
 
     useEffect(() => {
-        setNavBarOpen(false);
-    }, [navigate]);
+        dispatch(uiStoreActions.navBarClose());
+    }, [dispatch]);
 
-    const logoutHandler = (e) => {
-        e.preventDefault();
-        dispatch(authStoreActions.logout());
-        requester(userRequestOptions.logout());
-        navigate('/');
-    };
-
-
-    const userNavigate = () => {
-        return (
-            <>
-                <li className={styles['nav-item']}>
-                    <Link to="/profile" className={styles['nav-link']}>Profile</Link>
-                </li>
-                <li className={styles['nav-item']}>
-                    <Link onClick={logoutHandler} to="/auth/logout" className={styles['nav-link']}><FontAwesomeIcon className={styles['logout-icon']} icon={faArrowRightFromBracket} /></Link>
-                </li>
-            </>
-        )
-    };
-
-    const guestNavigate = () => {
-        return (
-            <>
-                <li className={styles['nav-item']}>
-                    <Link to="/auth/login" className={styles['nav-link']}><span className={styles['icon-span']}>Log on</span><FontAwesomeIcon className={styles['logout-icon']} icon={faUserLock} /></Link>
-                </li>
-
-            </>
-        )
-    }
 
     return (
-        <header className={`${styles['header']} ${navbarOpen && styles['menu-open']}`}>
+        <header className={`${styles['header']} ${navBarState && styles['menu-open']}`}>
             <div className={'container'}>
                 <nav className={styles.nav}>
-                    <Link to="/" className={styles.logo}>
-                        <img src="/images/logo.png" alt="image.png" className={styles['logo-image']} />
+                    <Link to='/' className={styles.logo}>
+                        <img src='/images/logo.png' alt='image.png' className={styles['logo-image']} />
                     </Link>
                     <div onClick={menuToggleHandler} className={styles[`hamburger-menu`]} >
                         <FontAwesomeIcon icon={faBars} className={styles.faBars} />
@@ -73,17 +40,23 @@ const Header = () => {
                     </div>
                     <ul className={styles['nav-list']}>
                         <li className={styles['nav-item']}>
-                            <Link to="/boats-for-sale" className={styles['nav-link']}>Boats for Sale</Link>
+                            <Link to='/news' className={styles['nav-link']}>News</Link>
                         </li>
                         <li className={styles['nav-item']}>
-                            <Link to="/profile/sell-boat" className={styles['nav-link']}>Sell my Boat</Link>
+                            <Link to='/boats-for-sale' className={styles['nav-link']}>Boats for Sale</Link>
                         </li>
-                        <li className={styles['nav-item']}>
-                            <Link to="/news" className={styles['nav-link']}>News</Link>
-                        </li>
-                        {auth.userData
-                            ? userNavigate()
-                            : guestNavigate()
+                        {user
+                            ? <UserNavigate
+                                styleNavLink={styles['nav-link']}
+                                styleNavItem={styles['nav-link']}
+                                styleIcon={styles['logout-icon']}
+                            />
+                            : <GuestNavigation
+                                styleNavLink={styles['nav-link']}
+                                styleNavItem={styles['nav-link']}
+                                styleIcon={styles['logout-icon']}
+                                styleSpanIcon={styles['icon-span']}
+                            />
                         }
                     </ul>
                 </nav>

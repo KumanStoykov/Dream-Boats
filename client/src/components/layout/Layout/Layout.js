@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
-import ScrollToTopButton from '../../ui/ScrollToTopBUtton/ScrollToTopButton';
+import ScrollToTopButton from '../../ui/ScrollToTopButton/ScrollToTopButton';
 import ErrorModal from '../../ui/ErrorModal/ErrorModal';
 
 
