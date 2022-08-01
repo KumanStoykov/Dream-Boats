@@ -1,11 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 
-
 import ProfileNavbar from '../../components/profile/ProfileNavbar/ProfileNavbar';
 import BoatForm from '../../components/boat/BoatForm/BoatForm';
 import MyBoats from '../../components/profile/MyBoats/MyBoats';
-import CommentModal from '../../components/ui/CommentModal/CommentModal';
-import Register from '../../components/auth/Register/Register';
+import ProfileCard from '../../components/profile/ProfileCard/ProfileCard';
 
 
 
@@ -16,12 +14,11 @@ const Profile = () => {
         <>
             <ProfileNavbar />
             <Routes>
-                <Route index element={<MyBoats />} />
+                <Route path='/profile' element={<ProfileCard />} />
                 <Route path='/owner-boats' index element={<MyBoats />} />
-                <Route path='/edit-profile' element={<Register />} />
-                <Route path='/sell-boat' element={<BoatForm />} />
-                <Route path='/:boatId/edit' element={<BoatForm />} />
-                <Route path='/message' element={<CommentModal />} />
+                <Route path='/:boatId/sell-boat' element={<BoatForm />} />
+                <Route path='/boat/:boatId/edit' element={<BoatForm />} />
+                <Route path='*' element={<ProfileCard />}/>
             </Routes>
         </>
     );
