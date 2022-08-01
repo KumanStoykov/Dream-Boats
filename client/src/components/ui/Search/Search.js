@@ -48,8 +48,8 @@ const Search = () => {
                         </select>
                     </div>
 
-                    <button type="submit" className={'btn-blue'} onClick={() => navigate('/boats-catalog')}>Search
-                        <span className={'dots'}><FontAwesomeIcon icon={faAnchor} /></span>
+                    <button type="submit" className={'btn-blue'} >Search
+                        <span className={styles.anchor}><FontAwesomeIcon icon={faAnchor} /></span>
                     </button>
                 </form>
             </div>

@@ -1,3 +1,9 @@
+.footer{
+    padding: 5rem 0;
+    background-color: var(--blue-solid);
+    color: #fff;
+    position: relative;
+}
 .logo{
     text-align: center;
     transition: opacity 300ms ease-in-out;   
@@ -11,12 +17,6 @@
     width: 50%; 
 }
 
-.footer{
-    padding: 5rem 0;
-    background-color: var(--blue-solid);
-    color: #fff;
-    position: relative;
-}
 
 .footer-content-about {
     margin-bottom: 5rem;

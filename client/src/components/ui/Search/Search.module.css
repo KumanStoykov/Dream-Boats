@@ -51,6 +51,12 @@
     }
 }
 
+.anchor {
+    font-size: 2rem;
+    margin-left: 0.5rem;
+    opacity: 0.75;
+}
+
 @media all and (min-width: 1000px) {
     .book-form {
         display: flex;

@@ -1,11 +1,10 @@
-.loader {    
-    border-radius: 50%;
+.loader {
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.circle{   
+.circle {
     border-radius: 50%;
     animation: animate 2s infinite linear;
 }
@@ -22,7 +21,6 @@
 
 .small {
     padding: 0.5rem 0;
-     
 }
 .circle-small {
     background-color: #fff;
@@ -30,26 +28,24 @@
     height: 0.5rem;
     margin: 6px 2px;
 }
-.circle-small:nth-child(1){
+.circle-small:nth-child(1) {
     margin-left: 0.6rem;
 }
 
 .medium {
-    width: 2rem;
-    height: 2rem;
-    margin-left: 1rem;
+    width: 100%;
+    margin: 20vh auto;
 }
 
 .circle-medium {
-    background-color: #fff;
-    width: 1.5rem;
-    height: 1.5rem;
+    background-color: var(--blue-solid);
+    width: 3rem;
+    height: 3rem;
     margin: 0 4px;
 }
-.large {    
+.large {
     width: 100%;
-    height: 100%;
-    
+    margin: calc(50vh - 125px) auto;
 }
 
 .circle-large {
@@ -60,13 +56,12 @@
 }
 
 @keyframes animate {
-  0%, 100%{
-    opacity: 0;;
-   }
+    0%,
+    100% {
+        opacity: 0;
+    }
 
-   50% {
-    opacity: 1;
-   }
+    50% {
+        opacity: 1;
+    }
 }
-
-
