@@ -3,9 +3,11 @@ const Boat = require('../models/Boat');
 
 exports.getAllBoats = (page) => Boat.find().skip(page * 12).limit(12);
 
-exports.getLastThree = () => Boat.find({}).sort({createdAt : 'descending'}).limit(3);
+exports.getLastThree = () => Boat.find({}).sort({ createdAt: 'descending' }).limit(3);
 
-exports.getOne = (id) => Boat.findById(id);
+exports.getOne = (boatId) => Boat.findById(boatId);
+
+exports.getByOwner = (whereId, sort) => Boat.find({ owner: whereId }).sort({ createdAt: sort });
 
 
 exports.getBoatBySearch = (category, fuel, priceFrom, priceTo, page) => {
@@ -18,12 +20,14 @@ exports.getBoatBySearch = (category, fuel, priceFrom, priceTo, page) => {
     if (fuel) {
         search.fuel = fuel;
     }
-     //TODO:
+    //TODO:
     // if (priceFrom) {
     //     search.price = priceFrom;
     // }   
 
-    return Boat.find({...search, price: { $gt: priceFrom, $lt: priceTo }}).skip(page * 12).limit(12);
+    return Boat.find({ ...search, price: { $gt: priceFrom, $lt: priceTo } }).skip(page * 12).limit(12);
 }
 
 exports.create = (boatData) => Boat.create(boatData);
+
+exports.edit = (boatId, boatData) => Boat.findByIdAndUpdate(boatId, boatData);
