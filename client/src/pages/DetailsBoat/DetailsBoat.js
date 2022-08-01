@@ -17,7 +17,7 @@ const DetailsBoat = () => {
     const { boatId } = useParams();
     const dispatch = useDispatch();
     const boat = useSelector(state => state.allBoats.boat);
-
+    console.log(boatId);
     const { isLoading, requester } = useFetch();
 
     const responseData = useCallback((data) => {
@@ -26,7 +26,9 @@ const DetailsBoat = () => {
 
 
     useEffect(() => {
-        requester(boatService.getOneById(boatId), responseData);
+       let l =  requester(boatService.getOneById(boatId), responseData);
+       console.log(l)
+
     }, [boatId, requester, dispatch, responseData]);
 
 
