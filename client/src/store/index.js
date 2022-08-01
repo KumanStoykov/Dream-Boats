@@ -14,18 +14,20 @@ import {
 import authStore from './authStore';
 import boatStore from './boatStore';
 import modalStore from './modalStore';
+import uiStore from './uiStore';
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth', 'allBoats'],
+    whitelist: ['auth'],
 };
 
 const rootReducer = combineReducers({
     auth: authStore,
     allBoats: boatStore,
     modal: modalStore,
+    ui: uiStore
 });
 
 

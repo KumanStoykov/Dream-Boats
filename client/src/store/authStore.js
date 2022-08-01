@@ -2,9 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const userInitialState = {
     userData: null,
-    message: [],
     watchedBoats: [],
-    watchedItems: []
+    
 };
 
 const authSlice = createSlice({
@@ -19,25 +18,18 @@ const authSlice = createSlice({
 
         logout: () => userInitialState,
 
-        addedWatchedBoatsToLocalStorage: (state, action) => {
-            state.watchedBoats.push(action.payload._id);
-            return state
-        },
+        addedWatchedBoatsToLocalStorage: (state, action) => ({
+           ...state,
+           watchedBoats: action.payload.watchedBoats
+        }),
         removeWatchedBoatsFromLocaleStorage: (state, action) => {
             const boatIndex = state.watchedBoats.indexOf(action.payload._id);
-            state.watchedBoats.splice(boatIndex, 1);  
-            return state;          
+            const currentBoats = state.watchedBoats.splice(boatIndex, 1);  
+            return {
+                ...state,
+                watchedBoats: currentBoats
+            };          
         },
-        addedItemWatchedItemToLocalStorage:(state, action) => {
-            state.watchedItems.push(action.payload._id);
-            return state;
-        },
-        removeWatchedItemsFromLocalStorage: (state, action) => {
-            const boatIndex = state.watchedItems.indexOf(action.payload._id);
-            state.watchedItems.splice(boatIndex, 1);
-            return state;
-        },
-
     }
 });
 
