@@ -12,27 +12,37 @@ import NewBoats from '../../components/boat/NewBoats/NewBoats';
 import Search from '../../components/ui/Search/Search';
 import Spinner from '../../components/ui/Spinner/Spinner';
 
+
 const Home = () => {
     const dispatch = useDispatch();
-    const {isLoading, requester} = useFetch();
+    const { isLoading, requester } = useFetch();
     const boats = useSelector(state => state.allBoats.boats);
-    
+
+    const heading = 'New Arrival';
+    const subHeading = 'Our explore Boats';
+
     const responseData = useCallback((data) => {
         dispatch(boatStoreActions.addBoats(data));
-    },[dispatch]);
+    }, [dispatch]);
 
     useEffect(() => {
         requester(boatService.getLastThree(), responseData);
-    }, [requester]);
+    }, [requester, dispatch]);
 
     return (
         <>
             <Hero />
             <Search />
-            {isLoading
-                ? <Spinner size={'large'} />
-                : <NewBoats boats={boats} />
-            }            
+            <div className={'container'}>
+                {isLoading && <Spinner size={'medium'} />}
+                {!isLoading
+                    && <NewBoats boats={boats}
+                        fancyBoarder={'fancy-boarder'}
+                        heading={heading} 
+                        subHeading={subHeading}
+                    />
+                }
+            </div>
             <Comments />
         </>
     );
