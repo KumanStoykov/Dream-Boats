@@ -9,12 +9,12 @@ const useFetch = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
     const dispatch = useDispatch();
-    
+
     const requester = useCallback(async (options, dataStored) => {
 
         setIsLoading(true);
         setServerError(null);
-        
+
         try {
             const res = await fetch(options.url, {
                 method: options.method || 'GET',
@@ -26,11 +26,12 @@ const useFetch = () => {
 
             if (!res.ok) {
                 throw new Error(result.message);
-            }            
-            
+            }
+
             if (dataStored) {
                 dataStored(result);
             }
+
             setIsLoading(false);
             return result;
 
@@ -38,10 +39,10 @@ const useFetch = () => {
             let errorMsg = error.message;
             console.log(errorMsg);
 
-            if(errorMsg === 'Please log in') {
+            if (errorMsg === 'Please log in') {
                 dispatch(authStoreActions.logout());
             }
-            
+
             setServerError(errorMsg);
             setIsLoading(false);
         }
@@ -51,7 +52,7 @@ const useFetch = () => {
 
     useEffect(() => {
         if (serverError) {
-            dispatch(modalStoreActions.open({errMessage: serverError}))
+            dispatch(modalStoreActions.open({ errMessage: serverError }))
         }
     }, [dispatch, serverError]);
 

@@ -5,13 +5,13 @@ const useInput = (validation) => {
     const [hasTouched, setHasTouched] = useState(false);
 
     const onChange = (e) => {
-        setValue(e.target.value);        
+        setValue(e.target.value);
     }
     const onBlur = () => {
         setHasTouched(true);
     };
 
-    const reset = () => {
+    const fieldReset = () => {
         setValue('');
         setHasTouched(false);
     }
@@ -19,14 +19,14 @@ const useInput = (validation) => {
     const fieldIsValid = validation(value);
     const hasError = !fieldIsValid && hasTouched;
 
-    return{
+    return {
         value,
         setValue,
         fieldIsValid,
         hasError,
         onChange,
         onBlur,
-        reset
+        fieldReset
     }
 }
 
