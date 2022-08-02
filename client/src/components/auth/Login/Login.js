@@ -91,12 +91,10 @@ const Login = () => {
                             </div>
                             {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
                             <button
-                                disabled={!inputFieldsIsValid}
-                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
-                                type="submit"
-                            >
-                                Sign in
-                                {!inputFieldsIsValid && isLoading
+                                disabled={!inputFieldsIsValid || isLoading}
+                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}                    
+                            >Sign in
+                                {isLoading
                                     ? <Spinner size={'small'} />
                                     : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                                 }

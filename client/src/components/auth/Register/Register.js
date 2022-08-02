@@ -156,12 +156,12 @@ const Register = () => {
                                 {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password</p>}
                             </div>
                             <button
-                                disabled={!inputFieldsIsValid}
-                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
+                                disabled={!inputFieldsIsValid || isLoading}
+                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}
                                 type='submit'
                                 >
                                 Sign up
-                                    {!inputFieldsIsValid && isLoading
+                                    {isLoading
                                         ? <Spinner size={'small'} />
                                         : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                                     }
