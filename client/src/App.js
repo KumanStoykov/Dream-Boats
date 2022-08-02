@@ -12,6 +12,8 @@ import BoatsCatalog from './pages/BoatsCatalog/BoatsCatalog';
 import DetailsBoat from './pages/DetailsBoat/DetailsBoat';
 import Profile from './pages/Profile/Profile';
 
+import AuthGuard from './components/common/AuthGuard';
+
 function App() {
 
 
@@ -27,7 +29,9 @@ function App() {
 				</ Route>
 				<Route path='/boats-for-sale' element={<BoatsCatalog />} />
 				<Route path='/boat/details/:boatId' element={<DetailsBoat />} />
-				<Route path='/profile/*' element={<Profile />} />					
+				<Route element={<AuthGuard />}>
+					<Route path='/profile/*' element={<Profile />} />	
+				</Route>				
 				<Route path='*' element={<Navigate to={'/'} />} />
 			</Routes>
 		</Layout>
