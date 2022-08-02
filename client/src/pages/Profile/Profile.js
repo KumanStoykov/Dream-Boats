@@ -5,10 +5,12 @@ import BoatForm from '../../components/boat/BoatForm/BoatForm';
 import MyBoats from '../../components/profile/MyBoats/MyBoats';
 import ProfileCard from '../../components/profile/ProfileCard/ProfileCard';
 
+import OwnerGuard from '../../components/common/OwnerGuard';
+
 
 
 const Profile = () => {
-   
+
 
     return (
         <>
@@ -17,8 +19,10 @@ const Profile = () => {
                 <Route path='/profile' element={<ProfileCard />} />
                 <Route path='/owner-boats' index element={<MyBoats />} />
                 <Route path='/:boatId/sell-boat' element={<BoatForm />} />
-                <Route path='/boat/:boatId/edit' element={<BoatForm />} />
-                <Route path='*' element={<ProfileCard />}/>
+                <Route element={<OwnerGuard />}>
+                    <Route path='/boat/:boatId/edit' element={<BoatForm />} />
+                </Route>
+                <Route path='*' element={<ProfileCard />} />
             </Routes>
         </>
     );
