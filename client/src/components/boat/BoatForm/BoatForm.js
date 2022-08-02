@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +19,7 @@ import styles from './BoatForm.module.css';
 const BoatForm = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
+    const { boatId } = useParams();
     const dispatch = useDispatch();
 
     const [imageImageFieldIsValid, setImageFieldIsValid] = useState(false);
@@ -27,6 +28,15 @@ const BoatForm = () => {
     const boat = useSelector(state => state.allBoats.boat);
 
     const isEdit = pathname.endsWith('edit');
+
+    useEffect(() => {
+        if(isEdit) {
+            requester(boatService.getOneById(boatId), (data) => dispatch(boatStoreActions.addBoat(data)));
+        }
+        return () => {
+            dispatch(boatStoreActions.removeBoat());
+        }
+    }, [dispatch, isEdit]);
 
 
     const makeInput = useInput(boatValidation.isLengthThreeCh);
@@ -77,7 +87,7 @@ const BoatForm = () => {
     };
 
     useEffect(() => {
-        if (isEdit) {
+        if (isEdit && boat) {
             makeInput.setValue(boat.make);
             modelInput.setValue(boat.model);
             typeInput.setValue(boat.type);
@@ -91,7 +101,7 @@ const BoatForm = () => {
             priceInput.setValue(boat.price.toString());
             descriptionInput.setValue(boat.description);
         }
-    }, [boat, isEdit, pathname]);
+    }, [boat, isEdit, pathname, dispatch, requester]);
 
     const fileHandler = (e) => {
         const element = e.target;
