@@ -16,8 +16,9 @@ router.get('/', async (req, res) => {
         const page = Number(req.query.page) - 1 || 0;
 
         const boats = await boatService.getAllBoats(page);
-
-        res.status(200).send({ boats });
+        const boatsCount = await boatService.boatCount();
+        
+        res.status(200).send({ boats, boatsCount });
     } catch (error) {
         res.status(400).send({ message: error.message });
     }
@@ -218,6 +219,26 @@ router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, re
 
         const boat = await boatService.edit(boatId, boatData);
         res.status(200).send({ boat });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+router.delete('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
+
+    const boatId = req.params.boatId;
+    const oldBoat = await boatService.getOne(boatId);
+
+    try {
+
+        for (const image of oldBoat.image) {
+
+            await cloudinary.uploader.destroy(image.public_id);
+        }
+
+        await boatService.deleteBoat(boatId);
+
+        res.status(200).send({ message: 'Boat is secssful deleted' });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
