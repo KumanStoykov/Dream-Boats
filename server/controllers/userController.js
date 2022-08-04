@@ -98,20 +98,6 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/:userId', async (req, res) => {
-    try {       
-
-        const user = await userService.getById(req.params.userId);    
-
-        const userData = userPayload(user);
-
-        res.status(200).send({ userData });
-
-    } catch (error) {
-        res.status(400).send({ message: error.message });
-    }
-});
-
 router.put('/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
@@ -135,10 +121,24 @@ router.put('/:userId', async (req, res) => {
         }
 
         const user = await userService.editUser(firstName, lastName, email, phone, userId);
-        
+
         const userData = userPayload(user);
-        
+
         res.status(200).send({ userData });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
+router.delete('/:userId', async (req, res) => {
+    try {
+        res.clearCookie(COOKIE_TOKEN_NAME);
+        const userId = req.params.userId;
+
+        await userService.deleteUser(userId);
+
+        res.status(200).send({ message: 'User secssful deleted!' });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
