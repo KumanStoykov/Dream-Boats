@@ -46,6 +46,10 @@ a {
     color: inherit;
 }
 
+button {
+    cursor: pointer;
+}
+
 ul {
     list-style: none;
 }
@@ -69,7 +73,6 @@ section {
     padding: 0.5rem 3.5rem;
     border: none;
     border-radius: 10rem;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     background-image: var(--gradient-color);
@@ -92,7 +95,6 @@ section {
     display: inline-flex;
     align-items: center;
     margin-top: 2.5rem;
-    cursor: pointer;
     background-color: var(--blue-solid);
     transition: all 500ms;
 }
@@ -103,8 +105,8 @@ section {
     background-color: #006693;
 }
 
-.stop-btn {    
-    cursor:no-drop;
+.stop-btn {
+    cursor: no-drop;
 }
 
 .dots {
@@ -124,6 +126,10 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.boats-catalog {
+    min-height: calc(100vh - 450px);
 }
 
 ::-webkit-scrollbar {
