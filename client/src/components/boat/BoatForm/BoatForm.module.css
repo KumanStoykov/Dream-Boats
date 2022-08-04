@@ -1,6 +1,7 @@
 .create {
     overflow: hidden;
     padding-bottom: 12rem;
+    min-height: calc(100vh - 250px);
 }
 
 .create-content {
@@ -103,7 +104,6 @@
 
 .file-btn {
     letter-spacing: 1.5px;
-    cursor: pointer;
 }
 .textarea {    
     width: 100%;

@@ -30,7 +30,7 @@ const BoatForm = () => {
     const isEdit = pathname.endsWith('edit');
 
     useEffect(() => {
-        if(isEdit) {
+        if (isEdit) {
             requester(boatService.getOneById(boatId), (data) => dispatch(boatStoreActions.addBoat(data)));
         }
         return () => {
@@ -82,8 +82,7 @@ const BoatForm = () => {
         priceInput.fieldReset();
         descriptionInput.fieldReset();
 
-        navigate(`/boat/details/${boat._id}`);
-
+        navigate(`/boat/details/${data.boat._id}`);
     };
 
     useEffect(() => {
@@ -100,6 +99,19 @@ const BoatForm = () => {
             hullMaterialInput.setValue(boat.hullMaterial);
             priceInput.setValue(boat.price.toString());
             descriptionInput.setValue(boat.description);
+        } else if (!isEdit) {
+            makeInput.setValue('');
+            modelInput.setValue('');
+            typeInput.setValue('');
+            conditionInput.setValue('');
+            boatLengthInput.setValue('');
+            yearInput.setValue('');
+            fuelInput.setValue('');
+            locationInput.setValue('');
+            engineMakeInput.setValue('');
+            hullMaterialInput.setValue('');
+            priceInput.setValue('');
+            descriptionInput.setValue('');
         }
     }, [boat, isEdit, pathname, dispatch, requester]);
 
