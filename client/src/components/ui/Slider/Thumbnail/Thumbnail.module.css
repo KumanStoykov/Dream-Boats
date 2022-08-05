@@ -1,6 +1,6 @@
 .thumbnail{
-    display: flex;  
-    cursor: pointer;  
+    display: flex;
+    cursor: pointer;
 }
 
 .active {
