@@ -8,6 +8,18 @@ const jwt = require('../utils/jwtUtils');
 const { userPayload } = require('../utils/userPayload');
 
 
+router.get('/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await userService.getById(userId);
+
+        res.status(200).send({ user });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
 router.post('/register', async (req, res) => {
     try {
         const firstName = req.body.firstName.trim();
