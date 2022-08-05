@@ -1,34 +1,30 @@
 const Boat = require('../models/Boat');
 
 
-exports.getAllBoats = (page) => Boat.find({}).sort({ createdAt: 'descending' }).skip(page * 9).limit(9);
+exports.getAllBoats =
+    (page, sort, search) =>
+        Boat
+            .find({ ...search })
+            .sort({ createdAt: sort })
+            .skip(page * 9)
+            .limit(9);
 
-exports.getByOwner = (whereId, page) => Boat.find({ owner: whereId }).sort({ createdAt: 'descending' }).skip(page * 9).limit(9);
 
-exports.boatCount = () => Boat.countDocuments({}); 
 
-exports.getLastThree = () => Boat.find({}).sort({ createdAt: 'descending' }).limit(3);
+exports.getByOwner =
+    (whereId, sort, page) =>
+        Boat
+            .find({ owner: whereId })
+            .sort({ createdAt: sort })
+            .skip(page * 9)
+            .limit(9);
+
+exports.boatCount = (search) => Boat.countDocuments({ ...search });
+
+exports.getLastThree = (sort) => Boat.find({}).sort({ createdAt: sort }).limit(3);
 
 exports.getOne = (boatId) => Boat.findById(boatId);
 
-
-exports.getBoatBySearch = (category, fuel, priceFrom, priceTo, page) => {
-
-    let search = {};
-
-    if (category) {
-        search.category = category;
-    }
-    if (fuel) {
-        search.fuel = fuel;
-    }
-    //TODO:
-    // if (priceFrom) {
-    //     search.price = priceFrom;
-    // }   
-
-    return Boat.find({ ...search, price: { $gt: priceFrom, $lt: priceTo } }).skip(page * 12).limit(12);
-}
 
 exports.create = (boatData) => Boat.create(boatData);
 
