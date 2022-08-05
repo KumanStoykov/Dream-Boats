@@ -11,10 +11,10 @@ const Hero = () => {
         <div className={styles.hero}>
             <div className={'container'}>
                 <div className={styles['main-heading']}>
-                    <h1 className={styles.title}>Discover</h1>
-                    <h2 className={styles.subtitle}>Your dream boat</h2>
+                    <h1 className={styles.title}>Dream Boats</h1>
+                    <h2 className={styles.subtitle}>Search your dream boat</h2>
                 </div>
-                <Link to="/boats-for-sale" className={'btn-gradient'}>Explore now                
+                <Link to="/boats-for-sale" className={'btn-gradient'}>Search now                
                 <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH}/></span>                                   
                 </Link>
             </div>
