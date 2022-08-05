@@ -1,34 +1,34 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { uiStoreActions } from '../../../store/uiStore';
-
-import UserNavigate from './UserNavigate/UserNavigate';
-import GuestNavigation from './GuestNavigate/GuestNavigate';
+import UserNavigation from './UserNavigation/UserNavigation';
+import GuestNavigation from './GuestNavigation/GuestNavigation';
 
 import styles from './Header.module.css';
 
 
 const Header = () => {
-    const dispatch = useDispatch();
-    const navBarState = useSelector(state => state.ui.navBar);
+    const { pathname } = useLocation();
     const user = useSelector(state => state.auth.userData);
+    const [navBarOpen, setNavBarOpen] = useState(false);
 
     const menuToggleHandler = () => {
-        dispatch(uiStoreActions.navBarToggle());
+        setNavBarOpen(state => !state);
     };
 
     useEffect(() => {
-        dispatch(uiStoreActions.navBarClose());
-    }, [dispatch]);
+        setTimeout(() => {
+            setNavBarOpen(false);
+        }, 300);
+    }, [pathname]);
 
 
     return (
-        <header className={`${styles['header']} ${navBarState && styles['menu-open']}`}>
+        <header className={`${styles['header']} ${navBarOpen && styles['menu-open']}`}>
             <div className={'container'}>
                 <nav className={styles.nav}>
                     <Link to='/' className={styles.logo}>
@@ -43,10 +43,10 @@ const Header = () => {
                             <Link to='/news' className={styles['nav-link']}>News</Link>
                         </li>
                         <li className={styles['nav-item']}>
-                            <Link to='/boats-for-sale' className={styles['nav-link']}>Boats for Sale</Link>
+                            <Link to={`/boats-for-sale?page=1&sort=desc`} className={styles['nav-link']}>Boats for Sale</Link>
                         </li>
                         {user
-                            ? <UserNavigate
+                            ? <UserNavigation
                                 styleNavLink={styles['nav-link']}
                                 styleNavItem={styles['nav-link']}
                                 styleIcon={styles['logout-icon']}
