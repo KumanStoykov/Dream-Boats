@@ -27,7 +27,6 @@ const useFetch = () => {
             if (!res.ok) {
                 throw new Error(result.message);
             }
-
             if (dataStored) {
                 dataStored(result);
             }
@@ -43,6 +42,10 @@ const useFetch = () => {
                 dispatch(authStoreActions.logout());
             }
 
+            if(errorMsg === 'Failed to fetch') {
+                errorMsg = 'Oops, something has gone wrong, please try again!'
+            }
+
             setServerError(errorMsg);
             setIsLoading(false);
         }
@@ -52,7 +55,7 @@ const useFetch = () => {
 
     useEffect(() => {
         if (serverError) {
-            dispatch(modalStoreActions.open({ errMessage: serverError }))
+            dispatch(modalStoreActions.open({ type: 'error', message: serverError }))
         }
     }, [dispatch, serverError]);
 
