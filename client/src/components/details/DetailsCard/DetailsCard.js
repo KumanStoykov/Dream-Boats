@@ -57,8 +57,8 @@ const DetailsCard = ({ boat }) => {
 
             <div className={styles['boat-content']}>
                 <h2 className={styles['boat-title']}>{boat.make}</h2>
-                {user && !isOwner && !hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEye} /></button>}
-                {user && !isOwner && hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEyeSlash} /></button>}
+                {!hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEye} /></button>}
+                {hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEyeSlash} /></button>}
 
                 <div className={styles['boat-price']}>
                     <p className={styles['new-price']}>Price: <span>${boat.price.toLocaleString()}</span></p>
