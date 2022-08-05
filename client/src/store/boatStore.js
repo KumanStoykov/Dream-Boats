@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const boatInitialState = {
     boat: null,
-    boats: []
+    boats: [],
+    boatsCount: 0
 };
 
 const boatSlice = createSlice({
@@ -15,7 +16,8 @@ const boatSlice = createSlice({
         }),
         addBoats: (state, action) => ({
             ...state,
-           boats: action.payload.boats
+            boats: action.payload.boats,
+            boatsCount: action.payload.boatsCount
         }),
         removeBoat: (state) => ({
             ...state,
