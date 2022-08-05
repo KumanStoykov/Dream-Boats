@@ -27,7 +27,7 @@ const Home = () => {
 
     useEffect(() => {
         requester(boatService.getLastThree(), responseData);
-    }, [requester, dispatch]);
+    }, [requester, dispatch, responseData]);
 
     return (
         <>

@@ -16,8 +16,7 @@ import styles from '../../components/details/DetailsCard/DetailsCard.module.css'
 const DetailsBoat = () => {
     const { boatId } = useParams();
     const dispatch = useDispatch();
-    const boat = useSelector(state => state.allBoats.boat);
-    console.log(boatId);
+    const boat = useSelector(state => state.allBoats.boat);    
     const { isLoading, requester } = useFetch();
 
     const responseData = useCallback((data) => {
@@ -26,9 +25,8 @@ const DetailsBoat = () => {
 
 
     useEffect(() => {
-       let l =  requester(boatService.getOneById(boatId), responseData);
-       console.log(l)
-
+       requester(boatService.getOneById(boatId), responseData);
+       
     }, [boatId, requester, dispatch, responseData]);
 
 
