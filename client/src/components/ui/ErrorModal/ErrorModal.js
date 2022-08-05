@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,26 +13,28 @@ import styles from './ErrorModal.module.css';
 const ErrorModal = () => {
     const dispatch = useDispatch();
     const modalState = useSelector(state => state.modal);
-    
-    const closeHandler = () => {
-        
-        if (!modalState.isOpen) {
-            dispatch(modalStoreActions.open());
-        } else {
-            dispatch(modalStoreActions.close());
-        }
-    }   
-   
 
-  
+    const closeHandler = () => {
+        dispatch(modalStoreActions.close());
+
+    }
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            dispatch(modalStoreActions.close());
+        }, 5000);
+
+    }, [dispatch]);
+
     return (
-        <Modal onClose={closeHandler}>
-            <div className={styles.frame}>
+        <Modal>
+            <div>
                 <div className={`${styles.modal} ${modalState}`} >
                     <FontAwesomeIcon className={styles['icon-modal']} icon={faCircleExclamation} />
                     <span className={styles['title-modal']}>Oh snap!</span>
-                    <p className={styles['p-modal']}>{modalState.errMessage}</p>
-                    <div className={styles['btn-modal']}>Dismiss</div>
+                    <p className={styles['p-modal']}>{modalState.message}</p>
+                    <div onClick={closeHandler} className={styles['btn-modal']}>Dismiss</div>
                 </div>
             </div>
         </Modal>

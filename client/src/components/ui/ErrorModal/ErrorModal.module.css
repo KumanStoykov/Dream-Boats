@@ -1,37 +1,20 @@
-/* .frame {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    margin-top: -200px;
-    margin-left: -200px;
-    border-radius: 2px;
-    box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    background: #3f3f3f;
-    color: #415868;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-} */
-
 .modal {
-    position: fixed;
     width: 25rem;
     height: 12rem;
-    top: 14vh;
+    position: fixed;
+    top: 0;
+    left: 0;
     right: 0;
+    margin: auto;
     background: #fff;
     border-radius: 10px;
     box-shadow: 4px 8px 12px 0 rgba(0, 0, 0, 0.4);
     text-align: center;
     overflow: hidden;
-    -webkit-animation: show-modal 0.7s ease-in-out;
-    animation: show-modal 0.7s ease-in-out;
+    animation: show-modal 700ms ease-in-out;
     z-index: 900;
 }
 .modal.hide {
-    -webkit-animation: hide-modal 0.6s ease-in-out both;
     animation: hide-modal 0.6s ease-in-out both;
 }
 .icon-modal {
@@ -65,26 +48,10 @@
     line-height: 40px;
     font-size: 14px;
     font-weight: 400;
-    cursor: pointer;
     transition: background 0.3s ease-in-out;
 }
 .modal .btn-modal:hover {
     background: #ec3434;
-}
-
-@-webkit-keyframes show-modal {
-    0% {
-        transform: scale(0);
-    }
-    60% {
-        transform: scale(1.1);
-    }
-    80% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 
 @keyframes show-modal {
@@ -101,17 +68,7 @@
         transform: scale(1);
     }
 }
-@-webkit-keyframes hide-modal {
-    0% {
-        transform: scale(1);
-    }
-    20% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(0);
-    }
-}
+
 @keyframes hide-modal {
     0% {
         transform: scale(1);
@@ -127,5 +84,7 @@
 @media all and (min-width: 768px) {
     .modal {
         width: 30rem;
+        top: 14vh;
+        left: unset;
     }
 }
