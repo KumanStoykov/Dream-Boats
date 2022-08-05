@@ -9,8 +9,7 @@ import styles from './ProfileNavbar.module.css';
 
 
 const ProfileNavbar = () => {
-    const user = useSelector(state => state.auth.userData);
-    
+    const user = useSelector(state => state.auth.userData); 
 
 
     return (
@@ -34,7 +33,7 @@ const ProfileNavbar = () => {
                             </Link>
                         </li>                                       
                         <li className={styles.box}>
-                            <Link to={`profile/${user._id}/watched`} className={styles['user-nav-link']}>
+                            <Link to={`/profile/${user._id}/watch-list`} className={styles['user-nav-link']}>
                                 <FontAwesomeIcon className={styles['user-profile-icon']} icon={faEye} />
                             </Link>
                         </li>

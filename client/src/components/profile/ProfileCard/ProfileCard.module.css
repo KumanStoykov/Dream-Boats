@@ -1,5 +1,5 @@
 .wrapper {
-    margin: 15rem auto;
+    margin: 1rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +94,6 @@
     width: 20rem;
 }
 
-
 .btn-group {
     display: flex;
     justify-content: space-between;
@@ -123,12 +122,11 @@
 .btn-wrap {
     display: flex;
     flex-direction: row;
-    justify-content: end;    
+    justify-content: center;
 }
 
 .btn-icon {
     background-color: inherit;
-    cursor: pointer;
     border: none;
 }
 
@@ -157,8 +155,11 @@
         justify-content: space-around;
         flex-direction: row;
     }
+    .btn-wrap {
+        justify-content: end;
+    }
 
-    .btn-user-card {
+    .btn-user-card { 
         margin: 0;
     }
     .btn-user-card-edit {
@@ -170,6 +171,5 @@
     }
     .data {
         height: 6rem;
-        
     }
 }
