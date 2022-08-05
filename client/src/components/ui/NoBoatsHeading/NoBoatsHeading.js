@@ -1,11 +1,15 @@
 import styles from './NoBoatsHeading.module.css';
 
-const NoBoatsHeading = () => {
+const NoBoatsHeading = ({
+    isSearch
+}) => {
 
 
     return(
         <div className={styles['heading-container']}>
-            <h3 className={styles['no-boats-heading']}>No Boats yet</h3>
+            {isSearch
+            ? <h3 className={styles['no-boats-heading']}>No Result</h3>
+            : <h3 className={styles['no-boats-heading']}>No Boats yet</h3>}
         </div>
     );
 };
