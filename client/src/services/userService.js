@@ -1,11 +1,13 @@
 const BASE_URL = 'http://localhost:5000';
 
-const getUser = (userId) => {
+
+const getUserById = (userId) => {
     const options = {
         url: `${BASE_URL}/user/${userId}`,
-    };
+        method: 'GET'
+    }
     return options;
-};
+} 
 
 const register = (firstName, lastName, email, phone, password, repeatPassword) => {
     const options = {
@@ -60,17 +62,28 @@ const edit = (firstName, lastName, email, phone, userId) => {
 
     return options;
 
-}
+};
+
+const deleteUser = (userId) => {
+    const options = {
+        url: `${BASE_URL}/user/${userId}`,
+        method: 'DELETE',       
+    };
+
+    return options;
+
+};
 
 const logout = () => {
     return { url: `${BASE_URL}/user/logout` };
-}
+};
 
 const userRequestOptions = {
-    getUser,
+    getUserById,
     register,
     login,
     edit,
+    deleteUser,
     logout
 };
 
