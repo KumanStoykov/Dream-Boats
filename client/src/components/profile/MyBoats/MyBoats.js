@@ -31,7 +31,7 @@ const MyBoats = () => {
 
 
     return (
-        <>
+        <section className='section-container'>
             {isLoading && <Spinner size={'large'} />}
             {!isLoading && boats.length > 0
                 && <BoatsList
@@ -43,7 +43,7 @@ const MyBoats = () => {
             {!isLoading && boats.length < 1
                 && <NoBoatsHeading />
             }
-        </>
+        </section>
     );
 
 };
