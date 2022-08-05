@@ -5,9 +5,10 @@ const config = require('../config');
 
 
 
-router.post('/', async (req, res) => {
+router.post('/send', async (req, res) => {
     sgMail.setApiKey(config.SENDGRID_API_KEY);
     try {
+        console.log(req.body)
         const msg = {
             from: {
                 name: 'Dream boats',
@@ -16,11 +17,10 @@ router.post('/', async (req, res) => {
             personalizations: [{
                 to: req.body.to,
                 dynamicTemplateData: {
-                    subject: req.body.subject,
-                    name: `${req.body.firstName} ${req.body.lastName}`,
-                    text: req.body.text,
+                    name: req.body.name,
                     email: req.body.email,
-                    tel: req.body.tel
+                    phone: req.body.phone,
+                    message: req.body.message,
                 }
 
             }],
