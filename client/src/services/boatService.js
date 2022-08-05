@@ -1,8 +1,9 @@
 const BASE_URL = 'http://localhost:5000';
 
-const getAll = () => {
+
+const getAll = (search) => {
     const options = {
-        url: `${BASE_URL}/boat`
+        url: `${BASE_URL}/boat${search}`
     };
     return options;
 };
@@ -47,6 +48,14 @@ const edit = (boatId, data) => {
 
     return options;
 };
+const deleteBoat = (boatId) => {
+    const options = {
+        url: `${BASE_URL}/boat/${boatId}`,
+        method: 'DELETE'       
+    };
+
+    return options;
+};
 
 const boatService = {
     getAll,
@@ -54,7 +63,8 @@ const boatService = {
     getLastThree,
     getByOwner,
     create,
-    edit
+    edit,
+    deleteBoat
 };
 
 export default boatService;
