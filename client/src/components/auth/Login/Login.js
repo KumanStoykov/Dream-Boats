@@ -6,8 +6,8 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 import { authStoreActions } from '../../../store/authStore';
 import useFetch from '../../../hooks/useFetch';
-import userService from '../../../services/userService';
 import useInput from '../../../hooks/useInput';
+import userService from '../../../services/userService';
 import userValidation from '../../../validation/userValidation';
 
 import Spinner from '../../ui/Spinner/Spinner';
@@ -92,7 +92,7 @@ const Login = () => {
                             {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
-                                className={!inputFieldsIsValid || isLoading ? 'stop-btn' : 'btn-blue'}                    
+                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}                    
                             >Sign in
                                 {isLoading
                                     ? <Spinner size={'small'} />

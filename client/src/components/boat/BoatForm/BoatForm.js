@@ -219,8 +219,8 @@ const BoatForm = () => {
                                         onBlur={typeInput.onBlur}
                                     >
                                         <option value=''>Please select</option>
-                                        <option value='Yacht'>Yacht</option>
-                                        <option value='Sailboat'>Sailboat</option>
+                                        <option value='yacht'>Yacht</option>
+                                        <option value='sailboat'>Sailboat</option>
                                         <option value='motorboat'>Motorboat</option>
                                     </select>
                                     {typeInput.hasError && <p className={styles.error}>The type should be one from Yacht, Motorboat, Sailboat</p>}
@@ -285,10 +285,10 @@ const BoatForm = () => {
                                         onBlur={fuelInput.onBlur}
                                     >
                                         <option value=''>Please select</option>
-                                        <option value='benzin'>Benzin</option>
+                                        <option value='petrol'>Petrol</option>
                                         <option value='diesel'>Diesel</option>
                                     </select>
-                                    {fuelInput.hasError && <p className={styles.error}>The make should be one from Benzin, Diesel</p>}
+                                    {fuelInput.hasError && <p className={styles.error}>The make should be one from Petrol, Diesel</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='location'>Location</label>
@@ -369,7 +369,7 @@ const BoatForm = () => {
                                 <textarea
                                     className={styles.textarea}
                                     cols={10}
-                                    rows={2}
+                                    rows={5}
                                     name='description'
                                     id='description'
                                     placeholder='Description'
