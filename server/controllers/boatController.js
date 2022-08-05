@@ -12,11 +12,26 @@ const isOwnerMiddleware = require('../middleware/isOwnerMiddleware');
 
 router.get('/', async (req, res) => {
     try {
-
         const page = Number(req.query.page) - 1 || 0;
+        const sort = req?.query?.sort || 'desc';
+        const type = req?.query?.type;
+        const fuel = req?.query?.fuel;
+        const price = req?.query?.price;
 
-        const boats = await boatService.getAllBoats(page);
-        const boatsCount = await boatService.boatCount();
+        const search = {};
+        
+        if(type) {
+            search.type = {$eq: type};
+        }
+        if(fuel) {
+            search.fuel = {$eq: fuel}
+        }
+        if(price) {
+            search.price = {$gte: price}
+        }
+
+        const boats = await boatService.getAllBoats(page, sort, search);
+        const boatsCount = await boatService.boatCount(search);
         
         res.status(200).send({ boats, boatsCount });
     } catch (error) {
@@ -110,8 +125,8 @@ router.post('/', loggedInMiddleware(), async (req, res) => {
         if (!validator.isInt(boatData.year, { min: 1960, max: 2022 })) {
             throw new Error('The year should be between 1960 and 2022');
         }
-        if (!validator.matches(boatData.fuel, /Benzin|Diesel/i)) {
-            throw new Error('The make should be one from Benzin, Diesel');
+        if (!validator.matches(boatData.fuel, /Petrol|Diesel/i)) {
+            throw new Error('The make should be one from Petrol, Diesel');
         }
         if (!validator.isLength(boatData.location, { min: 3 })) {
             throw new Error('The location should be at least 2 characters long');
@@ -198,8 +213,8 @@ router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, re
         if (!validator.isInt(boatData.year, { min: 1960, max: 2022 })) {
             throw new Error('The year should be between 1960 and 2022');
         }
-        if (!validator.matches(boatData.fuel, /Benzin|Diesel/i)) {
-            throw new Error('The make should be one from Benzin, Diesel');
+        if (!validator.matches(boatData.fuel, /Petrol|Diesel/i)) {
+            throw new Error('The make should be one from Petrol, Diesel');
         }
         if (!validator.isLength(boatData.location, { min: 3 })) {
             throw new Error('The location should be at least 2 characters long');
