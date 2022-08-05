@@ -11,22 +11,39 @@ const GuestNavigation = ({
 }) => {
 
     return (
-        <li className={styleNavItem}>
-            <Link
-                to='/auth/login'
-                className={styleNavLink}
-            >
-                <span
-                    className={styleSpanIcon}
+        <>
+            <li className={styleNavItem}>
+                <Link
+                    to={`/watch-list`}
+                    className={styleNavLink}
                 >
-                    Log on
-                </span>
-                <FontAwesomeIcon
-                    className={styleIcon}
-                    icon={faUserLock}
-                />
-            </Link>
-        </li>
+                    Watch list
+                </Link>
+            </li>
+            <li className={styleNavItem}>
+                <Link 
+                    to='/news' 
+                    className={styleNavLink}
+                >News
+                </Link>
+            </li>
+            <li className={styleNavItem}>
+                <Link
+                    to='/auth/login'
+                    className={styleNavLink}
+                >
+                    <span
+                        className={styleSpanIcon}
+                    >
+                        Log on
+                    </span>
+                    <FontAwesomeIcon
+                        className={styleIcon}
+                        icon={faUserLock}
+                    />
+                </Link>
+            </li>
+        </>
     );
 };
 

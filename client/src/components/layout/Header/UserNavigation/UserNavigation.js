@@ -37,10 +37,23 @@ const UserNavigate = ({
             </li>
             <li className={styleNavItem}>
                 <Link
+                    to={`/profile/${user._id}/watch-list`}
+                    className={styleNavLink}
+                >Watch list
+                </Link>
+            </li>
+            <li className={styleNavItem}>
+                <Link 
+                    to='/news' 
+                    className={styleNavLink}
+                >News
+                </Link>
+            </li>
+            <li className={styleNavItem}>
+                <Link
                     to={`/profile/${user._id}`}
                     className={styleNavLink}
-                >
-                    Profile
+                >Profile
                 </Link>
             </li>
             <li className={styleNavItem}>

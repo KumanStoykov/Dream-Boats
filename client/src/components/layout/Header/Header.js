@@ -38,10 +38,7 @@ const Header = () => {
                         <FontAwesomeIcon icon={faBars} className={styles.faBars} />
                         <FontAwesomeIcon icon={faTimes} className={styles.faTimes} />
                     </div>
-                    <ul className={styles['nav-list']}>
-                        <li className={styles['nav-item']}>
-                            <Link to='/news' className={styles['nav-link']}>News</Link>
-                        </li>
+                    <ul className={styles['nav-list']}>                      
                         <li className={styles['nav-item']}>
                             <Link to={`/boats-for-sale?page=1&sort=desc`} className={styles['nav-link']}>Boats for Sale</Link>
                         </li>
