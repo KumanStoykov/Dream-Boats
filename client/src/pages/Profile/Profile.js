@@ -6,12 +6,13 @@ import MyBoats from '../../components/profile/MyBoats/MyBoats';
 import ProfileCard from '../../components/profile/ProfileCard/ProfileCard';
 
 import OwnerGuard from '../../components/common/OwnerGuard';
+import WatchList from '../../components/profile/WatchList/WatchList';
 
 
 
 const Profile = () => {
 
-
+    
     return (
         <>
             <ProfileNavbar />
@@ -19,6 +20,7 @@ const Profile = () => {
                 <Route path='/profile' element={<ProfileCard />} />
                 <Route path='/owner-boats' index element={<MyBoats />} />
                 <Route path='/:boatId/sell-boat' element={<BoatForm />} />
+                <Route path='/:userId/watch-list' element={<WatchList />} />
                 <Route element={<OwnerGuard />}>
                     <Route path='/boat/:boatId/edit' element={<BoatForm />} />
                 </Route>
