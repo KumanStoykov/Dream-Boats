@@ -107,7 +107,7 @@ section {
 
 .stop-btn {
     cursor: no-drop;
-    background-color: rgb(210, 90, 90);
+    background-color: rgb(174, 163, 163);
     font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -118,6 +118,11 @@ section {
     align-items: center;
     margin-top: 2.5rem;
     color: #fff;
+}
+
+.stop-btn:hover {
+    background-color: rgb(174, 163, 163);
+    box-shadow: none;
 }
 
 
@@ -140,8 +145,8 @@ section {
     justify-content: center;
 }
 
-.boats-catalog {
-    min-height: calc(100vh - 450px);
+.section-container {
+    min-height: calc(100vh - 125px);
 }
 
 ::-webkit-scrollbar {
