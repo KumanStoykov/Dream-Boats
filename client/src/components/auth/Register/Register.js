@@ -157,7 +157,7 @@ const Register = () => {
                             </div>
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
-                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}
+                                className={!inputFieldsIsValid || isLoading ? 'stop-btn' : 'btn-blue'}
                                 type='submit'
                                 >
                                 Sign up

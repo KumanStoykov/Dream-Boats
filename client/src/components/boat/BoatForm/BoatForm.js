@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -27,15 +27,15 @@ const BoatForm = () => {
     const { isLoading, requester } = useFetch();
     const boat = useSelector(state => state.allBoats.boat);
 
-    const isEdit = pathname.endsWith('edit');
+    const isEdit = pathname.includes('edit');
 
     useEffect(() => {
         if (isEdit) {
-            requester(boatService.getOneById(boatId), (data) => dispatch(boatStoreActions.addBoat(data)));
+            const responseEdit = (data) => dispatch(boatStoreActions.addBoat(data))
+
+            requester(boatService.getOneById(boatId), responseEdit);
         }
-        return () => {
-            dispatch(boatStoreActions.removeBoat());
-        }
+        
     }, [dispatch, isEdit]);
 
 
@@ -381,7 +381,7 @@ const BoatForm = () => {
                             </div>
 
                             <button
-                                className={`btn-blue ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
+                                className={!inputFieldsIsValid || isLoading ? 'stop-btn' : 'btn-blue'}
                                 disabled={!inputFieldsIsValid}
                                 type='submit'
                             >

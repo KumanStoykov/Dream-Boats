@@ -107,7 +107,19 @@ section {
 
 .stop-btn {
     cursor: no-drop;
+    background-color: rgb(210, 90, 90);
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 0.5rem 3.5rem;
+    border: none;
+    border-radius: 10rem;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 2.5rem;
+    color: #fff;
 }
+
 
 .dots {
     font-size: 2.4rem;
