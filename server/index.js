@@ -16,12 +16,15 @@ expressInit(app);
 
 cloudinary.config(config.CLOUDINARY);
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'public/index.html')));
-} 
+const formats = ['.js', '.css', '.ico', '.jpg', '.png'];
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(`public`, 'index.html'));    
+
+    if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+        res.sendFile(path.resolve(`public/${req.url}`));
+    } else {
+        res.sendFile(path.join(__dirname, 'public/index.html'));
+    }
 });
 
 databaseInit(config.DB_CONNECTION_STRING)
