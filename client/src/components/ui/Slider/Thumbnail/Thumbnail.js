@@ -6,7 +6,7 @@ const Thumbnail = ({ arr, image, index }) => {
             {
                 arr.map((imgSrc, i) =>
                     <img key={i}
-                    alt='image.png'
+                    alt='boat.png'
                     height='50'
                     width='50'
                     src={imgSrc}

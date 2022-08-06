@@ -92,7 +92,7 @@ const ProfileCard = () => {
             <div className='container'>
                 <div className={`${styles.wrapper}`}>
                     <div className={styles.left}>
-                        <img src={'/images/user-card.jpg'} alt='image.png' width={200} />
+                        <img src={'/images/user-card.jpg'} alt='boat.png' width={200} />
                     </div>
                     <EditForm
                         onSubmitHandler={submitHandler}

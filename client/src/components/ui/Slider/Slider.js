@@ -32,7 +32,7 @@ const Slideshow = ({ imgs }) => {
 
     return (
         <div className={styles.slideshow}>            
-            <img className={styles.mainImg} src={imgs[index]} alt='image'/>
+            <img className={styles.mainImg} src={imgs[index]} alt='boat.png'/>
             <div className={styles.actions}>
                 <button onClick={prev}><FontAwesomeIcon icon={faAngleLeft} /></button>
                 <button onClick={next}><FontAwesomeIcon icon={faAngleRight} /></button>
