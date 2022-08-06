@@ -18,7 +18,7 @@ const configEnv = {
     },
     production: {
         PORT: process.env.PORT || 80,
-        DB_CONNECTION_STRING: 'mongodb://localhost:27017/dreamBoats',
+        DB_CONNECTION_STRING: process.env.DB_CONNECTION_STRING,
         COOKIE_TOKEN_NAME: process.env.COOKIE_TOKEN_NAME,
         SECRET: process.env.SECRET,
         ROUND_SALT: process.env.ROUND_SALT,

@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts",
+    "build": "react-scripts && mv build ../server/public || move build ../server/public",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
