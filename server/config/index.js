@@ -1,8 +1,3 @@
-const path = require('path');
-
-require('dotenv').config({ path: path.resolve(__dirname, '../.env')});
-
-
 const configEnv = {
     development: {
         PORT: process.env.PORT || 5000,
@@ -28,7 +23,7 @@ const configEnv = {
         SECRET: process.env.SECRET,
         ROUND_SALT: process.env.ROUND_SALT,
         CORS: {
-            origin: [],
+            origin: ['https://dream-boats.herokuapp.com'],
             credentials: true
         },
         CLOUDINARY: {
