@@ -32,7 +32,7 @@ const Header = () => {
             <div className={'container'}>
                 <nav className={styles.nav}>
                     <Link to='/' className={styles.logo}>
-                        <img src='/images/logo.png' alt='image.png' className={styles['logo-image']} />
+                        <img src='/images/logo.png' alt='logo.png' className={styles['logo-image']} />
                     </Link>
                     <div onClick={menuToggleHandler} className={styles[`hamburger-menu`]} >
                         <FontAwesomeIcon icon={faBars} className={styles.faBars} />

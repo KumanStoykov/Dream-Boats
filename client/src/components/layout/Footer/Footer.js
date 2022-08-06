@@ -30,11 +30,11 @@ const Footer = () => {
                     <div className={styles['social-media-wrap']}>
                         <h4 className={styles['footer-heading']}>Follow us</h4>
                         <div className={styles['social-media']}>
-                            <a target='_blank' href='https://www.facebook.com' className={styles['sm-link']}><FontAwesomeIcon icon={faFacebookSquare} /></a>
-                            <a target='_blank' href='https://twitter.com' className={styles['sm-link']}><FontAwesomeIcon icon={faTwitter} /></a>
-                            <a target='_blank' href='https://www.instagram.com' className={styles['sm-link']}><FontAwesomeIcon icon={faInstagram} /></a>
-                            <a target='_blank' href='https://www.pinterest.com' className={styles['sm-link']}><FontAwesomeIcon icon={faPinterest} /></a>
-                            <a target='_blank' href='https://www.google.com' className={styles['sm-link']}><FontAwesomeIcon icon={faGoogle} /></a>
+                            <a href='https://www.facebook.com' className={styles['sm-link']}><FontAwesomeIcon icon={faFacebookSquare} /></a>
+                            <a href='https://twitter.com' className={styles['sm-link']}><FontAwesomeIcon icon={faTwitter} /></a>
+                            <a href='https://www.instagram.com' className={styles['sm-link']}><FontAwesomeIcon icon={faInstagram} /></a>
+                            <a href='https://www.pinterest.com' className={styles['sm-link']}><FontAwesomeIcon icon={faPinterest} /></a>
+                            <a href='https://www.google.com' className={styles['sm-link']}><FontAwesomeIcon icon={faGoogle} /></a>
                         </div>
                     </div>
                 </div>
