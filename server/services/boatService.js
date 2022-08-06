@@ -11,6 +11,7 @@ exports.getAllBoats =
 
 
 
+            
 exports.getByOwner =
     (whereId, sort, page) =>
         Boat
