@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import useScrollToTop from '../../../hooks/useScrollToTop';
 
@@ -14,9 +14,8 @@ import styles from './Pagination.module.css';
 const Pagination = ({ totalPages, page, isLoading }) => {
 
     useScrollToTop();// Scrolled to top after change pagination 
+
     const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
-    const { pathname } = useLocation();
     const [currentPage, setCurrentPage] = useState(1);
     page = Number(page);
 
