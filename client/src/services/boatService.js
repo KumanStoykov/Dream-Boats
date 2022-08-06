@@ -1,7 +1,7 @@
-const BASE_URL = 'http://localhost:5000';
-
+const BASE_URL = process.env.REACT_APP_SERVER_API_URL;
 
 const getAll = (search) => {
+    console.log(process.env)
     const options = {
         url: `${BASE_URL}/boat${search}`
     };
@@ -10,7 +10,7 @@ const getAll = (search) => {
 
 const getLastThree = () => {
     const options = {
-        url: `${BASE_URL}/boat/getLastThree`
+        url: `${BASE_URL}/boat/getLastThree?sort=desc`
     };
     return options;
 };
