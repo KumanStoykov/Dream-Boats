@@ -27,7 +27,7 @@ const MyBoats = () => {
 
     useEffect(() => {
         requester(boatService.getByOwner(search), responseData);
-    }, [requester, responseData, dispatch]);
+    }, [requester, responseData, dispatch, search]);
 
 
     return (

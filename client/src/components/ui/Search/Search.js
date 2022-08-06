@@ -18,7 +18,7 @@ const Search = () => {
         searchParams.set('type', inputState.type);
         searchParams.set('fuel', inputState.fuel);
         searchParams.set('price', inputState.price);
-    }, [inputState, search]);
+    }, [inputState, searchParams, search]);
 
     const changeHandler = (type, e) => {
         setInputState(state => ({
