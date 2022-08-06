@@ -4,7 +4,7 @@
   "description": "This is my project for the React course in SoftUni. It was crated with HTML, CSS, JavaScript, React, Express and Mongoose. It for users easly Buy and Sale Boats. You have profile page with specific information for you. Have real time contact with owner, you can send email with SenGgrid.",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
