@@ -30,8 +30,7 @@ This is my project for the React course in SoftUni. It was crated with HTML, CSS
  ```
     cd server
     npm install
-    npm run dev // with nodemon
-    npm start // without nodemon
+    npm run dev
  ```
  
  <br/>
