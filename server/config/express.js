@@ -1,12 +1,13 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-// const path = require('path');
 
 const config = require('./index');
 const router = require('./router');
 
 module.exports = (app) => {
+
+    app.use(express.static('public'));
 
     app.use(express.urlencoded({ extended: true }));
 
