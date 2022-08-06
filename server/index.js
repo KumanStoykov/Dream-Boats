@@ -16,7 +16,7 @@ expressInit(app);
 
 cloudinary.config(config.CLOUDINARY);
 
-router.get('*', (req, res) => {
+app.get('*', (req, res) => {
 
     const formats = ['.js', '.css', '.ico', '.jpg', '.png']
 
