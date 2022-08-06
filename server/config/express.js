@@ -7,7 +7,7 @@ const router = require('./router');
 
 module.exports = (app) => {
 
-    app.use(express.static('public'));
+    // app.use(express.static('public'));
 
     app.use(express.urlencoded({ extended: true }));
 
