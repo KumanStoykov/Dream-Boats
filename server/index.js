@@ -16,10 +16,9 @@ expressInit(app);
 
 cloudinary.config(config.CLOUDINARY);
 
-console.log(process.env.NODE_ENV)
+const formats = ['.js', '.css', '.ico', '.jpg', '.png'];
 
 app.get('*', (req, res) => {
-    const formats = ['.js', '.css', '.ico', '.jpg', '.png']
 
     if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
         res.sendFile(path.resolve(`public/${req.url}`));
