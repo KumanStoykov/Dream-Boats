@@ -41,8 +41,9 @@ router.get('/', async (req, res) => {
 
 router.get('/getLastThree', async (req, res) => {
     try {
+        const sort = req.query.sort;
 
-        const boats = await boatService.getLastThree();
+        const boats = await boatService.getLastThree(sort);
         res.status(200).send({ boats });
     } catch (error) {
         res.status(400).send({ message: error.message });
