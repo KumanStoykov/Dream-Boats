@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesUp } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './ScrollBtn.module.css';
+import styles from './ScrollTop.module.css';
 
-const ScrollBtn = () => {
+const ScrollTop = () => {
     const [showBtn, setShowBtn] = useState(false);
 
-    const scrollHandler = () => {
+    const scrollHandler = useCallback(() => {
         if(window.scrollY > 100) {
             setShowBtn(true);
         } else {
             setShowBtn(false);
         }
-    }
+    });
+
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler);
 
@@ -22,7 +23,7 @@ const ScrollBtn = () => {
             window.removeEventListener('scroll', scrollHandler);
         }
 
-    }, []);
+    }, [scrollHandler]);
 
     const scrollToTopHandler = () => {
         window.scroll({
@@ -43,4 +44,4 @@ const ScrollBtn = () => {
     );
 }
 
-export default ScrollBtn;
+export default ScrollTop;
