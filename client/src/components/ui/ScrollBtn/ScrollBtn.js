@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesUp } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './ScrollToTopButton.module.css';
+import styles from './ScrollBtn.module.css';
 
-const ScrollToTopButton = () => {
+const ScrollBtn = () => {
     const [showBtn, setShowBtn] = useState(false);
 
     const scrollHandler = () => {
@@ -43,4 +43,4 @@ const ScrollToTopButton = () => {
     );
 }
 
-export default ScrollToTopButton;
+export default ScrollBtn;
