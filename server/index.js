@@ -25,7 +25,7 @@ databaseInit(config.DB_CONNECTION_STRING)
         app.get('*', (req, res) => {
 
             if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-                res.sendFile(path.join(__dirname,`/public/${req.url}`));
+                res.sendFile(path.resolve(`/public/${req.url}`));
             } else {
                 res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
             }
