@@ -10,8 +10,6 @@ const getUserById = (userId) => {
 } 
 
 const register = (firstName, lastName, email, phone, password, repeatPassword) => {
-    console.log(BASE_URL)
-    console.log(`${BASE_URL}/user/register`)
     const options = {
         url: `${BASE_URL}/user/register`,
         method: 'POST',

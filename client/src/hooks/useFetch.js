@@ -16,7 +16,6 @@ const useFetch = () => {
         setServerError(null);
 
         try {
-            console.log(options, "okooooooooo")
             const res = await fetch(options.url, {
                 method: options.method || 'GET',
                 credentials: 'include',
@@ -24,7 +23,6 @@ const useFetch = () => {
                 body: options.body || null
             });
             const result = await res.json();
-            console.log(result)
 
             if (!res.ok) {
                 throw new Error(result.message);
