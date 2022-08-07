@@ -1,6 +1,9 @@
 const BASE_URL = process.env.REACT_APP_SERVER_API_URL;
 
 const getAll = (search) => {
+    console.log(BASE_URL)
+    console.log(`${BASE_URL}/boat${search}`)
+    
     const options = {
         url: `${BASE_URL}/boat${search}`
     };
