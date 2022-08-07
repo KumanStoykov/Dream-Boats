@@ -8,15 +8,15 @@ const router = require('./router');
 
 module.exports = (app) => {
 
-    app.use(express.static(path.join(__dirname, '..', 'public')));
+    app.use(express.static(path.join(__dirname, '..', 'public', 'dist')));
+
+    app.use(cors(config.CORS));
 
     app.use(express.urlencoded({ extended: true }));
 
     app.use(express.json());
     
     app.use(cookieParser());
-
-    app.use(cors(config.CORS));
     
     app.use(router);
 }
