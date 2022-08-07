@@ -25,12 +25,12 @@ databaseInit(config.DB_CONNECTION_STRING)
         app.get('*', (req, res) => {
 
             if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-                res.sendFile(path.resolve(`public/${req.url}`));
+                res.sendFile(path.resolve(`server/public/${req.url}`));
             } else {
                 res.sendFile(path.join(__dirname, 'public/index.html'));
             }
         });
-        
+
         app.listen(config.PORT, () => console.log(`App listen in port: ${config.PORT}...`));
     })
     .catch(err => console.log('Database init is failed!', err));
