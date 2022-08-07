@@ -10,7 +10,7 @@ const databaseInit = require('./config/database');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
 expressInit(app);
 
 
@@ -18,26 +18,26 @@ cloudinary.config(config.CLOUDINARY);
 
 const formats = ['.js', '.css', '.ico', '.jpg', '.png'];
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "../client/build")));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, "../client/build")));
+// }
 
-app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-});
+// app.get('*', (request, response) => {
+//     response.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+// });
 
 databaseInit(config.DB_CONNECTION_STRING)
     .then(() => {
         console.log('Database is running.');
 
-        // app.get('*', (req, res) => {
+        app.get('*', (req, res) => {
 
-        //     if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-        //         res.sendFile(path.join(`/public/${req.url}`));
-        //     } else {
-        //     }
-        //     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-        // });
+            if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+                res.sendFile(path.join(`/public/${req.url}`));
+            } else {
+            }
+            res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+        });
 
         app.listen(config.PORT, () => console.log(`App listen in port: ${config.PORT}...`));
     })

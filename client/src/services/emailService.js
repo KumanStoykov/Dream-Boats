@@ -1,4 +1,4 @@
-const BASE_URL = process.env.REACT_APP_SERVER_API_URL;
+const BASE_URL = 'https://dream-boats.herokuapp.com';
 
 const sendMail = (name, email, phone, message, to) => {
     const options = {
