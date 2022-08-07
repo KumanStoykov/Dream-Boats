@@ -8,7 +8,7 @@ const router = require('./router');
 
 module.exports = (app) => {
 
-    app.use(express.static(path.join(__dirname, '..', 'public', 'build')));
+    
 
     app.use(cors(config.CORS));
 

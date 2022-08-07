@@ -10,6 +10,7 @@ const databaseInit = require('./config/database');
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 expressInit(app);
 
 
@@ -24,11 +25,11 @@ databaseInit(config.DB_CONNECTION_STRING)
 
         app.get('*', (req, res) => {
 
-            if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-                res.sendFile(path.resolve(`/public/${req.url}`));
-            } else {
-                res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
-            }
+            // if (formats.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+            //     res.sendFile(path.join(`/public/${req.url}`));
+            // } else {
+            // }
+            res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
         });
 
         app.listen(config.PORT, () => console.log(`App listen in port: ${config.PORT}...`));
