@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { modalStoreActions } from '../../../store/modalStore';
-import { authStoreActions } from '../../../store/authStore';
+import { watchStoreActions } from '../../../store/watchStore';
 
+import OwnerGuard from '../../../components/common/OwnerGuard';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkSquare, faPenSquare, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -17,17 +18,17 @@ import styles from './DetailsCard.module.css';
 const DetailsCard = ({ boat }) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.auth.userData);
-    const watched = useSelector(state => state.auth.watched);
+    const watchList = useSelector(state => state.watchList.watchList);
 
     const isOwner = user?._id === boat.owner;
 
-    const hasWatched = watched?.find(x => x._id === boat._id);
+    const hasWatched = watchList?.find(x => x._id === boat._id);
 
     const watchedHandler = () => {
         if (!hasWatched) {
-            dispatch(authStoreActions.addWatched({ boat }));
+            dispatch(watchStoreActions.addWatched({ boat }));
         } else if (hasWatched) {
-            dispatch(authStoreActions.removeWatched({ boat }));
+            dispatch(watchStoreActions.removeWatched({ boat }));
         }
     };
 
@@ -96,7 +97,7 @@ const DetailsCard = ({ boat }) => {
                             </button>
                         </>
                     }
-
+                    <OwnerGuard>
                     {!isOwner
                         && <button
                             type="submit"
@@ -106,6 +107,7 @@ const DetailsCard = ({ boat }) => {
                             <FontAwesomeIcon className={styles.icons} icon={faEnvelope} />
                         </button>
                     }
+                    </OwnerGuard>
                 </div>
             </div>
         </div>

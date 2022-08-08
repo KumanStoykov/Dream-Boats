@@ -7,7 +7,7 @@ import Spinner from '../../ui/Spinner/Spinner';
 
 const WatchList = () => {
 
-    const watched = useSelector(state => state.auth.watched);
+    const allWatched = useSelector(state => state.watchList.watchList);
 
     const heading = 'Boats';
     const subHeading = 'Watch List';
@@ -16,14 +16,14 @@ const WatchList = () => {
         <>
             <section className='section-container'>
                 {/* {isLoading && <Spinner size={'large'} />} */}
-                {watched.length > 0
+                {allWatched.length > 0
                     && <BoatsList
-                        boats={watched}
+                        boats={allWatched}
                         heading={heading}
                         subHeading={subHeading}
                     />
                 }
-                {watched.length < 1
+                {allWatched.length < 1
                     && <NoBoatsHeading />
                 }
             </section>          
