@@ -72,6 +72,7 @@ const Login = () => {
                                     type="email"
                                     id='email'
                                     name='email'
+                                    className={`${styles['input-field']} ${emailInput.hasError && 'error-input-field'}`}
                                     value={emailInput.value}
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
@@ -84,6 +85,7 @@ const Login = () => {
                                     type="password"
                                     id='password'
                                     name='password'
+                                    className={`${styles['input-field']} ${passwordInput.hasError && 'error-input-field'}`}
                                     value={passwordInput.value}
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
@@ -92,7 +94,7 @@ const Login = () => {
                             {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
-                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}                    
+                                className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                             >Sign in
                                 {isLoading
                                     ? <Spinner size={'small'} />

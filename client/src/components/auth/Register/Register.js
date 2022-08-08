@@ -89,6 +89,7 @@ const Register = () => {
                                     type='text'
                                     id='firstName'
                                     name='firstName'
+                                    className={`${styles['input-field']} ${firstNameInput.hasError && 'error-input-field'}`}
                                     value={firstNameInput.value}
                                     onChange={firstNameInput.onChange}
                                     onBlur={firstNameInput.onBlur}
@@ -101,6 +102,7 @@ const Register = () => {
                                     type='text'
                                     id='lastName'
                                     name='lastName'
+                                    className={`${styles['input-field']} ${lastNameInput.hasError && 'error-input-field'}`}
                                     value={lastNameInput.value}
                                     onChange={lastNameInput.onChange}
                                     onBlur={lastNameInput.onBlur}
@@ -113,6 +115,7 @@ const Register = () => {
                                     type='email'
                                     id='email'
                                     name='email'
+                                    className={`${styles['input-field']} ${emailInput.hasError && 'error-input-field'}`}
                                     value={emailInput.value}
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
@@ -125,6 +128,7 @@ const Register = () => {
                                     type='phone'
                                     id='phone'
                                     name='phone'
+                                    className={`${styles['input-field']} ${phoneInput.hasError && 'error-input-field'}`}
                                     value={phoneInput.value}
                                     onChange={phoneInput.onChange}
                                     onBlur={phoneInput.onBlur}
@@ -137,6 +141,7 @@ const Register = () => {
                                     type='password'
                                     id='password'
                                     name='password'
+                                    className={`${styles['input-field']} ${passwordInput.hasError && 'error-input-field'}`}
                                     value={passwordInput.value}
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
@@ -149,6 +154,7 @@ const Register = () => {
                                     type='password'
                                     id='repeatPassword'
                                     name='repeatPassword'
+                                    className={`${styles['input-field']} ${repeatPasswordInput.hasError && 'error-input-field'}`}
                                     value={repeatPasswordInput.value}
                                     onChange={repeatPasswordInput.onChange}
                                     onBlur={repeatPasswordInput.onBlur}
@@ -157,7 +163,7 @@ const Register = () => {
                             </div>
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
-                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}
+                                className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                                 type='submit'
                                 >
                                 Sign up

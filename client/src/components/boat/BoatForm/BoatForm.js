@@ -35,7 +35,7 @@ const BoatForm = () => {
 
             requester(boatService.getOneById(boatId), responseEdit);
         }
-        
+
     }, [dispatch, isEdit]);
 
 
@@ -186,6 +186,7 @@ const BoatForm = () => {
                                         type='text'
                                         id='make'
                                         name='make'
+                                        className={`${styles['input-field']} ${makeInput.hasError && 'error-input-field'}`}
                                         placeholder='Polygon, Manitou....'
                                         value={makeInput.value}
                                         onChange={makeInput.onChange}
@@ -200,6 +201,7 @@ const BoatForm = () => {
                                         type='text'
                                         id='model'
                                         name='model'
+                                        className={`${styles['input-field']} ${modelInput.hasError && 'error-input-field'}`}
                                         placeholder='T150, Across...'
                                         value={modelInput.value}
                                         onChange={modelInput.onChange}
@@ -213,17 +215,17 @@ const BoatForm = () => {
                                     <select
                                         name='type'
                                         id='type'
-                                        className={styles.options}
                                         value={typeInput.value}
+                                        className={`${styles['options']} ${typeInput.hasError && 'error-input-field'}`}
                                         onChange={typeInput.onChange}
                                         onBlur={typeInput.onBlur}
                                     >
-                                        <option value=''>Please select</option>
+                                        <option value=''></option>
                                         <option value='yacht'>Yacht</option>
                                         <option value='sailboat'>Sailboat</option>
                                         <option value='motorboat'>Motorboat</option>
                                     </select>
-                                    {typeInput.hasError && <p className={styles.error}>The type should be one from Yacht, Motorboat, Sailboat</p>}
+                                    {typeInput.hasError && <p className={styles.error}>A type is required, this field can't be empty</p>}
                                 </div>
                             </div>
 
@@ -233,16 +235,16 @@ const BoatForm = () => {
                                     <select
                                         name='condition'
                                         id='condition'
-                                        className={styles.options}
+                                        className={`${styles['options']} ${conditionInput.hasError && 'error-input-field'}`}
                                         value={conditionInput.value}
                                         onChange={conditionInput.onChange}
                                         onBlur={conditionInput.onBlur}
                                     >
-                                        <option value=''>Please select</option>
+                                        <option value=''></option>
                                         <option value='old'>Old</option>
                                         <option value='new'>New</option>
                                     </select>
-                                    {conditionInput.hasError && <p className={styles.error}>The condition should be one from Old or New</p>}
+                                    {conditionInput.hasError && <p className={styles.error}>A condition is required, this field can't be empty</p>}
 
                                 </div>
                                 <div className={styles.field}>
@@ -251,13 +253,14 @@ const BoatForm = () => {
                                         type='Number'
                                         name='boatLength'
                                         id='boatLength'
+                                        className={`${styles['input-field']} ${boatLengthInput.hasError && 'error-input-field'}`}
                                         placeholder='boatLength'
                                         value={boatLengthInput.value}
                                         onChange={boatLengthInput.onChange}
                                         onBlur={boatLengthInput.onBlur}
 
                                     />
-                                    {boatLengthInput.hasError && <p className={styles.error}>A value is required, this field can't be empty</p>}
+                                    {boatLengthInput.hasError && <p className={styles.error}>A length is required, this field can't be empty</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='year'>Year</label>
@@ -265,6 +268,7 @@ const BoatForm = () => {
                                         type='Number'
                                         name='year'
                                         id='year'
+                                        className={`${styles['input-field']} ${yearInput.hasError && 'error-input-field'}`}
                                         placeholder='Year'
                                         value={yearInput.value}
                                         onChange={yearInput.onChange}
@@ -279,16 +283,16 @@ const BoatForm = () => {
                                     <select
                                         name='fuel'
                                         id='fuel'
-                                        className={styles.options}
+                                        className={`${styles['options']} ${fuelInput.hasError && 'error-input-field'}`}
                                         value={fuelInput.value}
                                         onChange={fuelInput.onChange}
                                         onBlur={fuelInput.onBlur}
                                     >
-                                        <option value=''>Please select</option>
+                                        <option value=''></option>
                                         <option value='petrol'>Petrol</option>
                                         <option value='diesel'>Diesel</option>
                                     </select>
-                                    {fuelInput.hasError && <p className={styles.error}>The make should be one from Petrol, Diesel</p>}
+                                    {fuelInput.hasError && <p className={styles.error}>A fuel is required, this field can't be empty</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='location'>Location</label>
@@ -296,6 +300,7 @@ const BoatForm = () => {
                                         type='text'
                                         name='location'
                                         id='location'
+                                        className={`${styles['input-field']} ${locationInput.hasError && 'error-input-field'}`}
                                         placeholder='Italy, Netherland...'
                                         value={locationInput.value}
                                         onChange={locationInput.onChange}
@@ -309,6 +314,7 @@ const BoatForm = () => {
                                         type='text'
                                         name='engineMake'
                                         id='engineMake'
+                                        className={`${styles['input-field']} ${engineMakeInput.hasError && 'error-input-field'}`}
                                         placeholder='Volvo, Mercedes...'
                                         value={engineMakeInput.value}
                                         onChange={engineMakeInput.onChange}
@@ -324,6 +330,7 @@ const BoatForm = () => {
                                         type='text'
                                         name='hullMaterial'
                                         id='hullMaterial'
+                                        className={`${styles['input-field']} ${hullMaterialInput.hasError && 'error-input-field'}`}
                                         placeholder='Polyester...'
                                         value={hullMaterialInput.value}
                                         onChange={hullMaterialInput.onChange}
@@ -338,20 +345,21 @@ const BoatForm = () => {
                                         type='number'
                                         name='price'
                                         id='price'
+                                        className={`${styles['input-field']} ${priceInput.hasError && 'error-input-field'}`}
                                         placeholder='30,000$'
                                         value={priceInput.value}
                                         onChange={priceInput.onChange}
                                         onBlur={priceInput.onBlur}
                                     />
-                                    {priceInput.hasError && <p className={styles.error}>A value is required, this field can't be empty</p>}
+                                    {priceInput.hasError && <p className={styles.error}>A price is required, this field can't be empty</p>}
                                 </div>
 
                                 <div className={`${styles.field} ${styles.image}`}>
                                     <label htmlFor='image'>Image</label>
                                     <input
-                                        className={styles['file-btn']}
                                         type='file'
                                         name='image'
+                                        className={`${styles['input-field']}  ${styles['file-btn']}`}
                                         id='image'
                                         multiple
                                         onChange={fileHandler}
@@ -367,10 +375,10 @@ const BoatForm = () => {
                             <div className={styles.field}>
                                 <label htmlFor='description'>Description</label>
                                 <textarea
-                                    className={styles.textarea}
                                     cols={10}
                                     rows={5}
                                     name='description'
+                                    className={`${styles['input-field']} ${styles['textarea']} ${descriptionInput.hasError && 'error-input-field'}`}
                                     id='description'
                                     placeholder='Description'
                                     value={descriptionInput.value}
@@ -381,7 +389,7 @@ const BoatForm = () => {
                             </div>
 
                             <button
-                                className={!inputFieldsIsValid || isLoading ? 'stop-btn' : 'btn-blue'}
+                                className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                                 disabled={!inputFieldsIsValid}
                                 type='submit'
                             >

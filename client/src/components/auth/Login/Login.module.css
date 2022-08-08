@@ -39,8 +39,8 @@
     width: 100%;
     max-width: 30rem;
     position: relative;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+        rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 .container-form::before,
 .container-form::after {
@@ -76,14 +76,14 @@
 }
 
 .login-form label,
-.login-form input {
+.input-field {
     width: 100%;
 }
 
 .login-form label {
     font-size: 2.2rem;
 }
-.login-form input {
+.input-field {
     font-family: 'OpenSans', sans-serif;
     font-size: 2rem;
     padding: 0.5rem;
@@ -92,7 +92,8 @@
     outline: none;
     transition: all 400ms ease-in;
 }
-.login-form input:focus {
+
+.input-field:focus {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 }
 

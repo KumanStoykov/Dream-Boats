@@ -76,15 +76,14 @@
 }
 
 .register-form label,
-.register-form input {
-    /* display: block; */
+.input-field {
     width: 100%;
 }
 
 .register-form label {
     font-size: 2.2rem;
 }
-.register-form input {
+.input-field {
     font-family: 'OpenSans', sans-serif;
     font-size: 2rem;
     padding: 0.5rem;
@@ -93,7 +92,7 @@
     outline: none;
     transition: all 0.3s ease-in;
 }
-.register-form input:focus {
+.input-field:focus {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 }
 

@@ -105,9 +105,12 @@ section {
     background-color: #006693;
 }
 
-.stop-btn {
+.no-drop-btn {
     cursor: no-drop;
-    background-color: rgb(106, 83, 83);
+}
+.no-drop-btn {
+    cursor: no-drop;
+    background-color: var(--blue-solid);
     font-size: 1.3rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -119,12 +122,6 @@ section {
     margin-top: 2.5rem;
     color: #fff;
 }
-
-.stop-btn:hover {
-    background-color: rgb(133, 101, 101);
-    box-shadow: none;
-}
-
 
 .dots {
     font-size: 2.4rem;
@@ -160,6 +157,26 @@ section {
 ::-webkit-scrollbar-thumb {
     border-radius: 1rem;
     background: #0079a5;
+}
+
+.error-input-field {
+    border: 1px solid #ff525b !important;
+    animation: shake 200ms ease-in-out 0ms 2;
+}
+
+@keyframes shake {
+    0% {
+        margin-left: 0rem;
+    }
+    25% {
+        margin-left: 0.2rem;
+    }
+    75% {
+        margin-left: -0.2rem;
+    }
+    100% {
+        margin-left: 0rem;
+    }
 }
 
 @media all and (min-width: 368px) {

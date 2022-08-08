@@ -78,14 +78,14 @@
 }
 
 .create-form label,
-.create-form input {
+.input-field {
     width: 100%;
 }
 
 .create-form label {
     font-size: 2rem;
 }
-.create-form input {
+.input-field {
     font-family: 'OpenSans', sans-serif;
     font-size: 2rem;
     padding: 0.5rem;
@@ -94,7 +94,7 @@
     outline: none;
     transition: all 0.3s ease-in;
 }
-.create-form input:focus {
+.input-field:focus {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 }
 
