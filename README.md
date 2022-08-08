@@ -10,9 +10,13 @@ This is my project for the React course in SoftUni. It was crated with HTML, CSS
 
 <br/>
 
- ## Installation and usage
+## Live-demo
+
+**[Dream-boats](https://dream-boats.herokuapp.com/)**
+
+## Installation and usage
  
- **Clone respository:**
+**Clone respository:**
  
  ```
  https://github.com/KumanStoykov/Dream-Boats.git
@@ -35,7 +39,7 @@ This is my project for the React course in SoftUni. It was crated with HTML, CSS
  
  <br/>
 
-# :frowning_man: Public
+# :earth_asia: Public
 
 The guest pages are:
 
@@ -47,9 +51,9 @@ The guest pages are:
 * Watch list
 * **Functionaly**
   <br/>
-  :black_small_square: Contact with owner - You can send email with    [SendGrid](https://sendgrid.com/)
+  :white_medium_small_square: Contact with owner - You can send email with    [SendGrid](https://sendgrid.com/)
     <br/>
-  :black_small_square: Added to watch list.
+  :white_medium_small_square: Added to watch list.
 
 # :lock: Private
 
@@ -59,9 +63,9 @@ The loggrd-in users are:
 * User profile
 * **Functionaly**
   <br/>
-  :black_small_square: Boat - create, edit, delete.
+  :white_medium_small_square: Boat - create, edit, delete.
     <br/>
-  :black_small_square: User - edit, delete.
+  :white_medium_small_square: User - edit, delete.
 
 # :computer:  Built With
 
@@ -89,3 +93,6 @@ The loggrd-in users are:
 - [React Redux](https://react-redux.js.org/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Redux Persist](https://github.com/rt2zz/redux-persist)
+
+## Deployment
+<img width="80" src="https://raw.githubusercontent.com/ivangabriele/vscode-heroku/master/res/icon.png"/>
