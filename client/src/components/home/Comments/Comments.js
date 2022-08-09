@@ -1,9 +1,23 @@
+import { useDispatch } from 'react-redux';
+
+import { modalStoreActions } from '../../../store/modalStore';
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalf, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Comments.module.css';
 
 const Comments = () => {
+    const dispatch = useDispatch();
+
+    const commentFormHandler = () => {
+        dispatch(modalStoreActions.open({
+            type: 'comment',
+            model: '',
+            message: ''
+        }));
+    }
 
     return (
         <section className={styles.comment}>
@@ -25,9 +39,9 @@ const Comments = () => {
                         assumenda beatae tenetur nesciunt optio minima! Quibusdam nisi ipsum libero modi esse quidem
                         magni expedita possimus?
                     </p>
-                    <a href="#" className={'btn-gradient'}>Read comments
+                    <button onClick={commentFormHandler} className={'btn-gradient'}>Read comments
                         <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH}/></span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
