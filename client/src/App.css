@@ -13,7 +13,7 @@
     --blue-transparent-alt: rgba(36, 59, 103, 0.5);
     --blue-light: #0091a6;
     --aqua-solid: #00bd9d;
-    --rating-color: rgb(249, 248, 113);
+    --rating-color: #fcb900;
     --gradient-color: linear-gradient(
         to right,
         var(--aqua-solid),
