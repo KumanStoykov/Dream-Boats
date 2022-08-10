@@ -7,13 +7,18 @@ const userService = require('../services/userService');
 const jwt = require('../utils/jwtUtils');
 const { userPayload } = require('../utils/userPayload');
 
+const checkCredentialMiddleware = require('../middleware/checkCredentialMiddleware');
 
-router.get('/:userId', async (req, res) => {
+
+router.get('/check-user', checkCredentialMiddleware(), async (req, res) => {
     try {
-        const userId = req.params.userId;
-        const user = await userService.getById(userId);
+        let userData = {};
 
-        res.status(200).send({ user });
+        if (req?.user) {
+            userData = await userService.getById(req.user._id);
+        }
+
+        res.status(200).send({ userData });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
@@ -156,6 +161,7 @@ router.delete('/:userId', async (req, res) => {
         res.status(400).send({ message: error.message });
     }
 });
+
 
 router.get('/logout', (req, res) => {
     res.clearCookie(COOKIE_TOKEN_NAME);

@@ -1,21 +1,24 @@
 const router = require('express').Router();
 const sgMail = require('@sendgrid/mail');
 
+const userService = require('../services/userService');
+
 const config = require('../config');
 
 
 
-router.post('/send', async (req, res) => {
+router.post('/send/:ownerId', async (req, res) => {
     sgMail.setApiKey(config.SENDGRID_API_KEY);
     try {
-        console.log(req.body)
+        const user = await userService.getById(req.params.ownerId);
+
         const msg = {
             from: {
                 name: 'Dream boats',
                 email: 'dreamboats2022@gmail.com'
             },
             personalizations: [{
-                to: req.body.to,
+                to: user.email,
                 dynamicTemplateData: {
                     name: req.body.name,
                     email: req.body.email,
