@@ -5,7 +5,7 @@ const modalInitialState = {
     type: '',
     model: '',
     message: ''
-  
+
 };
 
 const modalSlice = createSlice({
@@ -16,9 +16,9 @@ const modalSlice = createSlice({
             ...state,
             isOpen: true,
             type: action.payload.type,
-            model:action.payload.model,
+            model: action.payload.model,
             message: action.payload.message
-            
+
         }),
         close: (state) => ({
             ...state,

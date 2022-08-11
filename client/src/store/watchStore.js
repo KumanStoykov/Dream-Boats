@@ -10,7 +10,6 @@ const watchSlice = createSlice({
     initialState: watchListInitialState,
     reducers: {
         addWatched: (state, action) => {
-            console.log(state.watchList)
 
             const isWatched = state.watchList.find(x => x?._id === action.payload.boat._id);
 
