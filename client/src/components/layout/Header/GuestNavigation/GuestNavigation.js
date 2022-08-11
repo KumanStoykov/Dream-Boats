@@ -14,17 +14,16 @@ const GuestNavigation = ({
         <>
             <li className={styleNavItem}>
                 <Link
-                    to={`/watch-list`}
+                    to={`/auth/login`}
                     className={styleNavLink}
-                >
-                    Watch list
+                >Sell my Boat
                 </Link>
             </li>
             <li className={styleNavItem}>
-                <Link 
-                    to='/news' 
+                <Link
+                    to={`/watch-list`}
                     className={styleNavLink}
-                >News
+                >Watch list
                 </Link>
             </li>
             <li className={styleNavItem}>
@@ -34,8 +33,7 @@ const GuestNavigation = ({
                 >
                     <span
                         className={styleSpanIcon}
-                    >
-                        Log on
+                    >Log on
                     </span>
                     <FontAwesomeIcon
                         className={styleIcon}

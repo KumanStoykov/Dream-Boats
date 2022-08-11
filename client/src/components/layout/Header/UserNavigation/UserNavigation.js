@@ -31,8 +31,7 @@ const UserNavigate = ({
                 <Link
                     to={`/profile/${user._id}/sell-boat`}
                     className={styleNavLink}
-                >
-                    Sell my Boat
+                >Sell my Boat
                 </Link>
             </li>
             <li className={styleNavItem}>
@@ -40,13 +39,6 @@ const UserNavigate = ({
                     to={`/profile/${user._id}/watch-list`}
                     className={styleNavLink}
                 >Watch list
-                </Link>
-            </li>
-            <li className={styleNavItem}>
-                <Link 
-                    to='/news' 
-                    className={styleNavLink}
-                >News
                 </Link>
             </li>
             <li className={styleNavItem}>

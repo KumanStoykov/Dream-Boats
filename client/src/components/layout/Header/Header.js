@@ -42,7 +42,7 @@ const Header = () => {
                         <li className={styles['nav-item']}>
                             <Link to={`/boats-for-sale?page=1&sort=desc`} className={styles['nav-link']}>Boats for Sale</Link>
                         </li>
-                        {user
+                        {user?.email
                             ? <UserNavigation
                                 styleNavLink={styles['nav-link']}
                                 styleNavItem={styles['nav-link']}
