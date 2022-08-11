@@ -4,13 +4,15 @@ const validator = require('validator').default;
 const cloudinary = require('cloudinary').v2;
 
 const boatService = require('../services/boatService');
+
 const formidableFormData = require('../utils/formidableFormData');
+
 const checkCredential = require('../middleware/checkCredentialMiddleware');
 const loggedInMiddleware = require('../middleware/loggedInMiddleware');
-const isOwnerMiddleware = require('../middleware/isOwnerMiddleware');
+const isBoatOwnerMiddleware = require('../middleware/isBoatOwnerMiddleware');
 
 
-router.get('/', async (req, res) => {
+router.get('/', checkCredential(), async (req, res) => {
     try {
         const page = Number(req.query.page) - 1 || 0;
         const sort = req?.query?.sort || 'desc';
@@ -19,27 +21,27 @@ router.get('/', async (req, res) => {
         const price = req?.query?.price;
 
         const search = {};
-        
-        if(type) {
-            search.type = {$eq: type};
+
+        if (type) {
+            search.type = { $eq: type };
         }
-        if(fuel) {
-            search.fuel = {$eq: fuel}
+        if (fuel) {
+            search.fuel = { $eq: fuel }
         }
-        if(price) {
-            search.price = {$gte: price}
+        if (price) {
+            search.price = { $gte: price }
         }
 
         const boats = await boatService.getAllBoats(page, sort, search);
         const boatsCount = await boatService.boatCount(search);
-        
+
         res.status(200).send({ boats, boatsCount });
     } catch (error) {
         res.status(400).send({ message: error.message });
     }
 });
 
-router.get('/getLastThree', async (req, res) => {
+router.get('/getLastThree', checkCredential(), async (req, res) => {
     try {
         const sort = req.query.sort;
 
@@ -50,7 +52,7 @@ router.get('/getLastThree', async (req, res) => {
     }
 });
 
-router.get('/boats-owner', async (req, res) => {
+router.get('/boats-owner', loggedInMiddleware(), async (req, res) => {
     const { whereId, sort } = req.query;
     try {
 
@@ -62,7 +64,7 @@ router.get('/boats-owner', async (req, res) => {
     }
 });
 
-router.get('/:boatId', async (req, res) => {
+router.get('/:boatId', checkCredential(), async (req, res) => {
     const boatId = req.params.boatId;
     try {
 
@@ -153,7 +155,7 @@ router.post('/', loggedInMiddleware(), async (req, res) => {
     }
 });
 
-router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
+router.put('/:boatId', isBoatOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
     const form = formidable({ multiples: true });
     const imagesUrl = [];
     const boatId = req.params.boatId;
@@ -193,7 +195,6 @@ router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, re
             description: formData.description,
             location: formData.location,
             image: loadImages,
-            owner: req.user._id
         };
 
         if (!validator.isLength(boatData.make, { min: 3 })) {
@@ -240,7 +241,7 @@ router.put('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, re
         res.status(400).send({ message: error.message });
     }
 });
-router.delete('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
+router.delete('/:boatId', isBoatOwnerMiddleware(), loggedInMiddleware(), async (req, res) => {
 
     const boatId = req.params.boatId;
     const oldBoat = await boatService.getOne(boatId);
@@ -252,9 +253,9 @@ router.delete('/:boatId', isOwnerMiddleware(), loggedInMiddleware(), async (req,
             await cloudinary.uploader.destroy(image.public_id);
         }
 
-        await boatService.deleteBoat(boatId);
+       const boat = await boatService.deleteBoat(boatId);
 
-        res.status(200).send({ message: 'Boat is secssful deleted' });
+        res.status(200).send({ boat });
 
     } catch (error) {
         res.status(400).send({ message: error.message });

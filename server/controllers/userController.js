@@ -8,6 +8,7 @@ const jwt = require('../utils/jwtUtils');
 const { userPayload } = require('../utils/userPayload');
 
 const checkCredentialMiddleware = require('../middleware/checkCredentialMiddleware');
+const loggedInMiddleware = require('../middleware/loggedInMiddleware');
 
 
 router.get('/check-user', checkCredentialMiddleware(), async (req, res) => {
@@ -115,7 +116,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.put('/:userId', async (req, res) => {
+router.put('/:userId', loggedInMiddleware(), async (req, res) => {
     try {
         const userId = req.params.userId;
 
@@ -148,14 +149,14 @@ router.put('/:userId', async (req, res) => {
     }
 });
 
-router.delete('/:userId', async (req, res) => {
+router.delete('/:userId', loggedInMiddleware(), async (req, res) => {
     try {
         res.clearCookie(COOKIE_TOKEN_NAME);
         const userId = req.params.userId;
 
         await userService.deleteUser(userId);
 
-        res.status(200).send({ message: 'User secssful deleted!' });
+        res.status(200).send({ message: 'User successful deleted!' });
 
     } catch (error) {
         res.status(400).send({ message: error.message });
@@ -165,7 +166,7 @@ router.delete('/:userId', async (req, res) => {
 
 router.get('/logout', (req, res) => {
     res.clearCookie(COOKIE_TOKEN_NAME);
-    res.status(200).send({ message: 'Secssful logged out' });
+    res.status(200).send({ message: 'Successful logged out' });
 });
 
 module.exports = router;
