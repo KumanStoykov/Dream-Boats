@@ -19,13 +19,11 @@ const Pagination = ({ totalPages, page, isLoading }) => {
     const [currentPage, setCurrentPage] = useState(1);
     page = Number(page);
 
-
     const viewPages = totalPages > 5 ? 5 : totalPages;
 
     const { start } = paginationUtil.pageRange(page, totalPages);
 
     const pageArray = paginationUtil.pageArray(viewPages, start, totalPages);
-
     useEffect(() => {
         setCurrentPage(page);
     }, [page]);

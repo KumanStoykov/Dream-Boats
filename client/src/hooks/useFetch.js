@@ -14,7 +14,6 @@ const useFetch = () => {
 
         setIsLoading(true);
         setServerError(null);
-
         try {
             const res = await fetch(options.url, {
                 method: options.method || 'GET',
@@ -23,7 +22,7 @@ const useFetch = () => {
                 body: options.body || null
             });
             const result = await res.json();
-
+            
             if (!res.ok) {
                 throw new Error(result.message);
             }
