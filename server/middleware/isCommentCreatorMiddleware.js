@@ -1,4 +1,4 @@
-const boatService = require('../services/boatService');
+const commentService = require('../services/commentService');
 const { jwtVerify } = require('../utils/jwtUtils');
 
 const { COOKIE_TOKEN_NAME, SECRET } = require('../config');
@@ -10,11 +10,11 @@ module.exports = () => async (req, res, next) => {
     try {
         const user = await jwtVerify(token, SECRET);
 
-        const boat = await boatService.getOne(req.params.boatId);
+        const comment = await commentService.getOne(req.params.commentId);
         
-        const isOwn = user._id == boat.owner._id;
+        const isCreator = user._id == comment.creator._id;
 
-        if (isOwn) {
+        if (isCreator) {
             next();
         } else {
             throw new Error('Not authorized');
