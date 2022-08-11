@@ -22,13 +22,11 @@ import { authStoreActions } from './store/authStore';
 import UserProfileGuard from './components/common/UserProfileGuard';
 import AuthGuard from './components/common/AuthGuard';
 
-import Spinner from './components/ui/Spinner/Spinner';
-
 function App() {
 	useScrollToTop();
 
 	const dispatch = useDispatch();
-	const { isLoading, requester } = useFetch();
+	const { requester } = useFetch();
 
 	const responseData = useCallback((data) => {
 		dispatch(authStoreActions.login(data));
@@ -41,29 +39,29 @@ function App() {
 	}, [dispatch, requester]);
 
 	return (
-		<Layout>
-			{isLoading && <Spinner size={'large'} />}
-			<Routes>
+		<Routes>
+			<Route path='/' element={<Layout />}>
 				<Route path='/' element={<Home />} />
-				<Route path='/watch-list' element={<WatchList />} />
-				
+				<Route path='watch-list' element={<WatchList />} />
+
 				<Route element={<AuthGuard />}>
-					<Route path='/auth'>
+					<Route path='auth'>
 						<Route path='login' index element={<Login />} />
 						<Route path='register' element={<Register />} />
 					</ Route>
 				</Route>
 
-				<Route path='/boats-for-sale' element={<BoatsCatalog />} />
-				<Route path='/boat/details/:boatId' element={<DetailsBoat />} />
+				<Route path='boats-for-sale' element={<BoatsCatalog />} />
+				<Route path='boat/details/:boatId' element={<DetailsBoat />} />
 
 				<Route element={<UserProfileGuard />}>
-					<Route path='/profile/*' element={<Profile />} />
+					<Route path='profile/*' element={<Profile />} />
 				</Route>
 
 				<Route path='*' element={<Navigate to={'/'} />} />
-			</Routes>
-		</Layout>
+			</Route>
+		</Routes>
+
 	);
 }
 

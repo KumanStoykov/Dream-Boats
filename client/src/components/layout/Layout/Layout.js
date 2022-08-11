@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Footer from '../Footer/Footer';
@@ -10,7 +11,7 @@ import EmailModal from '../../ui/EmailModal/EmailModal';
 import CommentModal from '../../comment/CommentModal/CommentModal';
 
 
-const Layout = (props) => {
+const Layout = () => {
     const modal = useSelector(state => state.modal);
     const isNotification = ['error', 'successful'].some(x => x === modal.type);
 
@@ -23,7 +24,9 @@ const Layout = (props) => {
             
             <ScrollTop />
             <Header />
-            <main>{props.children}</main>
+            <main>
+                <Outlet />
+            </main>
             <Footer />
         </>
     )

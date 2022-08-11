@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useFetch from '../../../hooks/useFetch';
@@ -18,9 +19,11 @@ import styles from './LastComment.module.css';
 
 const LastComment = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { isLoading, requester } = useFetch();
     const comment = useSelector(state => state.allComments.comment);
-    console.log(comment)
+    const user = useSelector(state => state.auth.userData);
+
     const responseData = useCallback((data) => {
         dispatch(commentStoreActions.addComment(data));
     }, [dispatch]);
@@ -30,11 +33,17 @@ const LastComment = () => {
     }, [requester, dispatch, responseData]);
 
     const commentFormHandler = () => {
-        dispatch(modalStoreActions.open({
-            type: 'comment',
-            model: '',
-            message: ''
-        }));
+
+        if(!user?.email && comment === null) {
+            navigate('/auth/login')
+        } else {
+
+            dispatch(modalStoreActions.open({
+                type: 'comment',
+                model: '',
+                message: ''
+            }));
+        }
     }
 
     return (

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalStoreActions } from '../../../store/modalStore';
 import { watchStoreActions } from '../../../store/watchStore';
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkSquare, faPenSquare, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
