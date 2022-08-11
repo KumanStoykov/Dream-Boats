@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,43 +10,49 @@ import boatService from '../../services/boatService';
 import { boatStoreActions } from '../../store/boatStore';
 
 import BoatsList from '../../components/boat/BoatList/BoatList';
-import BoatCatalogHero from '../../components/boat/BoatCatalogHero/BoatCatalogHero';
+import BoatHero from '../../components/boat/BoatHero/BoatHero';
 import NoBoatsHeading from '../../components/ui/NoBoatsHeading/NoBoatsHeading';
 
 import Search from '../../components/ui/Search/Search';
 import Spinner from '../../components/ui/Spinner/Spinner';
 import Pagination from '../../components/ui/Pagination/Pagination';
 
-import queryUtil from '../../utils/queryUtil';
-
 
 const BoatsCatalog = () => {
     const { search } = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const boats = useSelector(state => state.allBoats.boats);
     const boatsCount = useSelector(state => state.allBoats.boatsCount);
     const { isLoading, requester } = useFetch();
 
+    
     const isSearch = ['type', 'fuel', 'price'].some(x => search.includes(x));
-
+    
     const totalPages = Math.ceil(boatsCount / 9);
-
+    
     const heading = 'Boats';
     const subHeading = <FontAwesomeIcon icon={faDharmachakra} />;
-
-    const {page} = queryUtil.queryExtract(search);
-
+    
+    const page = searchParams.get('page');
+    
     const responseData = useCallback((data) => {
         dispatch(boatStoreActions.addBoats(data));
     }, [dispatch]);
-
+    
     useEffect(() => {
         requester(boatService.getAll(search), responseData);
     }, [requester, responseData, dispatch, search]);
+    
+    const catalogHeroImages = {
+        firstImg: '/images/catalog_1.jpg',
+        secundImg: '/images/catalog_2.jpg',
+        thirdImg: '/images/catalog_3.jpg'
+    };
 
     return (
         <>
-            <BoatCatalogHero />
+            <BoatHero imgs={catalogHeroImages} size={'bigger'}/>
             <Search />
             <section className='section-container'>
                 {isLoading && <Spinner size={'large'} />}
@@ -58,9 +64,9 @@ const BoatsCatalog = () => {
                         subHeading={subHeading}
                     />
                 }
-                {!isLoading 
-                && boats.length < 1
-                && <NoBoatsHeading isSearch={isSearch}/>
+                {!isLoading
+                    && boats.length < 1
+                    && <NoBoatsHeading isSearch={isSearch} />
                 }
             </section>
             {!isLoading && boatsCount > 9 && <Pagination

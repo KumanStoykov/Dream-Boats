@@ -6,17 +6,18 @@ import { boatStoreActions } from '../../store/boatStore';
 import useFetch from '../../hooks/useFetch';
 import boatService from '../../services/boatService';
 
-import DetailsCard from '../../components/details/DetailsCard/DetailsCard';
+import DetailsCard from '../../components/boat/DetailsCard/DetailsCard';
+import BoatHero from '../../components/boat/BoatHero/BoatHero';
 
 import Spinner from '../../components/ui/Spinner/Spinner';
 
-import styles from '../../components/details/DetailsCard/DetailsCard.module.css';
+import styles from '../../components/boat/DetailsCard/DetailsCard.module.css';
 
 
 const DetailsBoat = () => {
     const { boatId } = useParams();
     const dispatch = useDispatch();
-    const boat = useSelector(state => state.allBoats.boat);    
+    const boat = useSelector(state => state.allBoats.boat);
     const { isLoading, requester } = useFetch();
 
     const responseData = useCallback((data) => {
@@ -25,18 +26,28 @@ const DetailsBoat = () => {
 
 
     useEffect(() => {
-       requester(boatService.getOneById(boatId), responseData);
-       
+        requester(boatService.getOneById(boatId), responseData);
+
     }, [boatId, requester, dispatch, responseData]);
+
+    const detailsHeroImages = {
+        firstImg: '/images/sailboat_1.jpg',
+        secundImg: '/images/sailboat_2.jpg',
+        thirdImg: '/images/sailboat_3.jpg'
+    };
 
 
     return (
-        <section className={styles.details}>
-            <div className={styles['container-details']}>
-                {isLoading && <Spinner size={'large'} />}
-                {!isLoading && boat !== null && <DetailsCard boat={boat} />}
-            </div>
-        </section>
+        <>
+        <BoatHero imgs={detailsHeroImages} size={'smaller'} />
+        <div className={styles.border}/>
+            <section className={styles.details}>
+                <div className={styles['container-details']}>
+                    {isLoading && <Spinner size={'large'} />}
+                    {!isLoading && boat !== null && <DetailsCard boat={boat} />}
+                </div>
+            </section>
+        </>
     );
 };
 
