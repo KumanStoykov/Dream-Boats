@@ -1,13 +1,22 @@
-const BASE_URL = 'https://dream-boats.herokuapp.com';
+const BASE_URL = process.env.REACT_APP_SERVER_API_URL;
 
+
+const checkUser = () => {
+    const options = {
+        url: `${BASE_URL}/user/check-user`,
+    };
+
+    return options;
+
+};
 
 const getUserById = (userId) => {
     const options = {
-        url: `${BASE_URL}/user/${userId}`,
+        url: `${BASE_URL}/user/getUserById${userId}`,
         method: 'GET'
     }
     return options;
-} 
+}
 
 const register = (firstName, lastName, email, phone, password, repeatPassword) => {
     const options = {
@@ -67,7 +76,7 @@ const edit = (firstName, lastName, email, phone, userId) => {
 const deleteUser = (userId) => {
     const options = {
         url: `${BASE_URL}/user/${userId}`,
-        method: 'DELETE',       
+        method: 'DELETE',
     };
 
     return options;
@@ -80,6 +89,7 @@ const logout = () => {
 
 const userRequestOptions = {
     getUserById,
+    checkUser,
     register,
     login,
     edit,
