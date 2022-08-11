@@ -6,6 +6,7 @@
 .register-content {
     display: flex;
     justify-content: center;
+    margin:7rem auto 2rem auto;
 }
 
 .section-head {
@@ -51,9 +52,9 @@
 }
 .container-form::before {
     width: 90%;
-    height: 120%;
+    height: 111%;
     background: var(--gradient-color);
-    top: -10%;
+    top: -6%;
     left: 20%;
 }
 
@@ -62,7 +63,7 @@
     width: 8rem;
     height: 8rem;
     left: -5%;
-    bottom: -5%;
+    bottom: -3%;
     z-index: -2;
 }
 

@@ -162,11 +162,9 @@ const Register = () => {
                                 {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password</p>}
                             </div>
                             <button
-                                disabled={!inputFieldsIsValid || isLoading}
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
-                                type='submit'
-                                >
-                                Sign up
+                                disabled={!inputFieldsIsValid || isLoading}
+                            >Sign up
                                     {isLoading
                                         ? <Spinner size={'small'} />
                                         : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
