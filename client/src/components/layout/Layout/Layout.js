@@ -12,7 +12,7 @@ import CommentModal from '../../comment/CommentModal/CommentModal';
 
 const Layout = (props) => {
     const modal = useSelector(state => state.modal);
-    const isNotification = ['error', 'secssful'].some(x => x === modal.type);
+    const isNotification = ['error', 'successful'].some(x => x === modal.type);
 
     return (
         <>

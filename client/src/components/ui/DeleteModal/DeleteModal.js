@@ -8,6 +8,7 @@ import useFetch from '../../../hooks/useFetch';
 import { authStoreActions } from '../../../store/authStore';
 import { boatStoreActions } from '../../../store/boatStore';
 import { modalStoreActions } from '../../../store/modalStore';
+import { watchStoreActions } from '../../../store/watchStore';
 import userService from '../../../services/userService';
 import boatService from '../../../services/boatService';
 
@@ -26,15 +27,23 @@ const DeleteModal = () => {
 
     const modalState = useSelector(state => state.modal);
 
-    const responseDataDelete = () => {
-        
+    const responseDataDelete = (data) => {
+        let message = '';
         if (modalState.model === 'user') {
+            message = `Deleted your profile`;
             dispatch(authStoreActions.logout());
         } else if (modalState.model === 'boat') {
+            message = `Deleted ${data.boat.make} ${data.boat.model}`;
             dispatch(boatStoreActions.removeBoat());
+            dispatch(watchStoreActions.removeWatched(data));
         }
-        
+
         dispatch(modalStoreActions.close());
+        dispatch(modalStoreActions.open({
+            type: 'successful',
+            model: '',
+            message: message
+        }));
     };
 
     const closeHandler = () => {
@@ -63,10 +72,10 @@ const DeleteModal = () => {
                             <button
                                 onClick={deleteHandler}
                                 disabled={isLoading}
-                                className={`${styles['btn-modal']} ${isLoading ? 'stop-btn' : ''}`}
-                            >Delete
+                                className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
+                            >Yes, delete it!
                             </button>
-                            <button onClick={closeHandler} className={styles['btn-modal']}>Cancel</button>
+                            <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
                         </div>
                     </div>
                 </Modal>}

@@ -6,7 +6,6 @@ import { faEllipsisH, faXmark } from '@fortawesome/free-solid-svg-icons';
 import useFetch from '../../../hooks/useFetch';
 import useInput from '../../../hooks/useInput';
 import emailServices from '../../../services/emailService';
-import userService from '../../../services/userService';
 import userValidation from '../../../validation/userValidation';
 
 import { modalStoreActions } from '../../../store/modalStore';
@@ -22,6 +21,7 @@ const EmailModal = () => {
     const { isLoading, requester } = useFetch();
     const boat = useSelector(state => state.allBoats.boat);
 
+
     const nameInput = useInput(userValidation.isEmpty);
     const phoneInput = useInput(userValidation.isEmpty);
     const emailInput = useInput(userValidation.isEmpty);
@@ -32,6 +32,8 @@ const EmailModal = () => {
         && emailInput.fieldIsValid
         && messageInput.fieldIsValid;
 
+   
+
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -40,22 +42,32 @@ const EmailModal = () => {
             return;
         }
 
-        const user = await requester(userService.getUserById(boat.owner));
-
-
         const formValue = [
             nameInput.value,
             emailInput.value,
             phoneInput.value,
             messageInput.value,
-            user.user.email
         ]
 
-        requester(emailServices.sendMail(...formValue));
+        const emailSended = await requester(emailServices.sendMail(...formValue, boat.owner));
+
+        if (emailSended) {
+            dispatch(modalStoreActions.close());
+            nameInput.fieldReset();
+            phoneInput.fieldReset();
+            emailInput.fieldReset();
+            messageInput.fieldReset();
+            dispatch(modalStoreActions.open({
+                type: 'successful',
+                model: '',
+                message: 'We have sent your information directly to the seller.'
+            }));
+        }
+
     };
 
     const cancelHandler = () => {
-        dispatch(modalStoreActions.close())
+        dispatch(modalStoreActions.close());
     };
 
 
@@ -115,7 +127,7 @@ const EmailModal = () => {
                                 <textarea
                                     className={styles.input}
                                     cols={30}
-                                    rows={5}
+                                    rows={3}
                                     placeholder='Message'
                                     name='message'
                                     value={messageInput.value}
@@ -126,8 +138,8 @@ const EmailModal = () => {
                                 {messageInput.hasError && <p className={styles.error}>Field is required!</p>}
                             </div>
                             <button
-                                disabled={!inputFieldsIsValid || isLoading}
-                                className={`btn-blue ${!inputFieldsIsValid || isLoading ? 'stop-btn' : ''}`}
+                                disabled={!inputFieldsIsValid}
+                                className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                             >Send
                                 {isLoading
                                     ? <Spinner size={'small'} />

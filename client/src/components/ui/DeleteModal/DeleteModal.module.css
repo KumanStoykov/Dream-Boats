@@ -11,7 +11,7 @@
 
 .modal {
     width: 25rem;
-    height: 12rem;
+    height: 14rem;
     position: fixed;
     top: 14vh;
     left: 0;
@@ -49,26 +49,32 @@
     padding: 0 30px;
 }
 .btn-modal {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    border: 1px solid #ec3434;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 0.35rem;
     background: #f65656;
     color: #fff;
-    line-height: 40px;
+    padding: 12px;
     font-size: 14px;
     font-weight: 400;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: background 400ms ease-in-out;
+    
 }
 .btn-modal:hover {
-    background: #ec3434;
+    opacity: 0.9;
 }
+
+.btn-modal-delete {
+    background-color: #3085d6;
+}
+
 
 .btn-group {
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
-    padding-top: 2.4rem;
+    padding-top: 3rem;
 }
 
 @keyframes show-modal {
