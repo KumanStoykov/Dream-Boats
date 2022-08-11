@@ -8,7 +8,7 @@ import { boatStoreActions } from '../../../store/boatStore';
 
 
 import BoatsList from '../../boat/BoatList/BoatList';
-import NoBoatsHeading from '../../ui/NoBoatsHeading/NoBoatsHeading';
+import NoResultHeading from '../../ui/NoResultHeading/NoResultHeading';
 import Spinner from '../../ui/Spinner/Spinner';
 
 const MyBoats = () => {
@@ -41,7 +41,7 @@ const MyBoats = () => {
                 />
             }
             {!isLoading && boats.length < 1
-                && <NoBoatsHeading />
+                && <NoResultHeading title={'No Boats yet'}/>
             }
         </section>
     );

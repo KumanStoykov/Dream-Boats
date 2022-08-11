@@ -18,6 +18,18 @@ router.get('/', checkCredential(), async (req, res) => {
     }
 });
 
+router.get('/get-last-comment', checkCredential(), async (req, res) => {
+
+    try {
+        const comment = await commentService.getLastComment();
+
+        res.status(200).send({ comment: comment[0] });
+
+    } catch (error) {
+        res.status(400).send({ message: error.message });
+    }
+});
+
 router.post('/:ownerId', loggedInMiddleware(), async (req, res) => {
     const ownerId = req.params.ownerId;
     try {

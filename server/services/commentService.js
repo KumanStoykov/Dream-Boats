@@ -4,6 +4,8 @@ exports.getAll = () => Comment.find({}).sort({ createdAt: 'desc' });
 
 exports.getOne = (commentId) => Comment.findById(commentId);
 
+exports.getLastComment = () => Comment.find({}).sort({ createdAt: 'desc' }).limit(1);
+
 exports.create = (commentData) => Comment.create(commentData);
 
 exports.edit = async (commentId, data) => {

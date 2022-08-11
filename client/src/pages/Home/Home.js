@@ -6,7 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import boatService from '../../services/boatService';
 
 import Hero from '../../components/home/Hero/Hero';
-import Comments from '../../components/home/Comments/Comments';
+import LastComment from '../../components/home/LastComment/LastComment';
 import NewBoats from '../../components/boat/NewBoats/NewBoats';
 
 import Search from '../../components/ui/Search/Search';
@@ -43,7 +43,7 @@ const Home = () => {
                     />
                 }
             </div>
-            <Comments />
+            <LastComment />
         </>
     );
 };

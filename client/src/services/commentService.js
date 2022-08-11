@@ -6,6 +6,12 @@ const getComments = () => {
     }
     return options;
 };
+const getLastComment = () => {
+    const options = {
+        url: `${BASE_URL}/comment/get-last-comment`
+    }
+    return options;
+};
 
 const createComment = (name, comment, rating, ownerId) => {
     const options = {
@@ -51,6 +57,7 @@ const deleteComment = (commentId) => {
 
 const emailRequestOptions = {
     getComments,
+    getLastComment,
     createComment,
     editComment,
     deleteComment

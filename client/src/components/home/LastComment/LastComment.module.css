@@ -28,16 +28,28 @@
     outline: 2px solid var(--aqua-solid);
     outline-offset: 0.5rem;
 }
+.user-name {
+    font-size: 3rem;
+    font-family: 'Courgette', cursive;
+    color: var(--blue-solid);
+}
 
 .paragraph {
     color: #a5a5a5;
     margin-bottom: 2.5rem;
 }
-
-.hotel-rating {
-    margin: 1rem 0 2.5rem;
+.rating-container {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.star {
+    border: none;
+    font-size: 2.5rem;
+    color: #fff;
 }
 
-.rating {
+.active-star {
     color: var(--rating-color);
 }

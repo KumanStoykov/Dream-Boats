@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import BoatsList from '../../boat/BoatList/BoatList';
-import NoBoatsHeading from '../../ui/NoBoatsHeading/NoBoatsHeading';
+import NoResultHeading from '../../ui/NoResultHeading/NoResultHeading';
 
 
 const WatchList = () => {
@@ -21,7 +21,7 @@ const WatchList = () => {
                     />
                 }
                 {allWatched.length < 1
-                    && <NoBoatsHeading />
+                    && <NoResultHeading title={'No Boats yet'} />
                 }
             </section>
         </>

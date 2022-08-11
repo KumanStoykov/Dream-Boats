@@ -11,7 +11,7 @@ import { boatStoreActions } from '../../store/boatStore';
 
 import BoatsList from '../../components/boat/BoatList/BoatList';
 import BoatHero from '../../components/boat/BoatHero/BoatHero';
-import NoBoatsHeading from '../../components/ui/NoBoatsHeading/NoBoatsHeading';
+import NoResultHeading from '../../components/ui/NoResultHeading/NoResultHeading';
 
 import Search from '../../components/ui/Search/Search';
 import Spinner from '../../components/ui/Spinner/Spinner';
@@ -66,7 +66,7 @@ const BoatsCatalog = () => {
                 }
                 {!isLoading
                     && boats.length < 1
-                    && <NoBoatsHeading isSearch={isSearch} />
+                    && <NoResultHeading isSearch={isSearch} />
                 }
             </section>
             {!isLoading && boatsCount > 9 && <Pagination
