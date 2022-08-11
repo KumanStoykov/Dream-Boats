@@ -14,7 +14,7 @@ const EditInput = ({
         <>
             <input
                 type='text'
-                className={styles['user-edit-input']}
+                className={`${styles['user-edit-input']} ${hasErrorInput && 'error-input-field'}`}
                 name={nameInput}
                 value={valueInput}
                 onChange={onChangeInput}

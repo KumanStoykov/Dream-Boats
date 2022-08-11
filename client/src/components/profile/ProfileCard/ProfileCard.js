@@ -180,7 +180,7 @@ const ProfileCard = () => {
                         <div className={styles['btn-group']}>
                             {isEdit && <button
                                 type='submit'
-                                className={`btn-blue ${styles['btn-user-card']} ${!inputFieldsIsValid ? 'stop-btn' : ''}`}
+                                className={`${styles['btn-user-card']} ${!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}`}
                                 disabled={!inputFieldsIsValid || isLoading}
                             >Edit
                                 {inputFieldsIsValid && isLoading
@@ -192,7 +192,7 @@ const ProfileCard = () => {
                             {!isEdit && <button
                                 type='button'
                                 onClick={deleteUserHandler}
-                                className={`btn-blue ${styles['btn-user-card']} ${isLoading ? 'stop-btn' : ''}`}
+                                className={`btn-blue ${styles['btn-user-card']}`}
                                 disabled={isLoading}
                             >Delete
                                 {isLoading
