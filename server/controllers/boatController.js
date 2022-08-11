@@ -85,7 +85,7 @@ router.post('/', loggedInMiddleware(), async (req, res) => {
 
         const valueIncFile = Object.values(incFiles);
 
-        const enterableValue = valueIncFile.length > 1 ? valueIncFile : valueIncFile[0];
+        const enterableValue = valueIncFile[0]?.length > 1 ? valueIncFile[0] : valueIncFile;
 
         for (const image of enterableValue) {
             const res = await cloudinary.uploader.upload(image._writeStream.path);
@@ -166,20 +166,20 @@ router.put('/:boatId', isBoatOwnerMiddleware(), loggedInMiddleware(), async (req
 
         const valueIncFile = Object.values(incFiles);
 
-        const enterableValue = valueIncFile?.length > 0 ? valueIncFile : valueIncFile[0];
+        const enterableValue = valueIncFile[0]?.length > 1 ? valueIncFile[0] : valueIncFile;
 
-        if (enterableValue?.length > 0) {
+        if (valueIncFile?.length) {
             for (const image of enterableValue) {
                 const res = await cloudinary.uploader.upload(image._writeStream.path);
 
                 imagesUrl.push({ url: res.url, public_id: res.public_id });
             }
             for (const image of oldBoat.image) {
-
                 await cloudinary.uploader.destroy(image.public_id);
             }
         }
-        const loadImages = imagesUrl.length > 0 ? imagesUrl : oldBoat.image
+
+        const loadImages = imagesUrl.length > 0 ? imagesUrl : oldBoat.image;
 
         const boatData = {
             make: formData.make,
@@ -253,7 +253,7 @@ router.delete('/:boatId', isBoatOwnerMiddleware(), loggedInMiddleware(), async (
             await cloudinary.uploader.destroy(image.public_id);
         }
 
-       const boat = await boatService.deleteBoat(boatId);
+        const boat = await boatService.deleteBoat(boatId);
 
         res.status(200).send({ boat });
 
