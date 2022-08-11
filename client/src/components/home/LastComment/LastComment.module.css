@@ -53,3 +53,8 @@
 .active-star {
     color: var(--rating-color);
 }
+
+.no-result-btn{
+    display: flex;    
+    margin: 0 auto;
+}

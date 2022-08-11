@@ -22,8 +22,9 @@ router.get('/get-last-comment', checkCredential(), async (req, res) => {
 
     try {
         const comment = await commentService.getLastComment();
+        const result = comment[0] || null;
 
-        res.status(200).send({ comment: comment[0] });
+        res.status(200).send({ comment: result });
 
     } catch (error) {
         res.status(400).send({ message: error.message });

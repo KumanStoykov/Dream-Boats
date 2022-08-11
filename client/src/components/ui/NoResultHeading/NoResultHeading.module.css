@@ -1,11 +1,13 @@
 .heading-container{
     max-width: 32rem;
-    height: 60vh;
     margin: 5rem auto;
-    text-align: center;
-
+    text-align: center;    
 }
 
+.size {
+    height: 60vh;
+
+}
 .no-boats-heading {
     font-size: 3rem;
     font-family: 'Courgette', cursive;

@@ -20,7 +20,7 @@ const LastComment = () => {
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
     const comment = useSelector(state => state.allComments.comment);
-
+    console.log(comment)
     const responseData = useCallback((data) => {
         dispatch(commentStoreActions.addComment(data));
     }, [dispatch]);
@@ -40,9 +40,9 @@ const LastComment = () => {
     return (
         <section className={styles.comment}>
             {isLoading && <Spinner size={'large'} />}
-            {comment === null && <NoResultHeading title={'No Comments yet'}/>}
-            {!isLoading && comment !== null &&
-                <div className={'container'}>
+            {comment === null && <NoResultHeading size={false} title={'No Comments yet'} />}
+            <div className={'container'}>
+                {!isLoading && comment !== null &&
                     <div className={styles['comment-content']}>
                         <div className={styles.discount}>
                             Comments
@@ -60,8 +60,13 @@ const LastComment = () => {
                             <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
                         </button>
                     </div>
-                </div>
-            }
+                }
+                {comment === null &&
+                    <button onClick={commentFormHandler} className={`btn-blue ${styles['no-result-btn']}`}>Write comment
+                        <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                    </button>
+                }
+            </div>
         </section>
 
     );
