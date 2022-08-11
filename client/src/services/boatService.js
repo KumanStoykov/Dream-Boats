@@ -1,7 +1,6 @@
-const BASE_URL = 'https://dream-boats.herokuapp.com';
+const BASE_URL = process.env.REACT_APP_SERVER_API_URL;
 
-const getAll = (search) => {    
-    console.log(BASE_URL)
+const getAll = (search) => {
     const options = {
         url: `${BASE_URL}/boat${search}`
     };
