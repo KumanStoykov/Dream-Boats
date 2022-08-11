@@ -29,6 +29,11 @@ exports.getOne = (boatId) => Boat.findById(boatId);
 
 exports.create = (boatData) => Boat.create(boatData);
 
-exports.edit = (boatId, boatData) => Boat.findByIdAndUpdate(boatId, boatData);
+exports.edit = async (boatId, boatData) => {
+    const boat = await Boat.findById(boatId);
+
+    Object.assign(boat, boatData);
+    return boat.save();
+};
 
 exports.deleteBoat = (boatId) => Boat.findByIdAndDelete(boatId);
