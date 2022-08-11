@@ -5,11 +5,11 @@ const OwnerGuard = () => {
     const user = useSelector(state => state.auth.userData);
     const boat = useSelector(state => state.allBoats.boat);
 
-    if(user._id === boat.owner) {        
+    if(user._id === boat.owner) { 
         return <Outlet />;
     }
     
-    return <Navigate to={'/'} replace/>;        
+    return <Navigate to={'/auth/login'} replace/>;        
 };
 
 

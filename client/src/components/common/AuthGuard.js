@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux';
 const AuthGuard = () => {
     const user = useSelector(state => state.auth.userData);
 
-    if(!user?.email) {
-        return <Navigate to={'/auth/login'} replace/>;        
+    if (!user?.email) {
+        return <Outlet />;
     }
 
-    return <Outlet />;
+    return <Navigate to={'/'} replace />;
+    
 };
 
 
