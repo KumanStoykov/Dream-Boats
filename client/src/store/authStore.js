@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const userInitialState = {
     userData: null,
-    watched: [],
+    isLoad: true
     
 };
 
@@ -20,18 +20,9 @@ const authSlice = createSlice({
             ...state,
             userData: null
         }),
-
-        addWatched: (state, action) => {   
-            const isWatched = state.watched.find(x => x?._id === action.payload.boat._id);
-            
-            if(!isWatched) {
-                state.watched.push(action.payload.boat);
-            }
-            return state;
-        },
-        removeWatched: (state, action) => ({
-            ...state,
-            watched: state.watched.filter(x => x._id !== action.payload.boat._id)
+        loadUser: (state) => ({
+          ...state,
+           isLoad: false 
         }),
     }
 });
