@@ -15,7 +15,7 @@ import authStore from './authStore';
 import boatStore from './boatStore';
 import modalStore from './modalStore';
 import watchStore from './watchStore';
-
+import commentStore from './commentStore';
 
 const persistConfig = {
     key: 'root',
@@ -28,6 +28,7 @@ const rootReducer = combineReducers({
     allBoats: boatStore,
     modal: modalStore,
     watchList: watchStore,
+    allComments: commentStore
 });
 
 
