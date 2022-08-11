@@ -37,7 +37,7 @@ const useFetch = () => {
             let errorMsg = error.message;
             console.log(errorMsg);
 
-            if (errorMsg === 'Please log in') {
+            if (errorMsg === 'Please log in' || errorMsg === 'jwt expired') {
                 dispatch(authStoreActions.logout());
             }
 
