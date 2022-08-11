@@ -2,16 +2,17 @@ const { jwtVerify } = require('../utils/jwtUtils');
 
 const { COOKIE_TOKEN_NAME, SECRET } = require('../config');
 
-module.exports = () => (req, res, next) => {
+module.exports = () => async (req, res, next) => {
     const token = req.cookies[COOKIE_TOKEN_NAME];
 
-    try{
-        const decodedToken = jwtVerify(token, SECRET);
-        
-        req.decodedToken = decodedToken;
+    try {
+        const user = await jwtVerify(token, SECRET);
+
+        req.user = user;
+
         next();
-    } catch(error) {
-        res.decodedToken = undefined;
+    } catch (error) {
+        res.user = undefined;
         next();
     }
 }
