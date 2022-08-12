@@ -1,0 +1,62 @@
+.contact {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+.heading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courgette', cursive;
+    margin-top: 8rem;
+}
+
+.heading {
+    font-size: 3.6rem;
+    font-weight: 300;
+}
+
+.p-wrapper {
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.p-text {
+    margin: 2rem 5rem;
+}
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 3rem;
+}
+
+.address-card {
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+}
+.map-wrapper,
+.address-card {
+    flex: 0 0 50%;
+}
+.p-info {
+    margin: 1rem;
+}
+.bold-text {
+    font-weight: bold;
+    font-size: 1.75rem;
+    letter-spacing: 1px;
+}
+
+@media all and (min-width: 768px) {
+    .heading {
+        font-size: 5.6rem;
+    }
+
+    .info {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
