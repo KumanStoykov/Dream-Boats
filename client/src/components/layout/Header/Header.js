@@ -12,11 +12,12 @@ import styles from './Header.module.css';
 
 
 const Header = () => {
-    const { pathname } = useLocation();
+    const location = useLocation();
     const user = useSelector(state => state.auth.userData);
     const [navBarOpen, setNavBarOpen] = useState(false);
 
-    const menuToggleHandler = () => {
+
+    const menuToggleHandler = (e) => {
         setNavBarOpen(state => !state);
     };
 
@@ -24,7 +25,7 @@ const Header = () => {
         setTimeout(() => {
             setNavBarOpen(false);
         }, 300);
-    }, [pathname]);
+    }, [location]);
 
 
     return (
@@ -38,7 +39,7 @@ const Header = () => {
                         <FontAwesomeIcon icon={faBars} className={styles.faBars} />
                         <FontAwesomeIcon icon={faTimes} className={styles.faTimes} />
                     </div>
-                    <ul className={styles['nav-list']}>                      
+                    <ul className={styles['nav-list']}>
                         <li className={styles['nav-item']}>
                             <Link to={`/boats-for-sale?page=1&sort=desc`} className={styles['nav-link']}>Boats for Sale</Link>
                         </li>
