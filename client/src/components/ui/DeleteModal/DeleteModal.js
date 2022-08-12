@@ -39,6 +39,9 @@ const DeleteModal = () => {
         }
 
         dispatch(modalStoreActions.close());
+
+        navigate(`/profile/owner-boats?whereId=${user._id}&sort=desc`, {replace: true});
+        
         dispatch(modalStoreActions.open({
             type: 'successful',
             model: '',
@@ -56,7 +59,6 @@ const DeleteModal = () => {
         } else if (modalState.model === 'boat') {
             requester(boatService.deleteBoat(boat._id), responseDataDelete);
         }
-        navigate('/');
     };
 
     return (

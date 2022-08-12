@@ -6,6 +6,7 @@ import { commentStoreActions } from '../../../store/commentStore';
 import commentService from '../../../services/commentService';
 
 import styles from './CommentDelete.module.css';
+import Spinner from '../../ui/Spinner/Spinner';
 
 
 const CommentDelete = ({ openDeleteHandler, comment }) => {
@@ -27,17 +28,21 @@ const CommentDelete = ({ openDeleteHandler, comment }) => {
     }
 
     return (
-        <>
-            <p className={styles['modal-p']}>You are sure?</p>
-            <div className={styles['btn-group']}>
-                <button
-                    onClick={deleteHandler}
-                    disabled={isLoading}
-                    className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
-                >Delete
-                </button>
-                <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
-            </div>
+        <> 
+            {isLoading && <Spinner size={'comment-size'} />}
+            {!isLoading
+                && <article>
+                        <p className={styles['modal-p']}>You are sure?</p>
+                        <div className={styles['btn-group']}>
+                            <button
+                                onClick={deleteHandler}
+                                disabled={isLoading}
+                                className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
+                            >Delete
+                            </button>
+                            <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
+                        </div>
+                    </article>}
         </>
     );
 };

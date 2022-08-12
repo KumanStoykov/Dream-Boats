@@ -21,7 +21,7 @@ const Layout = () => {
             {modal.isOpen && modal.type === 'delete' && <DeleteModal />}
             {modal.isOpen && modal.type === 'email' && <EmailModal />}
             {modal.isOpen && modal.type === 'comment' && <CommentModal />}
-            
+
             <ScrollTop />
             <Header />
             <main>
