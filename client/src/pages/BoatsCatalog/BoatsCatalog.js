@@ -66,7 +66,7 @@ const BoatsCatalog = () => {
                 }
                 {!isLoading
                     && boats.length < 1
-                    && <NoResultHeading isSearch={isSearch} />
+                    && <NoResultHeading isSearch={isSearch} title={'No Boats yet'}/>
                 }
             </section>
             {!isLoading && boatsCount > 9 && <Pagination

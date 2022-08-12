@@ -9,6 +9,7 @@ import Hero from '../../components/home/Hero/Hero';
 import LastComment from '../../components/home/LastComment/LastComment';
 import NewBoats from '../../components/boat/NewBoats/NewBoats';
 
+import NoResultHeading from '../../components/ui/NoResultHeading/NoResultHeading';
 import Search from '../../components/ui/Search/Search';
 import Spinner from '../../components/ui/Spinner/Spinner';
 
@@ -36,11 +37,16 @@ const Home = () => {
             <div className={'container'}>
                 {isLoading && <Spinner size={'medium'} />}
                 {!isLoading
+                    && boats.length > 0
                     && <NewBoats boats={boats}
                         fancyBoarder={'fancy-boarder'}
                         heading={heading} 
                         subHeading={subHeading}
                     />
+                }
+                {!isLoading
+                    && boats.length < 1
+                    && <NoResultHeading isSearch={false} title={'No Boats yet'}/>
                 }
             </div>
             <LastComment />
