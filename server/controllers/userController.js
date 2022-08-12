@@ -35,7 +35,6 @@ router.post('/register', async (req, res) => {
         const password = req.body.password.trim();
         const repeatPassword = req.body.repeatPassword.trim();
 
-
         if (!validator.isLength(firstName, { min: 4 })) {
             throw new Error('The first name should be at least 4 characters long');
         }
@@ -45,8 +44,8 @@ router.post('/register', async (req, res) => {
         if (!validator.isEmail(email)) {
             throw new Error('The email should be in correct format');
         }
-        if (!validator.isMobilePhone(phone)) {
-            throw new Error('The email should be in correct format');
+        if (!validator.matches(phone, /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)) {
+            throw new Error('The phone should be in correct format');
         }
         if (!validator.isLength(password, { min: 5 })) {
             throw new Error('The password should be at least 5 characters long');

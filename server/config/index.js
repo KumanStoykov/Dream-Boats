@@ -1,5 +1,3 @@
-const env = process.env.NODE_ENV || 'development';
-
 const configEnv = {
     development: {
         PORT: process.env.PORT || 5000,
@@ -38,4 +36,4 @@ const configEnv = {
 
 };
 
-module.exports = configEnv[env];
+module.exports = configEnv[process.env.NODE_ENV || 'development'];
