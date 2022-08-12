@@ -11,7 +11,7 @@ exports.createToken = (user) => {
     };
 
     return new Promise((resolve, reject) => { 
-        jwt.sign(payload, SECRET, {expiresIn: '50m'}, (err, token) => {
+        jwt.sign(payload, SECRET, {expiresIn: '90m'}, (err, token) => {
             if(err) {
                 reject(err);
             } else {
