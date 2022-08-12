@@ -41,6 +41,10 @@ const CommentModal = () => {
         dispatch(modalStoreActions.close());
         dispatch(commentStoreActions.setEditForm(false));
         dispatch(commentStoreActions.setForm(false));
+
+        if (comments.length !== 0) {
+            dispatch(commentStoreActions.addComment({ comment: comments[0] }));
+        }
     };
 
     const commentCloseHandler = () => {
