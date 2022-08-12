@@ -28,12 +28,14 @@ router.get('/check-user', checkCredentialMiddleware(), async (req, res) => {
 
 router.post('/register', async (req, res) => {
     try {
+        console.log(req.body)
         const firstName = req.body.firstName.trim();
         const lastName = req.body.lastName.trim();
         const email = req.body.email.trim();
         const phone = req.body.phone.trim();
         const password = req.body.password.trim();
         const repeatPassword = req.body.repeatPassword.trim();
+        console.log(password)
 
         if (!validator.isLength(firstName, { min: 4 })) {
             throw new Error('The first name should be at least 4 characters long');
@@ -55,12 +57,13 @@ router.post('/register', async (req, res) => {
         }
 
         const checkEmailUser = await userService.getByEmail(email);
-
+            console.log(checkEmailUser)
         if (checkEmailUser) {
             throw new Error('Email is taken');
         }
 
         const hashPass = await bcrypt.hash(password, ROUND_SALT);
+        console.log(hashPass);
 
         const user = await userService.createUser(firstName, lastName, email, phone, hashPass);
 
