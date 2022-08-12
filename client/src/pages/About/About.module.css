@@ -1,0 +1,50 @@
+.about{
+    width: 100%;
+}
+
+.image-wrapper {
+    width: 100%;
+   
+}
+
+.heading-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Courgette', cursive;
+}
+
+.heading {
+    font-size: 3.6rem;
+    font-weight: 300;
+}
+
+.sub-heading {
+    font-size: 2.6rem;
+    font-weight: 300;
+}
+
+.p-wrapper {
+    max-width: 80rem;
+    display: flex;
+    flex-direction: column;    
+    margin: 0 auto;
+}
+
+.p-text {
+    margin: 2rem 5rem;
+}
+
+@media all and (min-width: 768px) {
+    .heading {
+        font-size: 5.6rem;
+        font-weight: 300;
+    }
+    
+    .sub-heading {
+        font-size: 4.6rem;
+        font-weight: 300;
+    }
+    
+}

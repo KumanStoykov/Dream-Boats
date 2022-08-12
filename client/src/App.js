@@ -21,6 +21,9 @@ import { authStoreActions } from './store/authStore';
 
 import UserProfileGuard from './components/common/UserProfileGuard';
 import AuthGuard from './components/common/AuthGuard';
+import About from './pages/About/About';
+import Contact from './pages/Contact/Contact';
+import TermsAndConditions from './pages/TermsAndConditions/TermsAndConditions';
 
 function App() {
 	useScrollToTop();
@@ -57,6 +60,10 @@ function App() {
 				<Route element={<UserProfileGuard />}>
 					<Route path='profile/*' element={<Profile />} />
 				</Route>
+
+				<Route path='about' element={<About />} />
+				<Route path='contact' element={<Contact />} />
+				<Route path='terms-and-condition' element={<TermsAndConditions />}> </Route>
 
 				<Route path='*' element={<Navigate to={'/'} />} />
 			</Route>
