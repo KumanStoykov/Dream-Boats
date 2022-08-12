@@ -37,8 +37,10 @@ const CommentModal = () => {
     }, [requester, dispatch, responseData]);
 
 
-    const cancelHandler = () => {
+    const closeFormHandler = () => {
         dispatch(modalStoreActions.close());
+        dispatch(commentStoreActions.setEditForm(false));
+        dispatch(commentStoreActions.setForm(false));
     };
 
     const commentCloseHandler = () => {
@@ -52,7 +54,7 @@ const CommentModal = () => {
                 && <Modal>
                     <div className={styles.modal}>
                         <div className={`${styles['post-container']} ${hasForm && styles['post-container-with-form']}`}>
-                            <button type='button' onClick={cancelHandler} className={`${styles['btn-icon']}`}>
+                            <button type='button' onClick={closeFormHandler} className={`${styles['btn-icon']}`}>
                                 <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
                             </button>
                             {user?.email

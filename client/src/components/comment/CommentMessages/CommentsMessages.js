@@ -28,7 +28,6 @@ const CommentsMessages = ({ comment }) => {
 
     const editHandler = () => {
         setIsEdit(state => !state);
-        dispatch(commentStoreActions.addComment({ comment: comment }));
         dispatch(commentStoreActions.setForm(false));
         dispatch(commentStoreActions.setEditForm(true));
     };

@@ -33,8 +33,9 @@ const CommentForm = ({ setIsEdit }) => {
     const inputFieldsIsValid = nameInput.fieldIsValid && commentInput.fieldIsValid;
 
     const responseData = (data) => {
-
         dispatch(commentStoreActions.updateComments(data));
+        
+        dispatch(commentStoreActions.addComment(data));
 
         commentCloseHandler();
     };
@@ -80,7 +81,6 @@ const CommentForm = ({ setIsEdit }) => {
             dispatch(commentStoreActions.setEditForm(false));
             dispatch(commentStoreActions.setForm(false));
         } else if (!formIsEdit && !formIsOpen) {
-
             dispatch(commentStoreActions.setForm(true));
         } else {
             dispatch(commentStoreActions.setForm(false));
