@@ -167,6 +167,7 @@ const BoatForm = () => {
 
     return (
         <section className={styles.create}>
+            {isLoading && <Spinner size={'large'} frame={true} />}
             <div className={'container'}>
                 <h5 className={styles['section-head']}>
                     {isEdit
