@@ -6,10 +6,10 @@ import Thumbnail from './Thumbnail/Thumbnail';
 import styles from './Slider.module.css';
 
 
-const Slideshow = ({ imgs }) => {
+const Slideshow = ({ thumbnail, imgs }) => {
     const [index, setIndex] = useState(0);
 
-    
+
     useEffect(() => {
         setIndex(0);
     }, []);
@@ -31,13 +31,19 @@ const Slideshow = ({ imgs }) => {
     };
 
     return (
-        <div className={styles.slideshow}>            
-            <img className={styles.mainImg} src={imgs[index]} alt='boat.png'/>
+        <div className={styles.slideshow}>
+            <img className={styles.mainImg} src={imgs[index]} alt='boat.png' />
             <div className={styles.actions}>
                 <button onClick={prev}><FontAwesomeIcon icon={faAngleLeft} /></button>
                 <button onClick={next}><FontAwesomeIcon icon={faAngleRight} /></button>
             </div>
-            <Thumbnail arr={imgs} image={setIndex} index={index} />
+            {thumbnail
+                && <Thumbnail
+                    arr={imgs}
+                    image={setIndex}
+                    index={index}
+                />
+            }
         </div>
     )
 };

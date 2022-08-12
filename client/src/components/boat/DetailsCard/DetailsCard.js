@@ -49,7 +49,10 @@ const DetailsCard = ({ boat }) => {
         <div className={styles.card}>
             <div className={styles['boat-imgs']}>
                 <div className={styles['img-display']}>
-                    <Slideshow imgs={boat.image.map(x => x.url)} />
+                    <Slideshow 
+                        thumbnail={true}
+                        imgs={boat.image.map(x => x.url)} 
+                    />
                 </div>
             </div>
 
