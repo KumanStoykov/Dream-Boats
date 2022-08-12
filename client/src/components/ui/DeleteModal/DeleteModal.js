@@ -40,8 +40,8 @@ const DeleteModal = () => {
 
         dispatch(modalStoreActions.close());
 
-        navigate(`/profile/owner-boats?whereId=${user._id}&sort=desc`, {replace: true});
-        
+        navigate(`/profile/owner-boats?whereId=${user._id}&sort=desc`, { replace: true });
+
         dispatch(modalStoreActions.open({
             type: 'successful',
             model: '',

@@ -11,7 +11,7 @@ const UserProfileGuard = () => {
 
     } else if (!isLoad && !user?.email) {
 
-        return <Navigate to={'/auth/login'} replace />;
+        return <Navigate to={'/'} replace />;
 
     } else if (!isLoad && user?.email) {
         return <Outlet />;
