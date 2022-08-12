@@ -63,6 +63,7 @@ router.post('/register', async (req, res) => {
         }
 
         const hashPass = await bcrypt.hash(password, ROUND_SALT);
+        console.log(ROUND_SALT);
         console.log(hashPass);
 
         const user = await userService.createUser(firstName, lastName, email, phone, hashPass);
