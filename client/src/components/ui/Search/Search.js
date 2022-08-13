@@ -10,7 +10,7 @@ import styles from './Search.module.css';
 
 const Search = () => {
     const navigate = useNavigate();
-    const { search, pathname } = useLocation();
+    const { search } = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
     const [inputState, setInputState] = useState({ type: '', fuel: '', price: 0 });
 
@@ -30,16 +30,8 @@ const Search = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-
-        if (!pathname.includes('boats-for-sale')) {
-            const type = searchParams.get('type');
-            const fuel = searchParams.get('fuel');
-            const price = searchParams.get('price');
-
-            navigate(`/boats-for-sale?page=1&sort=desc&type=${type}&fuel=${fuel}&price=${price}`)
-        } else {
-            setSearchParams(searchParams);
-        }
+        searchParams.set('page', 1);
+        setSearchParams(searchParams);
     }
 
     return (
