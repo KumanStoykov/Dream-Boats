@@ -26,24 +26,24 @@ const BoatsCatalog = () => {
     const boatsCount = useSelector(state => state.allBoats.boatsCount);
     const { isLoading, requester } = useFetch();
 
-    
+
     const isSearch = ['type', 'fuel', 'price'].some(x => search.includes(x));
-    
-    const totalPages = Math.ceil(boatsCount / 9);
-    
+
+    const totalPages = Math.ceil(boatsCount / 6);
+
     const heading = 'Boats';
     const subHeading = <FontAwesomeIcon icon={faDharmachakra} />;
-    
+
     const page = searchParams.get('page');
-    
+
     const responseData = useCallback((data) => {
         dispatch(boatStoreActions.addBoats(data));
     }, [dispatch]);
-    
+
     useEffect(() => {
         requester(boatService.getAll(search), responseData);
     }, [requester, responseData, dispatch, search]);
-    
+
     const catalogHeroImages = {
         firstImg: '/images/catalog_1.jpg',
         secundImg: '/images/catalog_2.jpg',
@@ -52,7 +52,7 @@ const BoatsCatalog = () => {
 
     return (
         <>
-            <BoatHero imgs={catalogHeroImages} size={'bigger'}/>
+            <BoatHero imgs={catalogHeroImages} size={'bigger'} />
             <Search />
             <section className='section-container'>
                 {isLoading && <Spinner size={'large'} />}
@@ -66,14 +66,15 @@ const BoatsCatalog = () => {
                 }
                 {!isLoading
                     && boats.length < 1
-                    && <NoResultHeading isSearch={isSearch} title={'No Boats yet'}/>
+                    && <NoResultHeading isSearch={isSearch} title={'No Boats yet'} />
                 }
             </section>
-            {!isLoading && boatsCount > 9 && <Pagination
+            {!isLoading && boatsCount > 6 && <Pagination
                 totalPages={totalPages}
                 page={page}
                 isLoading={isLoading}
-            />}
+            />
+            }
         </>
     )
 };

@@ -14,7 +14,7 @@ const isBoatOwnerMiddleware = require('../middleware/isBoatOwnerMiddleware');
 
 router.get('/', checkCredential(), async (req, res) => {
     try {
-        const page = Number(req.query.page) - 1 || 0;
+        const page = Number(req?.query?.page) - 1 || 0;
         const sort = req?.query?.sort || 'desc';
         const type = req?.query?.type;
         const fuel = req?.query?.fuel;
@@ -53,12 +53,16 @@ router.get('/getLastThree', checkCredential(), async (req, res) => {
 });
 
 router.get('/boats-owner', loggedInMiddleware(), async (req, res) => {
-    const { whereId, sort } = req.query;
+
     try {
+        const whereId = req?.query?.whereId;
+        const page = Number(req?.query?.page) - 1 || 0;
+        const sort = req?.query?.sort || 'desc';
 
-        const boats = await boatService.getByOwner(whereId, sort);
+        const boats = await boatService.getByOwner(whereId, page, sort);
+        const boatsCount = await boatService.boatCount();
 
-        res.status(200).send({ boats });
+        res.status(200).send({ boats, boatsCount });
     } catch (error) {
         res.status(400).send({ message: error.message });
     }

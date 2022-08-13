@@ -6,19 +6,19 @@ exports.getAllBoats =
         Boat
             .find({ ...search })
             .sort({ createdAt: sort })
-            .skip(page * 9)
-            .limit(9);
+            .skip(page * 6)
+            .limit(6);
 
 
 
-            
+
 exports.getByOwner =
-    (whereId, sort, page) =>
+    (whereId, page, sort) =>
         Boat
             .find({ owner: whereId })
             .sort({ createdAt: sort })
-            .skip(page * 9)
-            .limit(9);
+            .skip(page * 6)
+            .limit(6);
 
 exports.boatCount = (search) => Boat.countDocuments({ ...search });
 
