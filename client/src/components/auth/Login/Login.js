@@ -72,29 +72,32 @@ const Login = () => {
                                     type="email"
                                     id='email'
                                     name='email'
+                                    data-testid='email'
                                     className={`${styles['input-field']} ${emailInput.hasError && 'error-input-field'}`}
                                     value={emailInput.value}
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
                                 />
                             </div>
-                            {emailInput.hasError && <p className={styles.error}>Please entry your email address</p>}
+                            {emailInput.hasError && <p className={styles.error}>Please entry a valid email address</p>}
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
                                 <input
                                     type="password"
                                     id='password'
                                     name='password'
+                                    data-testid='password'
                                     className={`${styles['input-field']} ${passwordInput.hasError && 'error-input-field'}`}
                                     value={passwordInput.value}
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
                                 />
                             </div>
-                            {passwordInput.hasError && <p className={styles.error}>Please entry your password</p>}
+                            {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character</p>}
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
+                                data-testid='singInBtn'
                             >Sign in
                                 {isLoading
                                     ? <Spinner size={'small'} />
