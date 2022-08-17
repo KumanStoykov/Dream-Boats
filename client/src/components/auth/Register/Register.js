@@ -19,7 +19,7 @@ const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
- 
+
 
     const firstNameInput = useInput(userValidation.nameIsLength);
     const lastNameInput = useInput(userValidation.nameIsLength);
@@ -59,7 +59,7 @@ const Register = () => {
             repeatPasswordInput.value
         ];
 
-       const res = await requester(userService.register(...formValue), responseData);
+        const res = await requester(userService.register(...formValue), responseData);
 
         if (res?.userData) {
             navigate('/');
@@ -89,12 +89,13 @@ const Register = () => {
                                     type='text'
                                     id='firstName'
                                     name='firstName'
+                                    data-testid='firstName'
                                     className={`${styles['input-field']} ${firstNameInput.hasError && 'error-input-field'}`}
                                     value={firstNameInput.value}
                                     onChange={firstNameInput.onChange}
                                     onBlur={firstNameInput.onBlur}
                                 />
-                                {firstNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long</p>}
+                                {firstNameInput.hasError && <p className={styles.error}>The first name should be at least 2 characters long</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='lastName'>Last Name</label>
@@ -102,6 +103,7 @@ const Register = () => {
                                     type='text'
                                     id='lastName'
                                     name='lastName'
+                                    data-testid='lastName'
                                     className={`${styles['input-field']} ${lastNameInput.hasError && 'error-input-field'}`}
                                     value={lastNameInput.value}
                                     onChange={lastNameInput.onChange}
@@ -115,12 +117,13 @@ const Register = () => {
                                     type='email'
                                     id='email'
                                     name='email'
+                                    data-testid='email'
                                     className={`${styles['input-field']} ${emailInput.hasError && 'error-input-field'}`}
                                     value={emailInput.value}
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
                                 />
-                                {emailInput.hasError && <p className={styles.error}>Email address is invalid</p>}
+                                {emailInput.hasError && <p className={styles.error}>Please entry a valid email address</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='phone'>Phone</label>
@@ -128,12 +131,13 @@ const Register = () => {
                                     type='phone'
                                     id='phone'
                                     name='phone'
+                                    data-testid='phone'
                                     className={`${styles['input-field']} ${phoneInput.hasError && 'error-input-field'}`}
                                     value={phoneInput.value}
                                     onChange={phoneInput.onChange}
                                     onBlur={phoneInput.onBlur}
                                 />
-                                {phoneInput.hasError && <p className={styles.error}>Phone number is invalid</p>}
+                                {phoneInput.hasError && <p className={styles.error}>Please entry a valid phone number</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
@@ -141,12 +145,13 @@ const Register = () => {
                                     type='password'
                                     id='password'
                                     name='password'
+                                    data-testid='password'
                                     className={`${styles['input-field']} ${passwordInput.hasError && 'error-input-field'}`}
                                     value={passwordInput.value}
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
                                 />
-                                {passwordInput.hasError && <p className={styles.error}>The password should be at least 5 characters long</p>}
+                                {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='repeatPassword'>Re-password</label>
@@ -154,6 +159,7 @@ const Register = () => {
                                     type='password'
                                     id='repeatPassword'
                                     name='repeatPassword'
+                                    data-testid='repeatPassword'
                                     className={`${styles['input-field']} ${repeatPasswordInput.hasError && 'error-input-field'}`}
                                     value={repeatPasswordInput.value}
                                     onChange={repeatPasswordInput.onChange}
@@ -164,11 +170,12 @@ const Register = () => {
                             <button
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                                 disabled={!inputFieldsIsValid || isLoading}
+                                data-testid='singUpBtn'
                             >Sign up
-                                    {isLoading
-                                        ? <Spinner size={'small'} />
-                                        : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
-                                    }
+                                {isLoading
+                                    ? <Spinner size={'small'} />
+                                    : <span className={'dots'}><FontAwesomeIcon icon={faEllipsisH} /></span>
+                                }
                             </button>
                             <div className={styles.more}>
                                 <p >Don't have an account? <Link to='/auth/login'>Sign in</Link></p>
