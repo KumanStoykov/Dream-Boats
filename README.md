@@ -6,13 +6,13 @@ This is my project for the React course in SoftUni. It was crated with HTML, CSS
 
 <br/>
 
-<img alt="dream-boats" src="https://res.cloudinary.com/dyexk2s2s/image/upload/v1659780539/Screenshot_2022-08-06_120538_ibjvjv.png" />
+<img alt="dream-boats" src="https://res.cloudinary.com/dyexk2s2s/image/upload/v1660390241/Screenshot_2022-08-13_132855_meu9y6.png" />
 
 <br/>
 
 ## Live-demo
 
-**[Dream-boats](https://dream-boats.herokuapp.com/)**
+**[Dream-Boats](https://dream-boats.herokuapp.com/)**
 
 ## Installation and usage
  
