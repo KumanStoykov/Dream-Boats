@@ -13,7 +13,7 @@ describe('Login', () => {
             <Provider store={store}>
                 <BrowserRouter>
                     <Login />
-                </BrowserRouter>
+                </BrowserRouter>  
             </Provider>
         );
     });
@@ -25,7 +25,7 @@ describe('Login', () => {
         userEvent.type(emailInput, 'joe');
         userEvent.click(passwordInput);
 
-        const error = screen.getByText('Please entry a valid email address');
+        const error = screen.getByText('Please entry a valid email address!');
         expect(error).toBeInTheDocument();
     });
 
@@ -36,7 +36,7 @@ describe('Login', () => {
         userEvent.type(emailInput, 'joe@gmail.com');
         userEvent.click(passwordInput);
 
-        const error = screen.queryByText('Please entry a valid email address');
+        const error = screen.queryByText('Please entry a valid email address!');
         expect(error).not.toBeInTheDocument();
     });
 
@@ -47,7 +47,7 @@ describe('Login', () => {
         userEvent.type(passwordInput, '123');
         userEvent.click(emailInput);
 
-        const error = screen.getByText('Password should be at last 5 character');
+        const error = screen.getByText('Password should be at last 5 character!');
         expect(error).toBeInTheDocument();
     });
 
@@ -58,19 +58,19 @@ describe('Login', () => {
         userEvent.type(passwordInput, '12345');
         userEvent.click(emailInput);
 
-        const error = screen.queryByText('Password should be at last 5 character');
+        const error = screen.queryByText('Password should be at last 5 character!');
         expect(error).not.toBeInTheDocument();
     });
 
     test('Button should be disabled', () => {
-        const loginBtn = screen.getByTestId('singInBtn');
+        const loginBtn = screen.getByRole('button', {name: /sign in/i});
         expect(loginBtn).toBeDisabled();
     });
 
     test('Button should be enabled', () => {
         const emailInput = screen.getByTestId('email');
         const passwordInput = screen.getByTestId('password');
-        const loginBtn = screen.getByTestId('singInBtn');
+        const loginBtn = screen.getByRole('button', {name: /sign in/i});
 
         userEvent.type(emailInput, 'joe@gmail.com');
         userEvent.type(passwordInput, '12345');
@@ -87,7 +87,7 @@ describe('Login', () => {
         })
         const emailInput = screen.getByTestId('email');
         const passwordInput = screen.getByTestId('password');
-        const loginBtn = screen.getByTestId('singInBtn');
+        const loginBtn = screen.getByRole('button', {name: /sign in/i});
 
         userEvent.type(emailInput, 'joe@gmail.com');
         userEvent.type(passwordInput, '12345');

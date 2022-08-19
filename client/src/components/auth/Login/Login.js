@@ -61,7 +61,7 @@ const Login = () => {
                 </h5>
                 <div className={styles['login-content']}>
                     <div className={styles['boat-wrap']}>
-                        <img src="/images/boat_login.png" alt="image.png" />
+                        <img src="/images/boat_login.png" alt="boat.png" />
                     </div>
                     <div className={styles['container-form']}>
                         <h2 className={styles['title-form']}>Sign in</h2>
@@ -79,7 +79,7 @@ const Login = () => {
                                     onBlur={emailInput.onBlur}
                                 />
                             </div>
-                            {emailInput.hasError && <p className={styles.error}>Please entry a valid email address</p>}
+                            {emailInput.hasError && <p className={styles.error}>Please entry a valid email address!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
                                 <input
@@ -93,11 +93,10 @@ const Login = () => {
                                     onBlur={passwordInput.onBlur}
                                 />
                             </div>
-                            {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character</p>}
+                            {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character!</p>}
                             <button
                                 disabled={!inputFieldsIsValid || isLoading}
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
-                                data-testid='singInBtn'
                             >Sign in
                                 {isLoading
                                     ? <Spinner size={'small'} />
