@@ -25,7 +25,7 @@ describe('Register', () => {
         userEvent.type(firstNameInput, '');
         userEvent.click(lastNameInput);
 
-        const error = screen.getByText('The first name should be at least 2 characters long');
+        const error = screen.getByText('The first name should be at least 2 characters long!');
         expect(error).toBeInTheDocument();
     });
 
@@ -36,7 +36,7 @@ describe('Register', () => {
         userEvent.type(firstNameInput, 'Joe');
         userEvent.click(lastNameInput);
 
-        const error = screen.queryByText('The first name should be at least 2 characters long');
+        const error = screen.queryByText('The first name should be at least 2 characters long!');
         expect(error).not.toBeInTheDocument();
     });
 
@@ -47,7 +47,7 @@ describe('Register', () => {
         userEvent.type(lastNameInput, '');
         userEvent.click(emailInput);
 
-        const error = screen.getByText('The last name should be at least 2 characters long');
+        const error = screen.getByText('The last name should be at least 2 characters long!');
         expect(error).toBeInTheDocument();
     });
 
@@ -58,7 +58,7 @@ describe('Register', () => {
         userEvent.type(lastNameInput, 'Doe');
         userEvent.click(emailInput);
 
-        const error = screen.queryByText('The last name should be at least 2 characters long');
+        const error = screen.queryByText('The last name should be at least 2 characters long!');
         expect(error).not.toBeInTheDocument();
     });
 
@@ -69,7 +69,7 @@ describe('Register', () => {
         userEvent.type(emailInput, 'joe');
         userEvent.click(passwordInput);
 
-        const error = screen.getByText('Please entry a valid email address');
+        const error = screen.getByText('Please entry a valid email address!');
         expect(error).toBeInTheDocument();
     });
 
@@ -80,7 +80,7 @@ describe('Register', () => {
         userEvent.type(emailInput, 'joe@gmail.com');
         userEvent.click(passwordInput);
 
-        const error = screen.queryByText('Please entry a valid email address');
+        const error = screen.queryByText('Please entry a valid email address!');
         expect(error).not.toBeInTheDocument();
     });
     test('Should show phone error', () => {
@@ -90,7 +90,7 @@ describe('Register', () => {
         userEvent.type(phoneInput, '+1231');
         userEvent.click(passwordInput);
 
-        const error = screen.getByText('Please entry a valid phone number');
+        const error = screen.getByText('Please entry a valid phone number!');
         expect(error).toBeInTheDocument();
     });
 
@@ -101,7 +101,7 @@ describe('Register', () => {
         userEvent.type(phoneInput, '+12345678910');
         userEvent.click(passwordInput);
 
-        const error = screen.queryByText('Please entry a valid phone number');
+        const error = screen.queryByText('Please entry a valid phone number!');
         expect(error).not.toBeInTheDocument();
     });
 
@@ -112,7 +112,7 @@ describe('Register', () => {
         userEvent.type(passwordInput, '123');
         userEvent.click(emailInput);
 
-        const error = screen.getByText('Password should be at last 5 character');
+        const error = screen.getByText('Password should be at last 5 character!');
         expect(error).toBeInTheDocument();
     });
 
@@ -123,12 +123,12 @@ describe('Register', () => {
         userEvent.type(passwordInput, '12345');
         userEvent.click(emailInput);
 
-        const error = screen.queryByText('Password should be at last 5 character');
+        const error = screen.queryByText('Password should be at last 5 character!');
         expect(error).not.toBeInTheDocument();
     });
 
     test('Button should be disabled', () => {
-        const registerBtn = screen.getByTestId('singUpBtn');
+        const registerBtn = screen.getByRole('button', {name: /sign up/i});
         expect(registerBtn).toBeDisabled();
     });
 
@@ -140,7 +140,7 @@ describe('Register', () => {
         const passwordInput = screen.getByTestId('password');
         const repeatPasswordInput = screen.getByTestId('repeatPassword');
 
-        const registerBtn = screen.getByTestId('singUpBtn');
+        const registerBtn = screen.getByRole('button', {name: /sign up/i});
 
         userEvent.type(firstNameInput, 'Joe');
         userEvent.type(lastNameInput, 'Doe');
@@ -166,7 +166,7 @@ describe('Register', () => {
         const passwordInput = screen.getByTestId('password');
         const repeatPasswordInput = screen.getByTestId('repeatPassword');
 
-        const registerBtn = screen.getByTestId('singUpBtn');
+        const registerBtn = screen.getByRole('button', {name: /sign up/i});
 
         userEvent.type(firstNameInput, 'Joe');
         userEvent.type(lastNameInput, 'Doe');

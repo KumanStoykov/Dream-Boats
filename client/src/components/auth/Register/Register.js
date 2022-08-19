@@ -77,7 +77,7 @@ const Register = () => {
                 </h5>
                 <div className={styles['register-content']}>
                     <div className={styles['boat-wrap']}>
-                        <img src='/images/boat_register.png' alt='image.png' />
+                        <img src='/images/boat_register.png' alt='boat.png' />
                     </div>
                     <div className={styles['container-form']}>
                         <h2 className={styles['title-form']}>Sign in</h2>
@@ -95,7 +95,7 @@ const Register = () => {
                                     onChange={firstNameInput.onChange}
                                     onBlur={firstNameInput.onBlur}
                                 />
-                                {firstNameInput.hasError && <p className={styles.error}>The first name should be at least 2 characters long</p>}
+                                {firstNameInput.hasError && <p className={styles.error}>The first name should be at least 2 characters long!</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='lastName'>Last Name</label>
@@ -109,7 +109,7 @@ const Register = () => {
                                     onChange={lastNameInput.onChange}
                                     onBlur={lastNameInput.onBlur}
                                 />
-                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long</p>}
+                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long!</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='email'>Email</label>
@@ -123,7 +123,7 @@ const Register = () => {
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
                                 />
-                                {emailInput.hasError && <p className={styles.error}>Please entry a valid email address</p>}
+                                {emailInput.hasError && <p className={styles.error}>Please entry a valid email address!</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='phone'>Phone</label>
@@ -137,7 +137,7 @@ const Register = () => {
                                     onChange={phoneInput.onChange}
                                     onBlur={phoneInput.onBlur}
                                 />
-                                {phoneInput.hasError && <p className={styles.error}>Please entry a valid phone number</p>}
+                                {phoneInput.hasError && <p className={styles.error}>Please entry a valid phone number!</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
@@ -151,7 +151,7 @@ const Register = () => {
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
                                 />
-                                {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character</p>}
+                                {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character!</p>}
                             </div>
                             <div className={styles.field}>
                                 <label htmlFor='repeatPassword'>Re-password</label>
@@ -165,12 +165,11 @@ const Register = () => {
                                     onChange={repeatPasswordInput.onChange}
                                     onBlur={repeatPasswordInput.onBlur}
                                 />
-                                {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password</p>}
+                                {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password!</p>}
                             </div>
                             <button
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                                 disabled={!inputFieldsIsValid || isLoading}
-                                data-testid='singUpBtn'
                             >Sign up
                                 {isLoading
                                     ? <Spinner size={'small'} />
