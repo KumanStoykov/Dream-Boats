@@ -36,11 +36,11 @@ const BoatForm = () => {
             requester(boatService.getOneById(boatId), responseEdit);
         }
 
-    }, [dispatch, isEdit]);
+    }, [dispatch, requester, isEdit]);
 
 
-    const makeInput = useInput(boatValidation.isLengthThreeCh);
-    const modelInput = useInput(boatValidation.isLengthThreeCh);
+    const makeInput = useInput(boatValidation.isLengthTwoCh);
+    const modelInput = useInput(boatValidation.isLengthTwoCh);
     const typeInput = useInput(boatValidation.isEmpty);
     const conditionInput = useInput(boatValidation.isEmpty);
     const boatLengthInput = useInput(boatValidation.isEmpty);
@@ -187,13 +187,13 @@ const BoatForm = () => {
                                         type='text'
                                         id='make'
                                         name='make'
+                                        data-testid='make'
                                         className={`${styles['input-field']} ${makeInput.hasError && 'error-input-field'}`}
-                                        placeholder='Polygon, Manitou....'
                                         value={makeInput.value}
                                         onChange={makeInput.onChange}
                                         onBlur={makeInput.onBlur}
                                     />
-                                    {makeInput.hasError && <p className={styles.error}>The make should be at least 3 characters long</p>}
+                                    {makeInput.hasError && <p className={styles.error}>Make should be at least 2 characters long!</p>}
 
                                 </div>
                                 <div className={styles.field}>
@@ -202,20 +202,21 @@ const BoatForm = () => {
                                         type='text'
                                         id='model'
                                         name='model'
+                                        data-testid='model'
                                         className={`${styles['input-field']} ${modelInput.hasError && 'error-input-field'}`}
-                                        placeholder='T150, Across...'
                                         value={modelInput.value}
                                         onChange={modelInput.onChange}
                                         onBlur={modelInput.onBlur}
                                     />
-                                    {modelInput.hasError && <p className={styles.error}>The make should be at least 3 characters long</p>}
+                                    {modelInput.hasError && <p className={styles.error}>Model should be at least 2 characters long!</p>}
 
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='type'>Type</label>
                                     <select
-                                        name='type'
                                         id='type'
+                                        name='type'
+                                        data-testid='type'
                                         value={typeInput.value}
                                         className={`${styles['options']} ${typeInput.hasError && 'error-input-field'}`}
                                         onChange={typeInput.onChange}
@@ -226,7 +227,7 @@ const BoatForm = () => {
                                         <option value='sailboat'>Sailboat</option>
                                         <option value='motorboat'>Motorboat</option>
                                     </select>
-                                    {typeInput.hasError && <p className={styles.error}>A type is required, this field can't be empty</p>}
+                                    {typeInput.hasError && <p className={styles.error}>Type is required, this field can't be empty!</p>}
                                 </div>
                             </div>
 
@@ -234,8 +235,9 @@ const BoatForm = () => {
                                 <div className={styles.field}>
                                     <label htmlFor='condition'>Condition</label>
                                     <select
-                                        name='condition'
                                         id='condition'
+                                        name='condition'
+                                        data-testid='condition'
                                         className={`${styles['options']} ${conditionInput.hasError && 'error-input-field'}`}
                                         value={conditionInput.value}
                                         onChange={conditionInput.onChange}
@@ -245,45 +247,46 @@ const BoatForm = () => {
                                         <option value='old'>Old</option>
                                         <option value='new'>New</option>
                                     </select>
-                                    {conditionInput.hasError && <p className={styles.error}>A condition is required, this field can't be empty</p>}
+                                    {conditionInput.hasError && <p className={styles.error}>Condition is required, this field can't be empty!</p>}
 
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='boatLength'>Length</label>
                                     <input
                                         type='Number'
-                                        name='boatLength'
                                         id='boatLength'
+                                        name='boatLength'
+                                        data-testid='boatLength'
                                         className={`${styles['input-field']} ${boatLengthInput.hasError && 'error-input-field'}`}
-                                        placeholder='boatLength'
                                         value={boatLengthInput.value}
                                         onChange={boatLengthInput.onChange}
                                         onBlur={boatLengthInput.onBlur}
 
                                     />
-                                    {boatLengthInput.hasError && <p className={styles.error}>A length is required, this field can't be empty</p>}
+                                    {boatLengthInput.hasError && <p className={styles.error}>Length is required, this field can't be empty!</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='year'>Year</label>
                                     <input
                                         type='Number'
-                                        name='year'
                                         id='year'
+                                        name='year'
+                                        data-testid='year'
                                         className={`${styles['input-field']} ${yearInput.hasError && 'error-input-field'}`}
-                                        placeholder='Year'
                                         value={yearInput.value}
                                         onChange={yearInput.onChange}
                                         onBlur={yearInput.onBlur}
                                     />
-                                    {yearInput.hasError && <p className={styles.error}>The year should be between 1960 and 2022</p>}
+                                    {yearInput.hasError && <p className={styles.error}>Year should be between 1960 and 2022!</p>}
                                 </div>
                             </div>
                             <div className={styles['input-group-wrap']}>
                                 <div className={styles.field}>
                                     <label htmlFor='fuel'>Fuel</label>
                                     <select
-                                        name='fuel'
                                         id='fuel'
+                                        name='fuel'
+                                        data-testid='fuel'
                                         className={`${styles['options']} ${fuelInput.hasError && 'error-input-field'}`}
                                         value={fuelInput.value}
                                         onChange={fuelInput.onChange}
@@ -293,35 +296,35 @@ const BoatForm = () => {
                                         <option value='petrol'>Petrol</option>
                                         <option value='diesel'>Diesel</option>
                                     </select>
-                                    {fuelInput.hasError && <p className={styles.error}>A fuel is required, this field can't be empty</p>}
+                                    {fuelInput.hasError && <p className={styles.error}>Fuel is required, this field can't be empty!</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='location'>Location</label>
                                     <input
                                         type='text'
-                                        name='location'
                                         id='location'
+                                        name='location'
+                                        data-testid='location'
                                         className={`${styles['input-field']} ${locationInput.hasError && 'error-input-field'}`}
-                                        placeholder='Italy, Netherland...'
                                         value={locationInput.value}
                                         onChange={locationInput.onChange}
                                         onBlur={locationInput.onBlur}
                                     />
-                                    {locationInput.hasError && <p className={styles.error}>The location should be at least 2 characters long</p>}
+                                    {locationInput.hasError && <p className={styles.error}>Location should be at least 2 characters long!</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='engineMake'>Engine Make</label>
                                     <input
                                         type='text'
-                                        name='engineMake'
                                         id='engineMake'
+                                        name='engineMake'
+                                        data-testid='engineMake'
                                         className={`${styles['input-field']} ${engineMakeInput.hasError && 'error-input-field'}`}
-                                        placeholder='Volvo, Mercedes...'
                                         value={engineMakeInput.value}
                                         onChange={engineMakeInput.onChange}
                                         onBlur={engineMakeInput.onBlur}
                                     />
-                                    {engineMakeInput.hasError && <p className={styles.error}>The engineMake should be at least 3 characters long</p>}
+                                    {engineMakeInput.hasError && <p className={styles.error}>Engine Make should be at least 3 characters long!</p>}
                                 </div>
                             </div>
                             <div className={styles['input-group-wrap']}>
@@ -329,46 +332,47 @@ const BoatForm = () => {
                                     <label htmlFor='hullMaterial'>Hull Material</label>
                                     <input
                                         type='text'
-                                        name='hullMaterial'
                                         id='hullMaterial'
+                                        name='hullMaterial'
+                                        data-testid='hullMaterial'
                                         className={`${styles['input-field']} ${hullMaterialInput.hasError && 'error-input-field'}`}
-                                        placeholder='Polyester...'
                                         value={hullMaterialInput.value}
                                         onChange={hullMaterialInput.onChange}
                                         onBlur={hullMaterialInput.onBlur}
                                     />
-                                    {hullMaterialInput.hasError && <p className={styles.error}>The hullMaterial should be at least 2 characters long</p>}
+                                    {hullMaterialInput.hasError && <p className={styles.error}>Hull Material should be at least 2 characters long!</p>}
                                 </div>
                                 <div className={styles.field}>
                                     <label htmlFor='price'>Price</label>
                                     <input
                                         min={0}
                                         type='number'
-                                        name='price'
                                         id='price'
+                                        name='price'
+                                        data-testid='price'
                                         className={`${styles['input-field']} ${priceInput.hasError && 'error-input-field'}`}
-                                        placeholder='30,000$'
                                         value={priceInput.value}
                                         onChange={priceInput.onChange}
                                         onBlur={priceInput.onBlur}
                                     />
-                                    {priceInput.hasError && <p className={styles.error}>A price is required, this field can't be empty</p>}
+                                    {priceInput.hasError && <p className={styles.error}>Price is required, this field can't be empty!</p>}
                                 </div>
 
                                 <div className={`${styles.field} ${styles.image}`}>
                                     <label htmlFor='image'>Image</label>
                                     <input
                                         type='file'
-                                        name='image'
-                                        className={`${styles['input-field']}  ${styles['file-btn']}`}
                                         id='image'
+                                        name='image'
+                                        data-testid='image'
+                                        className={`${styles['input-field']}  ${styles['file-btn']}`}
                                         multiple
                                         onChange={fileHandler}
                                     />
                                     {!isEdit
                                         && inputFieldsIsValid
                                         && !imageImageFieldIsValid
-                                        && <p className={styles.error}>A value is required, this field can't be empty</p>
+                                        && <p className={styles.error}>Image is required, this field can't be empty!</p>
                                     }
                                 </div>
                             </div>
@@ -378,15 +382,15 @@ const BoatForm = () => {
                                 <textarea
                                     cols={10}
                                     rows={5}
-                                    name='description'
-                                    className={`${styles['input-field']} ${styles['textarea']} ${descriptionInput.hasError && 'error-input-field'}`}
                                     id='description'
-                                    placeholder='Description'
+                                    name='description'
+                                    data-testid='description'
+                                    className={`${styles['input-field']} ${styles['textarea']} ${descriptionInput.hasError && 'error-input-field'}`}
                                     value={descriptionInput.value}
                                     onChange={descriptionInput.onChange}
                                     onBlur={descriptionInput.onBlur}
                                 />
-                                {descriptionInput.hasError && <p className={styles.error}>The description should be at least 20 characters long</p>}
+                                {descriptionInput.hasError && <p className={styles.error}>Description should be at least 20 characters long!</p>}
                             </div>
 
                             <button
