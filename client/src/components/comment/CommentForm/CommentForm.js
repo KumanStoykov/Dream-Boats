@@ -103,6 +103,7 @@ const CommentForm = ({ setIsEdit }) => {
                         id='rating-five'
                         name='rating'
                         value={'5'}
+                        data-testid='rating'
                         defaultChecked={formIsEdit ? comment.rating === 5 : ''}
                     />
                     <label htmlFor='rating-five' />
@@ -138,7 +139,7 @@ const CommentForm = ({ setIsEdit }) => {
                         defaultChecked={formIsEdit ? comment.rating === 1 : ''}
                     />
                     <label htmlFor='rating-one'></label>
-                    {ratingError && <p className={styles['rating-error']}>Rating is required</p>}
+                    {ratingError && <p className={styles['rating-error']}>Rating is required!</p>}
                 </div>
                 <div>
                     <label htmlFor='name' className={styles.name}>Name:</label>
@@ -146,23 +147,25 @@ const CommentForm = ({ setIsEdit }) => {
                         type='text'
                         id='name'
                         name='name'
+                        data-testid='name'
                         className={styles['name-input']}
                         value={nameInput.value}
                         onChange={nameInput.onChange}
                         onBlur={nameInput.onBlur}
                     />
-                    {nameInput.hasError && <p className={styles.error}>The name should be at least 2 characters long</p>}
+                    {nameInput.hasError && <p className={styles.error}>The name should be at least 2 characters long!</p>}
                 </div>
                 <textarea
                     className={styles['post-input']}
                     cols={8}
                     rows={3}
-                    name={'comment'}
+                    name='comment'
+                    data-testid='comment'
                     value={commentInput.value}
                     onChange={commentInput.onChange}
                     onBlur={commentInput.onBlur}
                 />
-                {commentInput.hasError && <p className={styles.error}>The comment should be at least 10 characters long</p>}
+                {commentInput.hasError && <p className={styles.error}>The comment should be at least 10 characters long!</p>}
 
                 <button
                     className={`${!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'} ${styles['btn-post']}`}
