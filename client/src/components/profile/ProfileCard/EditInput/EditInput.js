@@ -1,6 +1,7 @@
 import styles from './EditInput.module.css';
 
 const EditInput = ({
+    id,
     nameInput,
     valueInput,
     onChangeInput,
@@ -13,6 +14,7 @@ const EditInput = ({
     return (
         <>
             <input
+                id={id}
                 type='text'
                 className={`${styles['user-edit-input']} ${hasErrorInput && 'error-input-field'}`}
                 name={nameInput}

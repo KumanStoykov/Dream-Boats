@@ -9,7 +9,7 @@ import userService from '../../../services/userService';
 import userValidation from '../../../validation/userValidation';
 
 import EditInput from './EditInput/EditInput';
-import EditForm from './EditForm';
+import EditForm from './EditForm/EditForm';
 import Spinner from '../../ui/Spinner/Spinner';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -101,7 +101,7 @@ const ProfileCard = () => {
                     >
                         <div className={styles['btn-wrap']}>
                             {!isEdit && <button type='button' onClick={editHandler} className={` ${styles['btn-icon']}`}>
-                                <span className={styles['icon-user']}><FontAwesomeIcon icon={faUserPen} /></span>
+                                <span className={styles['icon-user']}><FontAwesomeIcon icon={faUserPen} title='faUserPen' /></span>
                             </button>
 
                             }
@@ -115,31 +115,43 @@ const ProfileCard = () => {
                             <h3 className={styles['section-title']}>Profile</h3>
                             <div className={styles['info-data']}>
                                 <div className={styles.data}>
-                                    <h4 className={styles['title-data']}>First name:</h4>
+                                    <label htmlFor='firstName' className={styles['title-data']}>First name:</label>
                                     {isEdit
                                         ? <EditInput
+                                            id={'firstName'}
                                             nameInput={'firstName'}
                                             valueInput={firstNameInput.value}
                                             onChangeInput={firstNameInput.onChange}
                                             onBlurInput={firstNameInput.onBlur}
                                             hasErrorInput={firstNameInput.hasError}
-                                            errorMessage={'The first name should be at least 2 characters long'}
+                                            errorMessage={'First name should be at least 2 characters long!'}
                                         />
-                                        : <p className={styles['paragraph-user']}>{user.firstName}</p>
+                                        : <p
+                                            className={styles['paragraph-user']}
+                                            data-testid='firstName'
+                                        >
+                                            {user.firstName}
+                                        </p>
                                     }
                                 </div>
                                 <div className={styles.data}>
-                                    <h4 className={styles['title-data']}>Last name:</h4>
+                                    <label htmlFor='lastName' className={styles['title-data']}>Last name:</label>
                                     {isEdit
                                         ? <EditInput
+                                            id={'lastName'}
                                             nameInput={'lastName'}
                                             valueInput={lastNameInput.value}
                                             onChangeInput={lastNameInput.onChange}
                                             onBlurInput={lastNameInput.onBlur}
                                             hasErrorInput={lastNameInput.hasError}
-                                            errorMessage={'The last name should be at least 2 characters long'}
+                                            errorMessage={'Last name should be at least 2 characters long!'}
                                         />
-                                        : <p className={styles['paragraph-user']}>{user.lastName}</p>
+                                        : <p
+                                            className={styles['paragraph-user']}
+                                            data-testid='lastName'
+                                        >
+                                            {user.lastName}
+                                        </p>
                                     }
                                 </div>
                             </div>
@@ -148,31 +160,43 @@ const ProfileCard = () => {
                             <h3 className={styles['section-title']}>Contacts</h3>
                             <div className={styles['user-data']}>
                                 <div className={styles.data}>
-                                    <h4 className={styles['title-data']}>Email:</h4>
+                                    <label htmlFor='email' className={styles['title-data']}>Email:</label>
                                     {isEdit
                                         ? <EditInput
+                                            id={'email'}
                                             nameInput={'email'}
                                             valueInput={emailInput.value}
                                             onChangeInput={emailInput.onChange}
                                             onBlurInput={emailInput.onBlur}
                                             hasErrorInput={emailInput.hasError}
-                                            errorMessage={'Email address is invalid'}
+                                            errorMessage={'Email address is invalid!'}
                                         />
-                                        : <p className={styles['paragraph-user']}>{user.email}</p>
+                                        : <p
+                                            className={styles['paragraph-user']}
+                                            data-testid='email'
+                                        >
+                                            {user.email}
+                                        </p>
                                     }
                                 </div>
                                 <div className={styles.data}>
-                                    <h4 className={styles['title-data']}>Phone:</h4>
+                                    <label htmlFor='phone' className={styles['title-data']}>Phone:</label>
                                     {isEdit
                                         ? <EditInput
+                                            id={'phone'}
                                             nameInput={'phone'}
                                             valueInput={phoneInput.value}
                                             onChangeInput={phoneInput.onChange}
                                             onBlurInput={phoneInput.onBlur}
                                             hasErrorInput={phoneInput.hasError}
-                                            errorMessage={'Phone number is invalid'}
+                                            errorMessage={'Phone number is invalid!'}
                                         />
-                                        : <p className={styles['paragraph-user']}>{user.phone}</p>
+                                        : <p
+                                            className={styles['paragraph-user']}
+                                            data-testid='phone'
+                                        >
+                                            {user.phone}
+                                        </p>
                                     }
                                 </div>
                             </div>

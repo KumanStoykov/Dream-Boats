@@ -60,6 +60,7 @@
 
 .right .info-data .data .title-data,
 .right .user-data .data .title-data {
+    display: block;
     color: #353c4e;
     margin-bottom: 5px;
 }
@@ -159,7 +160,7 @@
         justify-content: end;
     }
 
-    .btn-user-card { 
+    .btn-user-card {
         margin: 0;
     }
     .btn-user-card-edit {
