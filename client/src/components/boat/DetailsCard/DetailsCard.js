@@ -63,8 +63,8 @@ const DetailsCard = ({ boat }) => {
                     className={styles['boat-watched']}
                 >
                     {hasWatched
-                        ? <FontAwesomeIcon icon={faBookmarkRegular} />
-                        : <FontAwesomeIcon icon={faBookmark} />
+                        ? <FontAwesomeIcon icon={faBookmark} />
+                        : <FontAwesomeIcon icon={faBookmarkRegular} />
                     }
                 </button>
 
