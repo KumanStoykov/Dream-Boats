@@ -1,0 +1,113 @@
+.post-container {
+    padding: 1.5em;
+    width: 60%;
+}
+.item-container {
+    margin-bottom: 8px;
+    border-bottom: 2px solid #fff;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+}
+.post-main {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    color: var(--blue-solid);
+    font-family: 'Courgette', cursive;
+    font-size: 2rem;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-left: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.post-time {
+    margin-left: 5px;
+    font-size: 1rem;
+    color: #f8d49a;
+}
+.rating-container {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.star {
+    border: none;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.active-star {
+    color: var(--rating-color);
+}
+
+.post-secondary {
+    margin: 8px 8px;
+}
+
+.post-body {
+    color: #f7e6ca;
+}
+
+.errorText {
+    color: red;
+    letter-spacing: 2px;
+}
+
+.btn-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-icon {
+    background-color: inherit;
+    border: none;
+    margin-top: 1rem;
+}
+
+.btn-icon:nth-child(2) {
+    margin-left: 2rem;
+}
+
+.icon-message {
+    font-size: 1.5rem;
+    color: var(--blue-solid);
+    transition: all 500ms;
+}
+.icon-message:hover {
+    opacity: 0.8;
+}
+
+@media all and (min-width: 768px) {
+    .form-container {
+        width: 40rem;
+    }
+
+    .post-main {
+        flex-direction: row;
+    }
+    .btn-post {
+        width: 40%;
+    }
+
+    .post-title {
+        font-size: 1.75rem;
+    }
+
+    .post-time {
+        margin-left: 5px;
+        font-size: 1.2rem;
+    }
+
+    .btn-wrap {
+        justify-content: end;
+    }
+    .icon-message {
+        font-size: 2rem;
+    }
+}
