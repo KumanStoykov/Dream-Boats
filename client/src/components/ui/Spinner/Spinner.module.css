@@ -77,6 +77,29 @@
     margin: 0 4px;
 }
 
+.boat-hero-catalog {
+    width: 100%;
+    margin: 10vh auto;
+}
+
+.circle-boat-hero-catalog {
+    background-color: var(--blue-solid);
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 4px;
+}
+.boat-hero-details {
+    width: 100%;
+    margin: 4vh auto;
+}
+
+.circle-boat-hero-details {
+    background-color: var(--blue-solid);
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 4px;
+}
+
 @keyframes animate {
     0%,
     100% {
