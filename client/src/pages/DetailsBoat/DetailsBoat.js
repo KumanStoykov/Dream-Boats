@@ -17,8 +17,10 @@ import styles from '../../components/boat/DetailsCard/DetailsCard.module.css';
 const DetailsBoat = () => {
     const { boatId } = useParams();
     const dispatch = useDispatch();
-    const boat = useSelector(state => state.allBoats.boat);
     const { isLoading, requester } = useFetch();
+    const boat = useSelector(state => state.allBoats.boat);
+    const appIsLoad = useSelector(state => state.app.appIsLoad);
+
 
     const responseData = useCallback((data) => {
         dispatch(boatStoreActions.addBoat(data));
@@ -39,8 +41,12 @@ const DetailsBoat = () => {
 
     return (
         <>
-        <BoatHero imgs={detailsHeroImages} size={'smaller'} />
-        <div className={styles.border}/>
+            {appIsLoad
+                ? <Spinner size={'boat-hero-details'} />
+                : <BoatHero imgs={detailsHeroImages} size={'smaller'} />
+            }
+
+            <div className={styles.border} />
             <section className={styles.details}>
                 <div className={styles['container-details']}>
                     {isLoading && <Spinner size={'large'} />}

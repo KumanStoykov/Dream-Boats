@@ -22,9 +22,10 @@ const BoatsCatalog = () => {
     const { search } = useLocation();
     const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
+    const { isLoading, requester } = useFetch();
     const boats = useSelector(state => state.allBoats.boats);
     const boatsCount = useSelector(state => state.allBoats.boatsCount);
-    const { isLoading, requester } = useFetch();
+    const appIsLoad = useSelector(state => state.app.appIsLoad);
 
 
     const isSearch = ['type', 'fuel', 'price'].some(x => search.includes(x));
@@ -52,7 +53,10 @@ const BoatsCatalog = () => {
 
     return (
         <>
-            <BoatHero imgs={catalogHeroImages} size={'bigger'} />
+            {appIsLoad
+                ? <Spinner size={'boat-hero-catalog'} />
+                : <BoatHero imgs={catalogHeroImages} size={'bigger'} />
+            }
             <Search />
             <section className='section-container'>
                 {isLoading && <Spinner size={'large'} />}
