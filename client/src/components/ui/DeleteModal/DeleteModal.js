@@ -12,8 +12,6 @@ import { watchStoreActions } from '../../../store/watchStore';
 import userService from '../../../services/userService';
 import boatService from '../../../services/boatService';
 
-import Modal from '../Modal/Modal';
-
 import styles from './DeleteModal.module.css';
 import Spinner from '../Spinner/Spinner';
 
@@ -66,21 +64,20 @@ const DeleteModal = () => {
             {isLoading
                 ? <Spinner size={'large'} />
 
-                : <Modal>
-                    <div className={styles.modal} >
-                        <FontAwesomeIcon className={styles['icon-modal']} icon={faTrash} />
-                        <p className={styles['p-modal']}>{modalState.message}</p>
-                        <div className={styles['btn-group']}>
-                            <button
-                                onClick={deleteHandler}
-                                disabled={isLoading}
-                                className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
-                            >Yes, delete it!
-                            </button>
-                            <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
-                        </div>
+                : <div className={styles.modal} >
+                    <FontAwesomeIcon className={styles['icon-modal']} icon={faTrash} />
+                    <p className={styles['p-modal']}>{modalState.message}</p>
+                    <div className={styles['btn-group']}>
+                        <button
+                            onClick={deleteHandler}
+                            disabled={isLoading}
+                            className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
+                        >Yes, delete it!
+                        </button>
+                        <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
                     </div>
-                </Modal>}
+                </div>
+            }
         </div>
     );
 };
