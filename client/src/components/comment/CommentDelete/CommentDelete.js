@@ -28,21 +28,25 @@ const CommentDelete = ({ openDeleteHandler, comment }) => {
     }
 
     return (
-        <> 
+        <>
             {isLoading && <Spinner size={'comment-size'} />}
             {!isLoading
                 && <article>
-                        <p className={styles['modal-p']}>You are sure?</p>
-                        <div className={styles['btn-group']}>
-                            <button
-                                onClick={deleteHandler}
-                                disabled={isLoading}
-                                className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
-                            >Delete
-                            </button>
-                            <button onClick={closeHandler} className={`${styles['btn-modal']}`}>Cancel</button>
-                        </div>
-                    </article>}
+                    <p className={styles['modal-p']}>You are sure?</p>
+                    <div className={styles['btn-group']}>
+                        <button
+                            onClick={deleteHandler}
+                            disabled={isLoading}
+                            className={`${styles['btn-modal']} ${styles['btn-modal-delete']}`}
+                        >Delete
+                        </button>
+                        <button
+                            onClick={closeHandler}
+                            className={`${styles['btn-modal']}`}
+                        >Cancel
+                        </button>
+                    </div>
+                </article>}
         </>
     );
 };
