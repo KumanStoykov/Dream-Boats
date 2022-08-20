@@ -5,8 +5,8 @@ import { modalStoreActions } from '../../../store/modalStore';
 import { watchStoreActions } from '../../../store/watchStore';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmarkSquare, faPenSquare, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { faBookmark } from '@fortawesome/free-regular-svg-icons'
+import { faXmarkSquare, faPenSquare, faEnvelope, faCheck, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as faBookmarkRegular } from '@fortawesome/free-regular-svg-icons'
 
 import Slideshow from '../../ui/Slider/Slider';
 
@@ -58,7 +58,15 @@ const DetailsCard = ({ boat }) => {
 
             <div className={styles['boat-content']}>
                 <h2 className={styles['boat-title']}>{boat.make}</h2>
-                <button onClick={watchedHandler} className={hasWatched ? styles['boat-has-watched'] : styles['boat-watched']}><FontAwesomeIcon icon={faBookmark} /></button>
+                <button
+                    onClick={watchedHandler}
+                    className={styles['boat-watched']}
+                >
+                    {hasWatched
+                        ? <FontAwesomeIcon icon={faBookmarkRegular} />
+                        : <FontAwesomeIcon icon={faBookmark} />
+                    }
+                </button>
 
                 <div className={styles['boat-price']}>
                     <p className={styles['new-price']}>Price: <span>${boat.price.toLocaleString()}</span></p>

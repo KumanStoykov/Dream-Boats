@@ -69,33 +69,12 @@
     color: #d2cece;
     padding: 0 0.3rem;
     transition: all 0.5s ease;
-}
-
-.boat-has-watched {
-    color: #d2cece;
-    background-color: inherit;
-    border: none;
-    font-size: 2.5rem;
-    position: absolute;
-    right: 0;
-    margin-right: 1rem;
-    padding: 0 0.3rem;
-    transition: all 0.5s ease;
-}
-
-.boat-has-watched::after {
-    content: '\\';
-    font-size: 5rem;
-    position: absolute;
-    top: -1.5rem;
-    left: 6px;
-    transform: rotate(-25deg);
+    color: rgb(47, 196, 196);
 }
 
 .boat-watched:hover,
 .boat-has-watched:hover {
-    color: rgb(47, 196, 196);
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .boat-price {
