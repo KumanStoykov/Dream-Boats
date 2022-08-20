@@ -30,6 +30,10 @@ const Slideshow = ({ thumbnail, imgs }) => {
         }
     };
 
+    const setImageIndexHandler = (index) => {
+        setIndex(index);
+    };
+
     return (
         <div className={styles.slideshow}>
             <img className={styles.mainImg} src={imgs[index]} alt='boat.png' />
@@ -40,7 +44,7 @@ const Slideshow = ({ thumbnail, imgs }) => {
             {thumbnail
                 && <Thumbnail
                     arr={imgs}
-                    image={setIndex}
+                    setImageIndexHandler={setImageIndexHandler}
                     index={index}
                 />
             }
