@@ -8,7 +8,6 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import CommentForm from '../CommentForm/CommentForm';
 import CommentDelete from '../CommentDelete/CommentDelete';
-import Spinner from '../../ui/Spinner/Spinner';
 
 import { dateFormate } from '../../../utils/dateFormatUtil';
 
@@ -28,6 +27,7 @@ const CommentMessages = ({ comment }) => {
 
     const editHandler = () => {
         setIsEdit(state => !state);
+        dispatch(commentStoreActions.addComment({ comment }));
         dispatch(commentStoreActions.setForm(false));
         dispatch(commentStoreActions.setEditForm(true));
     };
