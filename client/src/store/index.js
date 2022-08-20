@@ -11,6 +11,7 @@ import {
     REGISTER,
 } from 'redux-persist';
 
+import appInitialStore from './appInitialStore';
 import authStore from './authStore';
 import boatStore from './boatStore';
 import modalStore from './modalStore';
@@ -24,6 +25,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+    app: appInitialStore,
     auth: authStore,
     allBoats: boatStore,
     modal: modalStore,

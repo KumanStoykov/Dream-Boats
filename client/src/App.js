@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile';
 
 import useFetch from './hooks/useFetch';
 import userService from './services/userService';
+import { appInitialStoreActions } from './store/appInitialStore';
 import { authStoreActions } from './store/authStore';
 
 import UserProfileGuard from './components/common/UserProfileGuard';
@@ -33,7 +34,7 @@ function App() {
 
 	const responseData = useCallback((data) => {
 		dispatch(authStoreActions.login(data));
-		dispatch(authStoreActions.loadUser());
+		dispatch(appInitialStoreActions.setAppIsLoad());
 	}, [dispatch]);
 
 
