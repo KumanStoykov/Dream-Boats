@@ -39,7 +39,7 @@ function App() {
 
 	useEffect(() => {
 		requester(userService.checkUser(), responseData);
-	}, [dispatch, requester]);
+	}, [dispatch, requester, responseData]);
 
 	return (
 		<Routes>
