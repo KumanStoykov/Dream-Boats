@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import { authStoreActions } from '../../../store/authStore';
 import useFetch from '../../../hooks/useFetch';
@@ -19,6 +21,9 @@ const Register = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
 
 
     const firstNameInput = useInput(userValidation.nameIsLength);
@@ -69,6 +74,14 @@ const Register = () => {
         }
     };
 
+    const showPasswordHandler = () => {
+        setShowPassword(state => !state);
+    };
+
+    const showRepeatPasswordHandler = () => {
+        setShowRepeatPassword(state => !state);
+    };
+
     return (
         <section className={styles.register}>
             <div className={'container'}>
@@ -95,8 +108,8 @@ const Register = () => {
                                     onChange={firstNameInput.onChange}
                                     onBlur={firstNameInput.onBlur}
                                 />
-                                {firstNameInput.hasError && <p className={styles.error}>The first name should be at least 2 characters long!</p>}
                             </div>
+                            {firstNameInput.hasError && <p className={styles.error}>The first name should be at least 2 characters long!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='lastName'>Last Name</label>
                                 <input
@@ -109,8 +122,8 @@ const Register = () => {
                                     onChange={lastNameInput.onChange}
                                     onBlur={lastNameInput.onBlur}
                                 />
-                                {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long!</p>}
                             </div>
+                            {lastNameInput.hasError && <p className={styles.error}>The last name should be at least 2 characters long!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='email'>Email</label>
                                 <input
@@ -123,8 +136,8 @@ const Register = () => {
                                     onChange={emailInput.onChange}
                                     onBlur={emailInput.onBlur}
                                 />
-                                {emailInput.hasError && <p className={styles.error}>Please entry a valid email address!</p>}
                             </div>
+                            {emailInput.hasError && <p className={styles.error}>Please entry a valid email address!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='phone'>Phone</label>
                                 <input
@@ -137,12 +150,12 @@ const Register = () => {
                                     onChange={phoneInput.onChange}
                                     onBlur={phoneInput.onBlur}
                                 />
-                                {phoneInput.hasError && <p className={styles.error}>Please entry a valid phone number!</p>}
                             </div>
+                            {phoneInput.hasError && <p className={styles.error}>Please entry a valid phone number!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
                                 <input
-                                    type='password'
+                                    type={showPassword ? 'text' : 'password'}
                                     id='password'
                                     name='password'
                                     data-testid='password'
@@ -151,12 +164,18 @@ const Register = () => {
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
                                 />
-                                {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character!</p>}
+                                <span onClick={showPasswordHandler} className={styles['show-password']}>
+                                    {showPassword
+                                        ? <FontAwesomeIcon icon={faEyeSlash} />
+                                        : <FontAwesomeIcon icon={faEye} />
+                                    }
+                                </span>
                             </div>
+                            {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character!</p>}
                             <div className={styles.field}>
                                 <label htmlFor='repeatPassword'>Re-password</label>
                                 <input
-                                    type='password'
+                                    type={showRepeatPassword ? 'text' : 'password'}
                                     id='repeatPassword'
                                     name='repeatPassword'
                                     data-testid='repeatPassword'
@@ -165,8 +184,14 @@ const Register = () => {
                                     onChange={repeatPasswordInput.onChange}
                                     onBlur={repeatPasswordInput.onBlur}
                                 />
-                                {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password!</p>}
+                                <span onClick={showRepeatPasswordHandler} className={styles['show-password']}>
+                                    {showRepeatPassword
+                                        ? <FontAwesomeIcon icon={faEyeSlash} />
+                                        : <FontAwesomeIcon icon={faEye} />
+                                    }
+                                </span>
                             </div>
+                            {repeatPasswordInput.hasError && <p className={styles.error}>The repeat password should be equal to the password!</p>}
                             <button
                                 className={!inputFieldsIsValid || isLoading ? 'no-drop-btn' : 'btn-blue'}
                                 disabled={!inputFieldsIsValid || isLoading}

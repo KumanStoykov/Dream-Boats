@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import { authStoreActions } from '../../../store/authStore';
 import useFetch from '../../../hooks/useFetch';
@@ -18,6 +20,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
+    const [showPassword, setShowPassword] = useState(false);
 
 
     const emailInput = useInput(userValidation.emailIsValid);
@@ -51,7 +54,11 @@ const Login = () => {
         } else {
             passwordInput.fieldReset()
         }
-    }
+    };
+
+    const showPasswordHandler = () => {
+        setShowPassword(state => !state);
+    };
 
     return (
         <section className={styles.login}>
@@ -61,7 +68,7 @@ const Login = () => {
                 </h5>
                 <div className={styles['login-content']}>
                     <div className={styles['boat-wrap']}>
-                        <img src="/images/boat_login.png" alt="boat.png" />
+                        <img src='/images/boat_login.png' alt='boat.png' />
                     </div>
                     <div className={styles['container-form']}>
                         <h2 className={styles['title-form']}>Sign in</h2>
@@ -69,7 +76,7 @@ const Login = () => {
                             <div className={styles.field}>
                                 <label htmlFor='email'>Email</label>
                                 <input
-                                    type="email"
+                                    type='email'
                                     id='email'
                                     name='email'
                                     data-testid='email'
@@ -83,7 +90,7 @@ const Login = () => {
                             <div className={styles.field}>
                                 <label htmlFor='password'>Password</label>
                                 <input
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     id='password'
                                     name='password'
                                     data-testid='password'
@@ -92,6 +99,12 @@ const Login = () => {
                                     onChange={passwordInput.onChange}
                                     onBlur={passwordInput.onBlur}
                                 />
+                                <span onClick={showPasswordHandler} className={styles['show-password']}>
+                                    {showPassword
+                                        ? <FontAwesomeIcon icon={faEyeSlash} />
+                                        : <FontAwesomeIcon icon={faEye} />
+                                    }
+                                </span>
                             </div>
                             {passwordInput.hasError && <p className={styles.error}>Password should be at last 5 character!</p>}
                             <button
@@ -104,7 +117,7 @@ const Login = () => {
                                 }
                             </button>
                             <div className={styles.more}>
-                                <p >Don't have an account? <Link to="/auth/register">Sign up</Link></p>
+                                <p >Don't have an account? <Link to='/auth/register'>Sign up</Link></p>
                             </div>
                         </form>
                     </div>

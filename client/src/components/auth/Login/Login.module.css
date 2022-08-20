@@ -70,6 +70,9 @@
     font-weight: 600;
     margin-bottom: 1.8rem;
 }
+.field {
+    position: relative;
+}
 
 .login-form .field {
     margin: 1rem 0 1rem 0;
@@ -95,6 +98,15 @@
 
 .input-field:focus {
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+}
+
+.show-password {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #9d9dc4;
 }
 
 .more {
