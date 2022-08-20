@@ -34,7 +34,7 @@ const CommentForm = ({ setIsEdit }) => {
 
     const responseData = (data) => {
         dispatch(commentStoreActions.updateComments(data));
-        
+
         dispatch(commentStoreActions.addComment(data));
 
         commentCloseHandler();

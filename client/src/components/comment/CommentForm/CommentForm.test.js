@@ -10,7 +10,15 @@ import CommentForm from './CommentForm';
 
 describe('CommentForm modal', () => {
     beforeEach(() => {
-        store.dispatch(authStoreActions.login({ userData: { _id: '123123', firstName: 'John', lastName: 'Smit', email: 'john@gmail.com', phone: '+49155123123' } }))
+        const userData = {
+            _id: '123123',
+            firstName: 'John',
+            lastName: 'Smit',
+            email: 'john@gmail.com',
+            phone: '+49155123123'
+        };
+
+        store.dispatch(authStoreActions.login({ userData }))
         render(
             <Provider store={store}>
                 <CommentForm />
