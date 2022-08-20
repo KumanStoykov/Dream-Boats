@@ -11,9 +11,8 @@ import { commentStoreActions } from '../../../store/commentStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faComment } from '@fortawesome/free-solid-svg-icons';
 
-import Modal from '../../ui/Modal/Modal';
 import CommentForm from '../CommentForm/CommentForm';
-import CommentsMessages from '../CommentMessages/CommentsMessages';
+import CommentMessages from '../CommentMessages/CommentMessages';
 import Spinner from '../../ui/Spinner/Spinner';
 
 import styles from './CommentModal.module.css';
@@ -55,27 +54,33 @@ const CommentModal = () => {
         <div className={styles.frame}>
             {isLoading && <Spinner size={'large'} />}
             {!isLoading
-                && <Modal>
-                    <div className={styles.modal}>
-                        <div className={`${styles['post-container']} ${hasForm && styles['post-container-with-form']}`}>
-                            <button type='button' onClick={closeFormHandler} className={`${styles['btn-icon']}`}>
-                                <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
-                            </button>
-                            {user?.email
-                                && !hasForm
-                                && !formIsEdit
-                                && <button type='button' onClick={commentCloseHandler} className={`${styles['btn-icon']}`}>
-                                    <span className={styles['icon-form']}><FontAwesomeIcon icon={faComment} /></span>
+                && <div className={styles.modal}>
+                    <div className={`${styles['post-container']} ${hasForm && styles['post-container-with-form']}`}>
+                        <button 
+                            type='button' 
+                            className={`${styles['btn-icon']}`}
+                            onClick={closeFormHandler} 
+                        >
+                            <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
+                        </button>
+                        {user?.email
+                            && !hasForm
+                            && !formIsEdit
+                            && <button 
+                                    type='button' 
+                                    className={`${styles['btn-icon']}`}
+                                    onClick={commentCloseHandler} 
+                                >
+                                    <span className={styles['icon-form']}><FontAwesomeIcon icon={faComment} title='faComment'/></span>
                                 </button>
-                            }
-                            {user?.email && formIsOpen && <CommentForm />}
+                        }
+                        {user?.email && formIsOpen && <CommentForm />}
 
-                            <ul className={`${hasForm ? styles['post-messages'] : styles['only-messages']}`}>
-                                {comments.map(x => <CommentsMessages key={x._id} comment={x} />)}
-                            </ul>
-                        </div>
+                        <ul className={`${hasForm ? styles['post-messages'] : styles['only-messages']}`}>
+                            {comments.map(x => <CommentMessages key={x._id} comment={x} />)}
+                        </ul>
                     </div>
-                </Modal>
+                </div>
             }
         </div>
     );
