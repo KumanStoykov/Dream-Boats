@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSailboat, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './ProfileNavbar.module.css';
 
@@ -34,7 +34,7 @@ const ProfileNavbar = () => {
                     </li>
                     <li className={styles.box}>
                         <Link to={`/profile/${user._id}/watch-list?page=1&sort=desc`} className={styles['user-nav-link']}>
-                            <FontAwesomeIcon className={styles['user-profile-icon']} icon={faEye} />
+                            <FontAwesomeIcon className={styles['user-profile-icon']} icon={faBookmark} />
                         </Link>
                     </li>
                 </ul>

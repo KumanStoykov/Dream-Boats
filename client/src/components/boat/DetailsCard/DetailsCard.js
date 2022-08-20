@@ -6,7 +6,7 @@ import { watchStoreActions } from '../../../store/watchStore';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkSquare, faPenSquare, faEnvelope, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 
 import Slideshow from '../../ui/Slider/Slider';
 
@@ -49,17 +49,16 @@ const DetailsCard = ({ boat }) => {
         <div className={styles.card}>
             <div className={styles['boat-imgs']}>
                 <div className={styles['img-display']}>
-                    <Slideshow 
+                    <Slideshow
                         thumbnail={true}
-                        imgs={boat.image.map(x => x.url)} 
+                        imgs={boat.image.map(x => x.url)}
                     />
                 </div>
             </div>
 
             <div className={styles['boat-content']}>
                 <h2 className={styles['boat-title']}>{boat.make}</h2>
-                {!hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEye} /></button>}
-                {hasWatched && <button onClick={watchedHandler} className={styles['boat-watched']}><FontAwesomeIcon icon={faEyeSlash} /></button>}
+                <button onClick={watchedHandler} className={hasWatched ? styles['boat-has-watched'] : styles['boat-watched']}><FontAwesomeIcon icon={faBookmark} /></button>
 
                 <div className={styles['boat-price']}>
                     <p className={styles['new-price']}>Price: <span>${boat.price.toLocaleString()}</span></p>
