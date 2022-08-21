@@ -14,8 +14,7 @@
     right: 0;
     bottom: 0;
     animation: show-modal 700ms ease-in-out;
-    margin: 0 auto;
-    max-width: 50rem;
+    margin: 0 2rem;
 }
 .modal.hide {
     animation: hide-modal 600ms ease-in-out both;

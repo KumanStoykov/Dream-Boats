@@ -82,8 +82,8 @@ const EmailModal = () => {
         <div className={styles.frame} onClick={outsideHandler}>
             {isLoading && <Spinner size={'large'} />}
             {!isLoading
-                && <div className={styles.modal} ref={nodeRef}>
-                    <form onSubmit={submitHandler} className={`${styles['contact-form']}`}>
+                && <div className={styles.modal} >
+                    <form onSubmit={submitHandler} className={`${styles['contact-form']}`} ref={nodeRef}>
                         <button type='button' onClick={xMarkHandler} className={`${styles['btn-icon']}`}>
                             <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
                         </button>
