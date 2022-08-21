@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,6 +19,8 @@ const EmailModal = () => {
     const dispatch = useDispatch();
     const { isLoading, requester } = useFetch();
     const boat = useSelector(state => state.allBoats.boat);
+    const nodeRef = useRef(null);
+
 
 
     const nameInput = useInput(userValidation.isEmpty);
@@ -64,19 +67,24 @@ const EmailModal = () => {
 
     };
 
-    const cancelHandler = () => {
+    const xMarkHandler = () => {
         dispatch(modalStoreActions.close());
     };
 
+    const outsideHandler = (e) => {
+        if (!nodeRef.current || nodeRef.current.contains(e.target)) {
+            return;
+        }
+        dispatch(modalStoreActions.close());
+    }
 
     return (
-        <div className={styles.frame}>
-            {isLoading
-                ? <Spinner size={'large'} />
-
-                : <div className={styles.modal}>
-                    <form onSubmit={submitHandler} className={`${styles['contact-form']} ${styles.form}`}>
-                        <button type='button' onClick={cancelHandler} className={`${styles['btn-icon']}`}>
+        <div className={styles.frame} onClick={outsideHandler}>
+            {isLoading && <Spinner size={'large'} />}
+            {!isLoading
+                && <div className={styles.modal} ref={nodeRef}>
+                    <form onSubmit={submitHandler} className={`${styles['contact-form']}`}>
+                        <button type='button' onClick={xMarkHandler} className={`${styles['btn-icon']}`}>
                             <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
                         </button>
                         <div className={styles['input-group-wrap']}>

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -19,11 +19,13 @@ import styles from './CommentModal.module.css';
 
 const CommentModal = () => {
     const dispatch = useDispatch();
+    const nodeRef = useRef(null);
     const comments = useSelector(state => state.allComments.comments);
     const user = useSelector(state => state.auth.userData);
     const formIsEdit = useSelector(state => state.allComments.formIsEdit);
     const formIsOpen = useSelector(state => state.allComments.formIsOpen);
     const { isLoading, requester } = useFetch();
+
 
     const hasForm = user?.email && formIsOpen;
 
@@ -35,6 +37,9 @@ const CommentModal = () => {
         requester(commentService.getComments(), responseData);
     }, [requester, dispatch, responseData]);
 
+    const commentCloseHandler = () => {
+        dispatch(commentStoreActions.setForm(true));
+    }
 
     const closeFormHandler = () => {
         dispatch(modalStoreActions.close());
@@ -46,33 +51,43 @@ const CommentModal = () => {
         }
     };
 
-    const commentCloseHandler = () => {
-        dispatch(commentStoreActions.setForm(true));
+    const outsideHandler = (e) => {
+        if (!nodeRef.current || nodeRef.current.contains(e.target)) {
+            return;
+        } else {
+            dispatch(modalStoreActions.close());
+            dispatch(commentStoreActions.setEditForm(false));
+            dispatch(commentStoreActions.setForm(false));
+
+            if (comments.length !== 0) {
+                dispatch(commentStoreActions.addComment({ comment: comments[0] }));
+            }
+        }
     }
 
     return (
-        <div className={styles.frame}>
+        <div className={styles.frame} onClick={outsideHandler}>
             {isLoading && <Spinner size={'large'} />}
             {!isLoading
                 && <div className={styles.modal}>
-                    <div className={`${styles['post-container']} ${hasForm && styles['post-container-with-form']}`}>
-                        <button 
-                            type='button' 
+                    <div className={`${styles['post-container']} ${hasForm && styles['post-container-with-form']}`} ref={nodeRef}>
+                        <button
+                            type='button'
                             className={`${styles['btn-icon']}`}
-                            onClick={closeFormHandler} 
+                            onClick={closeFormHandler}
                         >
                             <span className={styles['icon-message']}><FontAwesomeIcon icon={faXmark} /></span>
                         </button>
                         {user?.email
                             && !hasForm
                             && !formIsEdit
-                            && <button 
-                                    type='button' 
-                                    className={`${styles['btn-icon']}`}
-                                    onClick={commentCloseHandler} 
-                                >
-                                    <span className={styles['icon-form']}><FontAwesomeIcon icon={faComment} title='faComment'/></span>
-                                </button>
+                            && <button
+                                type='button'
+                                className={`${styles['btn-icon']}`}
+                                onClick={commentCloseHandler}
+                            >
+                                <span className={styles['icon-form']}><FontAwesomeIcon icon={faComment} title='faComment' /></span>
+                            </button>
                         }
                         {user?.email && formIsOpen && <CommentForm />}
 

@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 900;
 }
 
 .modal {
@@ -15,7 +15,6 @@
     bottom: 0;
     right: 0;
     animation: show-modal 700ms ease-in-out;
-    z-index: 900;
     margin: 0 2rem;
 }
 .modal.hide {

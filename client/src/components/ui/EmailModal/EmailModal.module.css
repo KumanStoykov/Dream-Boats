@@ -5,23 +5,23 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 900;
 }
-.modal {    
+.modal {
     position: fixed;
     top: 14vh;
     left: 0;
     right: 0;
     bottom: 0;
     animation: show-modal 700ms ease-in-out;
-    z-index: 900;
-    margin: 0 2rem;
+    margin: 0 auto;
+    max-width: 50rem;
 }
 .modal.hide {
     animation: hide-modal 600ms ease-in-out both;
 }
 
-.contact-form{
+.contact-form {
     position: relative;
     width: 100%;
     max-width: 50rem;
@@ -31,7 +31,7 @@
     margin: auto;
 }
 
-.contact-form .input{
+.contact-form .input {
     display: block;
     background-color: transparent;
     color: #fff;
@@ -50,7 +50,7 @@
     width: 100%;
     min-height: 2rem;
     padding-top: 0.8rem;
-    margin: 2rem 0  0.5rem 0;
+    margin: 2rem 0 0.5rem 0;
     font-weight: bold;
     font-size: 2rem;
     color: #a5a5a5;
@@ -66,12 +66,12 @@
     color: #fff;
 }
 
-.bar{
+.bar {
     display: block;
     position: relative;
 }
 
-.bar::after{
+.bar::after {
     content: '';
     position: absolute;
     left: 0;
@@ -81,10 +81,10 @@
     background-color: var(--purple-light);
     transform: scaleX(0);
     transform-origin: left;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 
-.contact-form .input:focus + .bar::after{
+.contact-form .input:focus + .bar::after {
     transform: scaleX(1);
 }
 
@@ -137,22 +137,22 @@
 }
 
 @media screen and (min-width: 768px) {
-    .contact-content{
+    .contact-content {
         justify-content: space-between;
     }
-    .contact-form{
+    .contact-form {
         flex: 0 0 50%;
         align-self: flex-start;
     }
 
-    .input-group-wrap{
+    .input-group-wrap {
         display: flex;
     }
-    .input-group-wrap .input-group{
+    .input-group-wrap .input-group {
         width: 50%;
         margin-right: 2rem;
     }
-    .input-group-wrap .input-group:last-child{
+    .input-group-wrap .input-group:last-child {
         margin-right: 0;
     }
 }
