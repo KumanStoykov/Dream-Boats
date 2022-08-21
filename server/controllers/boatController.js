@@ -60,7 +60,7 @@ router.get('/boats-owner', loggedInMiddleware(), async (req, res) => {
         const sort = req?.query?.sort || 'desc';
 
         const boats = await boatService.getByOwner(whereId, page, sort);
-        const boatsCount = await boatService.boatCount();
+        const boatsCount = boats.length;
 
         res.status(200).send({ boats, boatsCount });
     } catch (error) {
