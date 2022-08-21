@@ -27,6 +27,7 @@ const Contact = () => {
                 </article>
                 <div className={styles['map-wrapper']}>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3005.8698728748054!2d16.903758315664394!3d41.115532920766334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1347e82222a1e841%3A0xa64dac1f5a5269d5!2sVia%20Giovanni%20Di%20Cagno%20Abbrescia%2C%2070126%20Bari%20BA%2C%20Italy!5e0!3m2!1sen!2sde!4v1660331908666!5m2!1sen!2sde"
+                        title='googleMap'
                         width={'100%'}
                         height={450}
                         style={{ border: 0 }}

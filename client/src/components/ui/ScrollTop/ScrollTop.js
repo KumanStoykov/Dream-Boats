@@ -14,7 +14,7 @@ const ScrollTop = () => {
         } else {
             setShowBtn(false);
         }
-    });
+    }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler);

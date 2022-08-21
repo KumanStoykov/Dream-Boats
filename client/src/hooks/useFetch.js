@@ -22,7 +22,7 @@ const useFetch = () => {
                 body: options.body || null
             });
             const result = await res.json();
-            
+
             if (!res.ok) {
                 throw new Error(result.message);
             }
@@ -35,13 +35,12 @@ const useFetch = () => {
 
         } catch (error) {
             let errorMsg = error.message;
-            console.log(errorMsg);
 
             if (errorMsg === 'Please log in' || errorMsg === 'jwt expired') {
                 dispatch(authStoreActions.logout());
             }
 
-            if(errorMsg === 'Failed to fetch') {
+            if (errorMsg === 'Failed to fetch') {
                 errorMsg = 'Oops, something has gone wrong, please try again!'
             }
 
