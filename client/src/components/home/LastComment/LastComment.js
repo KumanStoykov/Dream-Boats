@@ -34,7 +34,7 @@ const LastComment = () => {
 
     const commentFormHandler = () => {
 
-        if(!user?.email && comment === null) {
+        if (!user?.email && comment === null) {
             navigate('/auth/login')
         } else {
 
@@ -49,7 +49,7 @@ const LastComment = () => {
     return (
         <section className={styles.comment}>
             {isLoading && <Spinner size={'large'} />}
-            {comment === null && <NoResultHeading size={false} title={'No Comments yet'} />}
+            {comment === null && <NoResultHeading title={'No Comments yet'} />}
             <div className={'container'}>
                 {!isLoading && comment !== null &&
                     <div className={styles['comment-content']}>

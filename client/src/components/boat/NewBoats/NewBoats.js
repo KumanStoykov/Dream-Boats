@@ -13,7 +13,8 @@ const NewBoats = ({
             boats={boats}
             heading={heading}
             subHeading={subHeading}
-            fancyBoarder={fancyBoarder} 
+            fancyBoarder={fancyBoarder}
+            title={'No Boats yet'}
         />
     );
 

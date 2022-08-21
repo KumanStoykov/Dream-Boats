@@ -36,7 +36,7 @@ const BoatForm = () => {
             requester(boatService.getOneById(boatId), responseEdit);
         }
 
-    }, [dispatch, requester, isEdit]);
+    }, [dispatch, requester, isEdit, boatId]);
 
 
     const makeInput = useInput(boatValidation.isLengthTwoCh);
