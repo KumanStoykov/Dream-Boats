@@ -12,10 +12,9 @@ router.post('/send/:ownerId', async (req, res) => {
     sgMail.setApiKey(config.SENDGRID_API_KEY);
     try {
         const userId = req.params.ownerId;
-        
+
         const user = await userService.getById(userId);
 
-            console.log(user);
         const msg = {
             from: {
                 name: 'Dream boats',
@@ -29,11 +28,11 @@ router.post('/send/:ownerId', async (req, res) => {
                     phone: req.body.phone,
                     message: req.body.message,
                 }
-                
+
             }],
             template_id: 'd-422ed513916d413b87636119f1c7527d'
         };
-        
+
         if (validator.isEmpty(req.body.name)) {
             throw new Error('The name is required');
         }
@@ -46,7 +45,7 @@ router.post('/send/:ownerId', async (req, res) => {
         if (validator.isEmpty(req.body.message)) {
             throw new Error('The message is required');
         }
-       
+
 
         const result = await sgMail.send(msg);
 
