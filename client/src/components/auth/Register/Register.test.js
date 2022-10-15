@@ -172,8 +172,8 @@ describe('Register', () => {
         userEvent.type(lastNameInput, 'Doe');
         userEvent.type(phoneInput, '+12345678910');
         userEvent.type(emailInput, 'joe@gmail.com');
-        userEvent.type(passwordInput, '12345');
-        userEvent.type(repeatPasswordInput, '12345');
+        userEvent.type(passwordInput, '1234567');
+        userEvent.type(repeatPasswordInput, '1234567');
 
         userEvent.click(registerBtn);
 
