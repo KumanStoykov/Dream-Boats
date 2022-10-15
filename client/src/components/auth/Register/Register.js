@@ -202,7 +202,7 @@ const Register = () => {
                                 }
                             </button>
                             <div className={styles.more}>
-                                <p >Don't have an account? <Link to='/auth/login'>Sign in</Link></p>
+                                <p >You all ready have registration? <Link to='/auth/login'>Sign in</Link></p>
                             </div>
                         </form>
                     </div>
