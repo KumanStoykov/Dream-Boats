@@ -12,7 +12,7 @@ This is my project for the React course in SoftUni. It was crated with HTML, CSS
 
 ## Live-demo
 
-**[Dream-Boats](https://dream-boats.herokuapp.com/)**
+**[Dream-Boats](https://dream-boats.onrender.com/)**
 
 ## Installation and usage
  
