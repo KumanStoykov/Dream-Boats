@@ -95,4 +95,4 @@ The loggrd-in users are:
 - [Redux Persist](https://github.com/rt2zz/redux-persist)
 
 ## Deployment
-<img width="80" src="https://raw.githubusercontent.com/ivangabriele/vscode-heroku/master/res/icon.png"/>
+**[RENDER](https://render.com/)**
