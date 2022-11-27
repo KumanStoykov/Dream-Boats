@@ -23,7 +23,7 @@ const configEnv = {
         SECRET: process.env.SECRET,
         ROUND_SALT: 9,
         CORS: {
-            origin: ['https://dream-boats.herokuapp.com/'],
+            origin: ['https://dream-boats.onrender.com/'],
             credentials: true
         },
         CLOUDINARY: {
