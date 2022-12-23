@@ -184,8 +184,3 @@ section {
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     }
 }
-@media all and (min-width: 368px) {
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-    }
-}
