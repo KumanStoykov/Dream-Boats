@@ -7,6 +7,7 @@ import { watchStoreActions } from '../../../store/watchStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmarkSquare, faPenSquare, faEnvelope, faCheck, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as faBookmarkRegular } from '@fortawesome/free-regular-svg-icons'
+import { mixedContent } from '../../../utils/mixedContent';
 
 import Slideshow from '../../ui/Slider/Slider';
 
@@ -51,7 +52,7 @@ const DetailsCard = ({ boat }) => {
                 <div className={styles['img-display']}>
                     <Slideshow
                         thumbnail={true}
-                        imgs={boat.image.map(x => x.url)}
+                        imgs={boat.image.map(x => mixedContent(x.url))}
                     />
                 </div>
             </div>
